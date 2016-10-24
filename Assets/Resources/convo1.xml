@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConversationCollection>
+  <Conversations>
+    <Conversation name="Default" postConvoAction="" nextConvo="Default2" checkForType="" checkForId="-1">
+      <Script>
+        <ConvoOutput position="Left">
+          <Speaker>Player</Speaker>
+          <Speech>Hey, how are ya?</Speech>
+        </ConvoOutput>
+        <ConvoOutput position="Right">
+          <Speaker>RedBox</Speaker>
+          <Speech>Pretty bored, I am only a red box after all.</Speech>
+        </ConvoOutput>
+        <ConvoOutput position="Left">
+          <Speaker>Player</Speaker>
+          <Speech>Oh. So I guess thinking outside of the box for you...</Speech>
+        </ConvoOutput>
+        <ConvoOutput position="Left">
+          <Speaker>Player</Speaker>
+          <Speech>would be an out of body experience!</Speech>
+        </ConvoOutput>
+        <ConvoOutput position="Right">
+          <Speaker>RedBox</Speaker>
+          <Speech>Please leave.</Speech>
+        </ConvoOutput>
+      </Script>
+    </Conversation>
+    <Conversation name="Default2" postConvoAction="" nextConvo="Default2" checkForType="" checkForId="-1">
+      <Script>
+        <ConvoOutput position="Left">
+          <Speaker>Player</Speaker>
+          <Speech>It was a good joke!</Speech>
+        </ConvoOutput>
+        <ConvoOutput position="Right">
+          <Speaker>RedBox</Speaker>
+          <Speech>Why are you still here?</Speech>
+        </ConvoOutput>
+      </Script>
+    </Conversation>
+    <Conversation name="BlueBoxConvo" postConvoAction="" nextConvo="BlueBoxConvo2" checkForType="Evidence" checkForId="0">
+      <Script>
+        <ConvoOutput position="Left">
+          <Speaker>RedBox</Speaker>
+          <Speech>What are you doing with my kid!?</Speech>
+        </ConvoOutput>
+      </Script>
+    </Conversation>
+    <Conversation name="BlueBoxConvo2" postConvoAction="" nextConvo="BlueBoxConvo2" checkForType="" checkForId="-1">
+      <Script>
+        <ConvoOutput position="Left">
+          <Speaker>RedBox</Speaker>
+          <Speech>Just kidding, my child isn't blue.</Speech>
+        </ConvoOutput>
+        <ConvoOutput position="Left">
+          <Speaker>Player</Speaker>
+          <Speech>Do you want it?</Speech>
+        </ConvoOutput>
+        <ConvoOutput position="Left">
+          <Speaker>RedBox</Speaker>
+          <Speech>No.</Speech>
+        </ConvoOutput>
+      </Script>
+    </Conversation>
+  </Conversations>
+</ConversationCollection>

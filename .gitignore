@@ -25,8 +25,13 @@ $RECYCLE.BIN/
 # =========================
 
 .DS_Store
-.AppleDouble
-.LSOverride
+Library
+Temp
+*.csproj
+*.pidb
+*.unityproj
+*.sln
+*.userprefs
 
 # Thumbnails
 ._*
