@@ -14,6 +14,10 @@ public class NotebookController : MonoBehaviour
     //list of profiles
     //database of all collectables
     //progress notes unlocked after certain checkpoints
+    void Start()
+    {
+        _currentPage = _evidencePage;
+    }
 
     public static NotebookController Instance()
     {
@@ -34,6 +38,7 @@ public class NotebookController : MonoBehaviour
         {
             case "Evidence":
                 _evidencePage.AddEntry(entry);
+                _currentPage = _evidencePage;
                 break;
             case "Clue":
                 break;
@@ -71,5 +76,6 @@ public class NotebookController : MonoBehaviour
     public void UpdateNotebook()
     {
         //selectively update a given page?
+        _currentPage.UpdatePage();
     }
 }

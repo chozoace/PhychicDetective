@@ -2,11 +2,17 @@
 	{
 		"id": 0,
 		"name": "BlueBox",
-		"type": "Evidence"
+		"type": "Evidence",
+		"sprite": "BlueBox",
+		"description": "This blue box was carved from the blue scales of blue dragons found west of Black Knights Fortress.",
+		"comment": "Found in a room"
 	},
 	{
 		"id": 1,
 		"name": "GreenDragon",
-		"type": "Evidence"
+		"type": "Evidence",
+		"sprite": "BlueBox",
+		"description": "This blue box was carved from the blue scales of blue dragons found west of Black Knights Fortress.",
+		"comment": "Found in a room"
 	}
 ]

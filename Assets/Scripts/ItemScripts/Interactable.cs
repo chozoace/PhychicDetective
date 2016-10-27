@@ -49,12 +49,11 @@ public class Interactable : MonoBehaviour
 
     public virtual Conversation UpdateConvoInfo()
     {
-        Debug.Log("checking update " + _itemName);
         bool convoAssigned = false;
         GameObject playerGameObject = GameObject.FindGameObjectWithTag("Player");
         foreach (KeyValuePair<string, Conversation> convo in _conversationDictionary)
         {
-            Debug.Log(convo.Value._checkForId);
+            //Debug.Log(convo.Value._checkForId);
             if (playerGameObject.GetComponent<PlayerControllerScript>().InventoryContains(convo.Value._checkForType, int.Parse(convo.Value._checkForId)) && convo.Value._timesRead == 0)
             {
                 _currentConvo = convo.Value;

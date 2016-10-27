@@ -18,8 +18,8 @@ public class NotebookMenuPage : MonoBehaviour
 
     }
 	
-	void Update ()
+	public virtual void UpdatePage()
     {
-	
-	}
+
+    }
 }

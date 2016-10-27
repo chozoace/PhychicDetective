@@ -20,7 +20,7 @@ public class ItemDatabase : MonoBehaviour
         for(int i = 0; i < itemData.Count; i++)
         {
             //add newly generated item data from json
-            database.Add(new Collectable((int)itemData[i]["id"], itemData[i]["name"].ToString(), itemData[i]["type"].ToString()));
+            database.Add(new Collectable((int)itemData[i]["id"], itemData[i]["name"].ToString(), itemData[i]["type"].ToString(), itemData[i]["sprite"].ToString(), itemData[i]["description"].ToString(), itemData[i]["comment"].ToString()));
         }
     }
 
