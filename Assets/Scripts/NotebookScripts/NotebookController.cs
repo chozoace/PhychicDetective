@@ -6,6 +6,7 @@ public class NotebookController : MonoBehaviour
 {
     static NotebookController _instance = null;
     [SerializeField] EvidenceMenuPage _evidencePage;
+    [SerializeField] ProfileMenuPage _profilePage;
     NotebookMenuPage _currentPage;
     
     //currentPage
@@ -31,18 +32,47 @@ public class NotebookController : MonoBehaviour
         }
     }
 
+    public void StartNotebook()
+    {
+        _currentPage = _evidencePage;
+        _currentPage.EnterPage();
+    }
+
+    public void SwitchPage()
+    {
+        switch(_currentPage._pageName)
+        {
+            case "Evidence":
+                _currentPage.ExitPage();
+                _currentPage = _profilePage;
+                _currentPage.EnterPage();
+                break;
+            case "Clue":
+                break;
+            case "Profile":
+                _currentPage.ExitPage();
+                _currentPage = _evidencePage;
+                _currentPage.EnterPage();
+                break;
+            case "ProgressNote":
+                break;
+        }
+    }
+
     public void AddEntry(Collectable entry, string entryType)
     {
         Debug.Log("entryType is " + entryType);
         switch(entryType)
         {
             case "Evidence":
-                _evidencePage.AddEntry(entry);
-                _currentPage = _evidencePage;
+                if(!_evidencePage.PageContains(entry.ID))
+                    _evidencePage.AddEntry(entry);
                 break;
             case "Clue":
                 break;
             case "Profile":
+                if(!_profilePage.PageContains(entry.ID))
+                    _profilePage.AddEntry(entry);
                 break;
             case "ProgressNote":
                 break;

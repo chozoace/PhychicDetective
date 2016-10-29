@@ -19,6 +19,8 @@ public class PauseState : GameState
             _notebookController = NotebookController.Instance();
         }
         GameController.Instance()._notebookMenu.gameObject.SetActive(true);
+        _notebookController.StartNotebook();
+
         base.Enter();
     }
 

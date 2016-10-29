@@ -95,6 +95,10 @@ public class ConversationController : MonoBehaviour
             _playerGameObject.GetComponent<PlayerControllerScript>().CollectInteractable(_conversationInfo._itemId);
             Destroy(_conversationInfo.gameObject);
         }
+        if(_postConvoAction == "Profile")
+        {
+            _playerGameObject.GetComponent<PlayerControllerScript>().CollectInteractable(_conversationInfo._itemId);
+        }
     }
 
     public void UpdateConversation()

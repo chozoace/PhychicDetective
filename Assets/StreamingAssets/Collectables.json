@@ -3,8 +3,8 @@
 		"id": 0,
 		"name": "BlueBox",
 		"type": "Evidence",
-		"sprite": "BlueBox",
-		"description": "This blue box was carved from the blue scales of blue dragons found west of Black Knights Fortress.",
+		"sprite": "BlueBlock",
+		"description": "This blue box was carved from the scales of blue dragons found west of Black Knights Fortress.",
 		"comment": "Found in a room"
 	},
 	{
@@ -13,6 +13,14 @@
 		"type": "Evidence",
 		"sprite": "BlueBox",
 		"description": "This blue box was carved from the blue scales of blue dragons found west of Black Knights Fortress.",
+		"comment": "Found in a room"
+	},
+	{
+		"id": 2,
+		"name": "Pink Girl",
+		"type": "Profile",
+		"sprite": "32Sprite",
+		"description": "Lives in this room, convinced herself she is a red box.  Never moves. Never breathes. Always staring.",
 		"comment": "Found in a room"
 	}
 ]

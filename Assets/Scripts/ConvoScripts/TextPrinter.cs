@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TextPrinter : MonoBehaviour
 {
-    public Text _UIText;
+    Text _UIText;
 
     public string _textToType;
     public string TextToType { set { _textToType = value; } get { return _textToType; } }
@@ -14,6 +14,12 @@ public class TextPrinter : MonoBehaviour
     public float TextPercentage { get { return _textPercentage; } }
     int _numberOfLettersToShow = 0;
     public int NumberOfLettersToShow { set { _numberOfLettersToShow = value; } get { return _numberOfLettersToShow; } }
+    [SerializeField] GameObject _conversationBackground;
+
+    void Start()
+    {
+        _UIText = _conversationBackground.transform.Find("Text").gameObject.GetComponent<Text>();
+    }
 
     public void StartTyper()
     {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ConversationCollection>
   <Conversations>
-    <Conversation name="Default" postConvoAction="" nextConvo="Default2" checkForType="" checkForId="-1">
+    <Conversation name="Default" postConvoAction="Profile" nextConvo="Default2" checkForType="" checkForId="-1">
       <Script>
         <ConvoOutput position="Left">
           <Speaker>Player</Speaker>
@@ -37,7 +37,7 @@
         </ConvoOutput>
       </Script>
     </Conversation>
-    <Conversation name="BlueBoxConvo" postConvoAction="" nextConvo="BlueBoxConvo2" checkForType="Evidence" checkForId="0">
+    <Conversation name="BlueBoxConvo" postConvoAction="Profile" nextConvo="BlueBoxConvo2" checkForType="Evidence" checkForId="0">
       <Script>
         <ConvoOutput position="Left">
           <Speaker>RedBox</Speaker>

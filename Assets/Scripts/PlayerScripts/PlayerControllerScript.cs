@@ -56,7 +56,6 @@ public class PlayerControllerScript : MonoBehaviour
 
     public void CollectInteractable(int itemId)
     {
-        _hasBlueBox = true;
         //search for item by id then add to notebook
         Collectable item = _itemDatabase.FindCollectableWithId(itemId);
         if(item != null)
