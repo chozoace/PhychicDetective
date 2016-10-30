@@ -49,7 +49,7 @@ public class PlayerControllerScript : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
-            GameController.Instance().ChangeGameState(GameState._pauseState);
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().ChangeGameState(GameState._pauseState);
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
     }

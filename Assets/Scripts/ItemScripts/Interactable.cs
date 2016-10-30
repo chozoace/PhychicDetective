@@ -43,7 +43,7 @@ public class Interactable : MonoBehaviour
             Debug.Log("Interacting with " + _itemName);
             
             ConversationController.Instance().SetConversationInfo(this);
-            GameController.Instance().ChangeGameState(GameState._conversationState);     
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().ChangeGameState(GameState._conversationState);     
         }
     }
 

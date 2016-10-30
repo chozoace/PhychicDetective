@@ -6,27 +6,13 @@ public class CameraScript : MonoBehaviour
     [SerializeField] GameObject _playerGameObject;
     [SerializeField] float _xCameraThreshold = 2.5f;
     [SerializeField] float _yCameraThreshold = 2.5f;
-    static CameraScript _instance;
     Vector2 _cameraPosition = new Vector2(0,0);
     public Vector2 CameraScreenPosition { get { return _cameraPosition; } }
     float _viewportHeight;
     float _viewportWidth;
 
-    public static CameraScript Instance()
-    {
-        if (_instance)
-        {
-            return _instance;
-        }
-        else
-        {
-            throw new System.ArgumentException("Camera Script instance is null");
-        }
-    }
-
     void Start ()
     {
-        _instance = this;
         _viewportHeight = 2 * Camera.main.orthographicSize * 100;
         _viewportWidth = _viewportHeight * Camera.main.aspect;
         //Debug.Log("Height: " + _viewportHeight + "\nWidth: " + _viewportWidth);
@@ -35,7 +21,7 @@ public class CameraScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-
+        UpdateCameraMovement();
     }
 
     void UpdateCameraMovement()

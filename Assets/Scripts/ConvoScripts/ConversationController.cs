@@ -83,7 +83,7 @@ public class ConversationController : MonoBehaviour
             _textPrinter.ClearTyper();
             _currentConvoIndex = 0;
             _currentConvoSpeechIndex = 0;
-            GameController.Instance().ChangeGameState(GameState._overworldState);
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().ChangeGameState(GameState._overworldState);
         }
 
     }

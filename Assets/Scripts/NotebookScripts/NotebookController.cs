@@ -18,6 +18,7 @@ public class NotebookController : MonoBehaviour
     void Start()
     {
         _currentPage = _evidencePage;
+
     }
 
     public static NotebookController Instance()
@@ -34,6 +35,7 @@ public class NotebookController : MonoBehaviour
 
     public void StartNotebook()
     {
+        _currentPage.ExitPage();
         _currentPage = _evidencePage;
         _currentPage.EnterPage();
     }
