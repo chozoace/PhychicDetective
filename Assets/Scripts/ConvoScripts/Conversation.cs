@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using System.IO;
 
-
+[System.Serializable]
 public class Conversation
 {
     [XmlAttribute("name")]

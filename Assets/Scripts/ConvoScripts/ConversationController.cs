@@ -5,8 +5,6 @@ using System.Collections.Generic;
 
 public class ConversationController : MonoBehaviour
 {
-    static ConversationController _instance = null;
-
     public Interactable _conversationInfo;
     GameObject _textBox;
     ConversationContainer _convoContainer;
@@ -18,18 +16,6 @@ public class ConversationController : MonoBehaviour
     string _postConvoAction;
     [SerializeField] GameObject _playerGameObject;
     [SerializeField] GameObject _conversationBackground;
-
-    public static ConversationController Instance()
-    {
-        if (_instance)
-        {
-            return _instance;
-        }
-        else
-        {
-            throw new System.ArgumentException("ConversationController instance is null");
-        }
-    }
 
     public void SetConversationInfo(Interactable conversationInfo)
     {
@@ -62,7 +48,6 @@ public class ConversationController : MonoBehaviour
 
     void Awake ()
     {
-        _instance = this;
         _textPrinter = GetComponent<TextPrinter>();
 	}
 

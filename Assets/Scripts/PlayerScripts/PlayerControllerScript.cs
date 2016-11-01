@@ -52,6 +52,15 @@ public class PlayerControllerScript : MonoBehaviour
             GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().ChangeGameState(GameState._pauseState);
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            _notebook.SaveData();
+            GameObject.FindGameObjectWithTag("ConversationController").GetComponent<ConversationController>()._conversationInfo.SaveData();
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            //_notebook.LoadData();
+        }
     }
 
     public void CollectInteractable(int itemId)

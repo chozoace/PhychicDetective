@@ -4,6 +4,7 @@ using System.Xml;
 using System.Xml.Serialization;
 
 [XmlRoot("ConvoOutput")]
+[System.Serializable]
 public class ConvoOutput
 {
     [XmlAttribute("position")]

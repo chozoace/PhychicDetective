@@ -2,7 +2,8 @@
 using System.Collections;
 using System.Xml;
 using System.Collections.Generic;
-
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class Interactable : MonoBehaviour
 {
@@ -34,7 +35,8 @@ public class Interactable : MonoBehaviour
         _currentConvo = _conversationDictionary["Default"];
         if(_conversationDictionary.ContainsKey(_currentConvo._nextConvo))
             _nextConvo = _conversationDictionary[_currentConvo._nextConvo];
-	}
+        //GameObject.FindGameObjectWithTag("ConversationController").GetComponent<ConversationController>()._conversationInfo.LoadData();
+    }
 
     public virtual void onInteract()
     {
@@ -42,7 +44,7 @@ public class Interactable : MonoBehaviour
         {
             Debug.Log("Interacting with " + _itemName);
             
-            ConversationController.Instance().SetConversationInfo(this);
+            GameObject.FindGameObjectWithTag("ConversationController").GetComponent<ConversationController>().SetConversationInfo(this);
             GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().ChangeGameState(GameState._conversationState);     
         }
     }
@@ -76,6 +78,40 @@ public class Interactable : MonoBehaviour
         return _currentConvo;
     }
 
+    public void SaveData()
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file;
+        if (File.Exists(Application.persistentDataPath + "/" + _itemName +".dat"))
+            file = File.Open(Application.persistentDataPath + "/" + _itemName + ".dat", FileMode.Open);
+        else
+            file = File.Open(Application.persistentDataPath + "/" + _itemName + ".dat", FileMode.Create);
+
+        InteractableSerialize iser = new InteractableSerialize();
+        iser._conversationDictionary = _conversationDictionary;
+        iser._currentConvo = _currentConvo;
+        iser._nextConvo = _nextConvo;
+
+        bf.Serialize(file, iser);
+        file.Close();
+    }
+
+    public void LoadData()
+    {
+        if (File.Exists(Application.persistentDataPath + "/" + _itemName + ".dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/" + _itemName + ".dat", FileMode.Open);
+            InteractableSerialize iser = (InteractableSerialize)bf.Deserialize(file);
+
+            _conversationDictionary = iser._conversationDictionary;
+            _currentConvo = iser._currentConvo;
+            _nextConvo = iser._nextConvo;
+            
+            file.Close();
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
@@ -98,4 +134,17 @@ public class Interactable : MonoBehaviour
     {
 	    //update only when this is the chosen interactable object
 	}
+}
+
+[System.Serializable]
+public class InteractableSerialize
+{
+    public Dictionary<string, Conversation> _conversationDictionary = new Dictionary<string, Conversation>();
+    public Conversation _currentConvo;
+    public Conversation _nextConvo;
+
+    public InteractableSerialize()
+    {
+
+    }
 }

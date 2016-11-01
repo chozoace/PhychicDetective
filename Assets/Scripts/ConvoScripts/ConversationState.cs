@@ -21,7 +21,7 @@ public class ConversationState : GameState
         {
             _stateName = "ConversationState";
             _player = GameObject.FindGameObjectWithTag("Player");
-            _conversationController = ConversationController.Instance();
+            _conversationController = GameObject.FindGameObjectWithTag("ConversationController").GetComponent<ConversationController>();
         }
 
         //start convo
