@@ -15,8 +15,18 @@ public class PlayerControllerScript : MonoBehaviour
     public Interactable CollidingInteractable { get { return _collidingInteractable; } set { _collidingInteractable = value; } }
     NotebookController _notebook;
     ItemDatabase _itemDatabase;
+    static PlayerControllerScript instance;
 
 	// Use this for initialization
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject.transform.parent.gameObject);
+        DontDestroyOnLoad(transform.parent.gameObject);
+    }
+
 	void Start ()
     {
         _notebook = GetComponent<NotebookController>();
@@ -52,11 +62,13 @@ public class PlayerControllerScript : MonoBehaviour
             GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().ChangeGameState(GameState._pauseState);
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
+        //Save Game
         if (Input.GetKeyDown(KeyCode.U))
         {
             _notebook.SaveData();
             GameObject.FindGameObjectWithTag("ConversationController").GetComponent<ConversationController>()._conversationInfo.SaveData();
         }
+        //Load Game
         if (Input.GetKeyDown(KeyCode.I))
         {
             //_notebook.LoadData();

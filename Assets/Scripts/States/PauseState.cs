@@ -7,7 +7,7 @@ public class PauseState : GameState
 
     public override void Exit()
     {
-        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>()._notebookMenu.gameObject.SetActive(false);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<NotebookController>()._notebookMenu.SetActive(false);
         base.Exit();
     }
 
@@ -18,7 +18,7 @@ public class PauseState : GameState
             _stateName = "PauseState";
             _notebookController = NotebookController.Instance();
         }
-        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>()._notebookMenu.gameObject.SetActive(true);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<NotebookController>()._notebookMenu.SetActive(true);
         _notebookController.StartNotebook();
 
         base.Enter();

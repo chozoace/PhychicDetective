@@ -7,10 +7,11 @@ public class GameController : MonoBehaviour
     GameState _currentGameState = null;
     public GameState CurrentGameState { get { return _currentGameState; } }
     GameState _lastState;
-    public GameObject _notebookMenu;
+    GameObject _playerDataPrefab;
+    static GameController instance;
 
     //List of all interactables, should this be in overworldState?
-    //These must all be prefabs, LevelController.SaveDate()
+    //These must all be prefabs, LevelController.SaveData()
     //Create level controller which contains info on what stuff should be created
     //level controller should have list of all prefabs in level
 
@@ -18,6 +19,15 @@ public class GameController : MonoBehaviour
     {
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 60;
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+        DontDestroyOnLoad(this.gameObject);
+        if (_playerDataPrefab == null)
+        {
+            _playerDataPrefab = (GameObject)Instantiate(Resources.Load("PlayerData"));
+        }
     }
     
     void Start ()
@@ -25,6 +35,8 @@ public class GameController : MonoBehaviour
         _currentGameState = GameState._overworldState;
         _currentGameState.Enter();
         _lastState = _currentGameState;
+
+        //load level
     }
 
     public void ChangeGameState(GameState newState)

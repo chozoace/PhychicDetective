@@ -17,7 +17,7 @@ public class NotebookMenuPage : MonoBehaviour
 
     void Start ()
     {
-        _notebook = NotebookController.Instance();
+        _notebook = GameObject.FindGameObjectWithTag("Player").GetComponent<NotebookController>();
 	}
 
     public virtual void EnterPage()

@@ -11,6 +11,7 @@ public class NotebookController : MonoBehaviour
     [SerializeField] ProfileMenuPage _profilePage;
     NotebookMenuPage _currentPage;
     List<Collectable> _notebookItems = new List<Collectable>();
+    public GameObject _notebookMenu;
 
     public List<Collectable> GetNotebookItems { get { return _notebookItems; } }
     //currentPage
