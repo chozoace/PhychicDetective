@@ -18,7 +18,8 @@ public class NextLevelScript : Interactable
     {
         if(_canInteract)
         {
-            GameObject.FindGameObjectWithTag("GameController").GetComponent<LevelController>().LoadLevel(_nextLevel, new Vector2(_xPos, _yPos));
+            GameController.Instance().ChangeGameState(GameState._levelChangeState);
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<LevelController>().EndScene(_nextLevel, new Vector2(_xPos, _yPos));
         }
     }  
 }

@@ -15,21 +15,28 @@ public class OverworldState : GameState
         if (_stateName == "Default")
         {
             _stateName = "OverworldState";
-            _player = GameObject.FindGameObjectWithTag("Player");
+            //_player = GameObject.FindGameObjectWithTag("Player");
         }
 
         base.Enter();
     }
 
+    public void AssignPlayer(GameObject player)
+    {
+        _player = player;
+    }
+
     public override void UpdateState()
     {
         base.UpdateState();
-        _player.GetComponent<PlayerControllerScript>().PlayerUpdate();
+        if(_player != null)
+            _player.GetComponent<PlayerControllerScript>().PlayerUpdate();
     }
 
     public override void FixedUpdateState()
     {
         base.FixedUpdateState();
-        _player.GetComponent<PlayerControllerScript>().PlayerFixedUpdate();
+        if (_player != null)
+            _player.GetComponent<PlayerControllerScript>().PlayerFixedUpdate();
     }
 }

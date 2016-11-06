@@ -25,13 +25,13 @@ public class PlayerControllerScript : MonoBehaviour
         else if (instance != this)
             Destroy(gameObject.transform.parent.gameObject);
         DontDestroyOnLoad(transform.parent.gameObject);
+        _rigidBody = this.GetComponent<Rigidbody2D>();
     }
 
 	void Start ()
     {
         _notebook = GetComponent<NotebookController>();
         _itemDatabase = GameObject.FindGameObjectWithTag("GameController").GetComponent<ItemDatabase>();
-        _rigidBody = this.GetComponent<Rigidbody2D>();
     }
 
     public void PlayerFixedUpdate()

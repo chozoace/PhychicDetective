@@ -7,8 +7,8 @@ public class GameController : MonoBehaviour
     GameState _currentGameState = null;
     public GameState CurrentGameState { get { return _currentGameState; } }
     GameState _lastState;
-    GameObject _playerDataPrefab;
-    static GameController instance;
+    GameObject _playerDataPrefab = null;
+    static GameController _instance;
 
     //List of all interactables, should this be in overworldState?
     //These must all be prefabs, LevelController.SaveData()
@@ -19,19 +19,28 @@ public class GameController : MonoBehaviour
     {
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 60;
-        if (instance == null)
-            instance = this;
-        else if (instance != this)
-            Destroy(gameObject);
+        if (_instance == null)
+            _instance = this;
+        else if (_instance != this)
+            Destroy(this.gameObject);
         DontDestroyOnLoad(this.gameObject);
-        if (_playerDataPrefab == null)
-        {
-            _playerDataPrefab = (GameObject)Instantiate(Resources.Load("PlayerData"));
-        }
+    }
+
+    public static GameController Instance()
+    {
+        if(_instance != null)
+            return _instance;
+        else
+            throw new System.ArgumentException("Game Controller instance is null");
     }
     
     void Start ()
     {
+        if (_playerDataPrefab == null)
+        {
+            _playerDataPrefab = (GameObject)Instantiate(Resources.Load("PlayerData"));
+        }
+        GameState._overworldState.AssignPlayer(_playerDataPrefab.transform.FindChild("Player").gameObject);
         _currentGameState = GameState._overworldState;
         _currentGameState.Enter();
         _lastState = _currentGameState;

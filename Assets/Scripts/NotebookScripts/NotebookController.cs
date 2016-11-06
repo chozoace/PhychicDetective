@@ -34,7 +34,7 @@ public class NotebookController : MonoBehaviour
         }
         else
         {
-            throw new System.ArgumentException("ConversationController instance is null");
+            throw new System.ArgumentException("Notebook Controller instance is null");
         }
     }
 
@@ -120,7 +120,7 @@ public class NotebookController : MonoBehaviour
 
         bf.Serialize(file, ns);
         file.Close();
-        Debug.Log("File Path: " + Application.persistentDataPath);
+        //Debug.Log("File Path: " + Application.persistentDataPath);
     }
 
     public void LoadData()
@@ -136,14 +136,16 @@ public class NotebookController : MonoBehaviour
                 Debug.Log(item.Name);
                 AddEntry(item, item.Type);
             }
-            Debug.Log("info loaded");
             file.Close();
         }
     }
 
     void Awake()
     {
-        _instance = this;
+        if (_instance == null)
+            _instance = this;
+        else if (_instance != this)
+            Destroy(this.gameObject);
     }
 
     
