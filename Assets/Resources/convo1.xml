@@ -55,9 +55,35 @@
           <Speaker>Player</Speaker>
           <Speech>Do you want it?</Speech>
         </ConvoOutput>
+        <!--add condition here-->
+        <ConvoOutput position="Left" needEvidence="0">
+          <Speaker>Player</Speaker>
+          <Speech>Show Choices</Speech>
+          <Choices>
+            <Choice text="Yes" nextConvo="Notebook"/>
+            <Choice text="No" nextConvo=""/>
+          </Choices>
+        </ConvoOutput>
+        <!--end condition-->
         <ConvoOutput position="Left">
           <Speaker>RedBox</Speaker>
           <Speech>No.</Speech>
+        </ConvoOutput>
+      </Script>
+    </Conversation>
+    <Conversation name="BlueBoxConvo2ItemCorrect" postConvoAction="" nextConvo="BlueBoxConvo2" checkForType="" checkForId="-1">
+      <Script>
+        <ConvoOutput position="Left">
+          <Speaker>RedBox</Speaker>
+          <Speech>That is correct</Speech>
+        </ConvoOutput>
+      </Script>
+    </Conversation>
+    <Conversation name="BlueBoxConvo2ItemWrong" postConvoAction="" nextConvo="BlueBoxConvo2" checkForType="" checkForId="-1">
+      <Script>
+        <ConvoOutput position="Left">
+          <Speaker>RedBox</Speaker>
+          <Speech>That is WRONG</Speech>
         </ConvoOutput>
       </Script>
     </Conversation>

@@ -8,6 +8,8 @@ public class TextPrinter : MonoBehaviour
     Text _UIText;
 
     public string _textToType;
+    public string _textChoice1;
+    public string _textChoice2;
     public string TextToType { set { _textToType = value; } get { return _textToType; } }
     public float _typeSpeed = 1f;
     private float _textPercentage = 0;
@@ -23,6 +25,7 @@ public class TextPrinter : MonoBehaviour
 
     public void StartTyper()
     {
+        //loop through all text boxes
         Invoke("IncrementDisplayText", _typeSpeed);
     }
 
@@ -41,6 +44,14 @@ public class TextPrinter : MonoBehaviour
             _numberOfLettersToShow++;
             _UIText.text = _textToType.Substring(0, _numberOfLettersToShow);
             Invoke("IncrementDisplayText", _typeSpeed);
+        }
+        else if(ConversationController.Instance().CurrentConvo._convoOutputList[ConversationController.Instance().CurrentConvoIndex]._choiceOutputList.Count > 0)
+        {
+            //Have cursor with choices appear
+
+            //change control to notebook
+            GameState._conversationState.NotebookControl = true;
+            GameState._pauseState.Enter();
         }
     }
 

@@ -10,6 +10,7 @@ public class NotebookController : MonoBehaviour
     [SerializeField] EvidenceMenuPage _evidencePage;
     [SerializeField] ProfileMenuPage _profilePage;
     NotebookMenuPage _currentPage;
+    public NotebookMenuPage CurrentPage { get { return _currentPage; } }
     List<Collectable> _notebookItems = new List<Collectable>();
     public GameObject _notebookMenu;
 
@@ -23,6 +24,10 @@ public class NotebookController : MonoBehaviour
     void Start()
     {
         _currentPage = _evidencePage;
+        if (_instance == null)
+            _instance = this;
+        else if (_instance != this)
+            Destroy(this.gameObject);
         //LoadData();
     }
 

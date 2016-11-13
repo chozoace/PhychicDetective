@@ -22,7 +22,7 @@ public class Interactable : MonoBehaviour
     public Conversation GetNextConvo { get { return _nextConvo; } }
     ConversationContainer _convoContainer;
     public ConversationContainer GetConvoContainer { get { return _convoContainer; } }
-    Dictionary<string, Conversation> _conversationDictionary = new Dictionary<string, Conversation>();
+    public Dictionary<string, Conversation> _conversationDictionary = new Dictionary<string, Conversation>();
 
     void Start ()
     {
@@ -77,6 +77,16 @@ public class Interactable : MonoBehaviour
             }
             _currentConvo._timesRead++;
         }
+        return _currentConvo;
+    }
+
+    public Conversation AssignNewConvo(string newConvo)
+    {
+        Debug.Log(newConvo);
+        _currentConvo = _conversationDictionary[newConvo];
+        _nextConvo = _conversationDictionary[_currentConvo._nextConvo];
+        _currentConvo._timesRead++;
+
         return _currentConvo;
     }
 

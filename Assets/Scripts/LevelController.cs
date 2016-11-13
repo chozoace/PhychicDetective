@@ -46,7 +46,7 @@ public class LevelController : MonoBehaviour
         {
             FadeToBlack();
 
-            if(_blackScreen.GetComponent<SpriteRenderer>().color.a >= .95f)
+            if(_blackScreen.GetComponent<SpriteRenderer>().color.a >= .995f)
             {
                 _blackScreen.GetComponent<SpriteRenderer>().color = Color.black;
                 LoadLevel(newLevel, spawnVector);
@@ -61,12 +61,12 @@ public class LevelController : MonoBehaviour
 
     public IEnumerator StartSceneRoutine()
     {
-        yield return new WaitForSeconds(.05f);
+        yield return new WaitForSeconds(.001f);
         while (true)
         {
             FadeToClear();
 
-            if (_blackScreen.GetComponent<SpriteRenderer>().color.a <= .05f)
+            if (_blackScreen.GetComponent<SpriteRenderer>().color.a <= .005f)
             {
                 _blackScreen.GetComponent<SpriteRenderer>().color = Color.clear;
                 GameController.Instance().ChangeGameState(GameState._overworldState);

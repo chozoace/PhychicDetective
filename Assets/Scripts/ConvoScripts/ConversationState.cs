@@ -8,6 +8,8 @@ public class ConversationState : GameState
     GameObject _player = null;
     //grab info from this
     ConversationController _conversationController;
+    bool _notebookControl = false;
+    public bool NotebookControl { get { return _notebookControl; } set { _notebookControl = value; } }
 
     public override void Exit()
     {
@@ -32,7 +34,10 @@ public class ConversationState : GameState
 
     public override void UpdateState()
     {
-        _conversationController.UpdateConversation();
+        if (_notebookControl == false)
+            _conversationController.UpdateConversation();
+        else
+            NotebookController.Instance().CurrentPage.UpdatePage();
         //base.UpdateState();
     }
 }

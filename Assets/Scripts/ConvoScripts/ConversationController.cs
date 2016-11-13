@@ -9,13 +9,24 @@ public class ConversationController : MonoBehaviour
     GameObject _textBox;
     ConversationContainer _convoContainer;
     Conversation _currentConvo;
+    public Conversation CurrentConvo { get { return _currentConvo; } }
     TextPrinter _textPrinter;
     int _currentConvoIndex = 0;
+    public int CurrentConvoIndex { get { return _currentConvoIndex; } }
     int _currentConvoSpeechIndex = 0;
     public string _currentConvoName;
     string _postConvoAction;
     [SerializeField] GameObject _playerGameObject;
     [SerializeField] GameObject _conversationBackground;
+    static ConversationController _instance;
+
+    public static ConversationController Instance()
+    {
+        if (_instance != null)
+            return _instance;
+        else
+            throw new System.ArgumentException("Convo Controller instance is null");
+    }
 
     public void SetConversationInfo(Interactable conversationInfo)
     {
@@ -49,14 +60,23 @@ public class ConversationController : MonoBehaviour
     void Awake ()
     {
         _textPrinter = GetComponent<TextPrinter>();
-	}
+        if (_instance == null)
+            _instance = this;
+        else if (_instance != this)
+            Destroy(this.gameObject);
+    }
 
     void LoadConvoBlurb()
     {
+        //possibly load choice blurb?
         if (_currentConvoIndex < _currentConvo._convoOutputList.Count)
         {
             string textToPrint = _currentConvo._convoOutputList[_currentConvoIndex]._speaker + ": " + _currentConvo._convoOutputList[_currentConvoIndex]._speech;
+            //string textChoice1 = _currentConvo._convoOutputList[_currentConvoIndex]._speaker + ": " + _currentConvo._convoOutputList[_currentConvoIndex]._choiceOutputList[0]._text;
+            //string textChoice2 = _currentConvo._convoOutputList[_currentConvoIndex]._speaker + ": " + _currentConvo._convoOutputList[_currentConvoIndex]._choiceOutputList[1]._text;
             _textPrinter.TextToType = textToPrint;
+            //_textPrinter._textChoice1 = textChoice1;
+            //_textPrinter._textChoice2 = textChoice2;
             _textPrinter.ClearTyper();
             _textPrinter.StartTyper();
             _currentConvoIndex++;
@@ -83,6 +103,25 @@ public class ConversationController : MonoBehaviour
         if(_postConvoAction == "Profile")
         {
             _playerGameObject.GetComponent<PlayerControllerScript>().CollectInteractable(_conversationInfo._itemId);
+        }
+    }
+
+    public void PresentEvidence(int itemId)
+    {
+        if(int.Parse(_currentConvo._convoOutputList[_currentConvoIndex]._needEvidence) == itemId)
+        {
+            Debug.Log("Correct");
+            //get  
+            _currentConvo = _conversationInfo.AssignNewConvo(_currentConvo._name + "ItemCorrect");
+            _currentConvoIndex = 0;
+            LoadConvoBlurb();
+        }
+        else
+        {
+            Debug.Log("wrong");
+            _currentConvo = _conversationInfo.AssignNewConvo(_currentConvo._name + "ItemWrong");
+            _currentConvoIndex = 0;
+            LoadConvoBlurb();
         }
     }
 

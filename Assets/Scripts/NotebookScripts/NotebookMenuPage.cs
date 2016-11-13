@@ -105,5 +105,15 @@ public class NotebookMenuPage : MonoBehaviour
         {
             _notebook.SwitchPage();
         }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            if(GameController.Instance().CurrentGameState.StateName == "ConversationState")
+            {
+                //send info to convocontroller
+                ConversationController.Instance().PresentEvidence(_notebookEntries[_currentIndex].ID);
+                GameState._pauseState.Exit();
+                GameState._conversationState.NotebookControl = false;
+            }
+        }
     }
 }

@@ -194,6 +194,10 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 0.167
       objectReference: {fileID: 0}
+    - target: {fileID: 21292884, guid: 5a927a821ec8b314aabb662d4fd8d44f, type: 2}
+      propertyPath: m_SortingLayerID
+      value: 1633486305
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5a927a821ec8b314aabb662d4fd8d44f, type: 2}
   m_IsPrefabParent: 0
@@ -235,6 +239,10 @@ Prefab:
     - target: {fileID: 497630, guid: 574b02b077535d64a8bf727b20b3193f, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11476940, guid: 574b02b077535d64a8bf727b20b3193f, type: 2}
+      propertyPath: _fadeSpeed
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 574b02b077535d64a8bf727b20b3193f, type: 2}
