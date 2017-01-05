@@ -17,6 +17,9 @@ public class ConvoOutput
     [XmlElement("Speaker")]
     public string _speaker;
 
+    [XmlElement("SpeakerSprite")]
+    public string _speakerSprite;
+
     [XmlElement("Speech")]
     public string _speech;
 

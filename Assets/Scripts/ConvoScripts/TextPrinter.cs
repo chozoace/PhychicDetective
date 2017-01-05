@@ -45,14 +45,18 @@ public class TextPrinter : MonoBehaviour
             _UIText.text = _textToType.Substring(0, _numberOfLettersToShow);
             Invoke("IncrementDisplayText", _typeSpeed);
         }
-        else if(ConversationController.Instance().CurrentConvo._convoOutputList[ConversationController.Instance().CurrentConvoIndex]._choiceOutputList.Count > 0)
+        else if(ConversationController.Instance().CurrentConvo._convoOutputList.Count > ConversationController.Instance().CurrentConvoIndex)
         {
-            //Have cursor with choices appear
+            if (ConversationController.Instance().CurrentConvo._convoOutputList[ConversationController.Instance().CurrentConvoIndex]._choiceOutputList.Count > 0)
+            {
+                //Have cursor with choices appear
 
-            //change control to notebook
-            GameState._conversationState.NotebookControl = true;
-            GameState._pauseState.Enter();
+                //change control to notebook
+                GameState._conversationState.NotebookControl = true;
+                GameState._pauseState.Enter();
+            }
         }
+        Debug.Log("Convo index: " + ConversationController.Instance().CurrentConvoIndex);
     }
 
     public void UpdateTextPrinter()

@@ -5,22 +5,27 @@
       <Script>
         <ConvoOutput position="Left">
           <Speaker>Player</Speaker>
+          <SpeakerSprite>PlayerConvoSprite</SpeakerSprite>
           <Speech>Hey, how are ya?</Speech>
         </ConvoOutput>
         <ConvoOutput position="Right">
           <Speaker>RedBox</Speaker>
+          <SpeakerSprite>RedBoxConvoSprite</SpeakerSprite>
           <Speech>Pretty bored, I am only a red box after all.</Speech>
         </ConvoOutput>
         <ConvoOutput position="Left">
           <Speaker>Player</Speaker>
+          <SpeakerSprite>PlayerConvoSprite</SpeakerSprite>
           <Speech>Oh. So I guess thinking outside of the box for you...</Speech>
         </ConvoOutput>
         <ConvoOutput position="Left">
           <Speaker>Player</Speaker>
+          <SpeakerSprite>PlayerConvoSprite</SpeakerSprite>
           <Speech>would be an out of body experience!</Speech>
         </ConvoOutput>
         <ConvoOutput position="Right">
           <Speaker>RedBox</Speaker>
+          <SpeakerSprite>RedBoxConvoSprite</SpeakerSprite>
           <Speech>Please leave.</Speech>
         </ConvoOutput>
       </Script>
@@ -29,10 +34,12 @@
       <Script>
         <ConvoOutput position="Left">
           <Speaker>Player</Speaker>
+          <SpeakerSprite>PlayerConvoSprite</SpeakerSprite>
           <Speech>It was a good joke!</Speech>
         </ConvoOutput>
         <ConvoOutput position="Right">
           <Speaker>RedBox</Speaker>
+          <SpeakerSprite>RedBoxConvoSprite</SpeakerSprite>
           <Speech>Why are you still here?</Speech>
         </ConvoOutput>
       </Script>
@@ -41,6 +48,7 @@
       <Script>
         <ConvoOutput position="Left">
           <Speaker>RedBox</Speaker>
+          <SpeakerSprite>RedBoxConvoSprite</SpeakerSprite>
           <Speech>What are you doing with my kid!?</Speech>
         </ConvoOutput>
       </Script>
@@ -49,15 +57,18 @@
       <Script>
         <ConvoOutput position="Left">
           <Speaker>RedBox</Speaker>
+          <SpeakerSprite>RedBoxConvoSprite</SpeakerSprite>
           <Speech>Just kidding, my child isn't blue.</Speech>
         </ConvoOutput>
         <ConvoOutput position="Left">
           <Speaker>Player</Speaker>
+          <SpeakerSprite>PlayerConvoSprite</SpeakerSprite>
           <Speech>Do you want it?</Speech>
         </ConvoOutput>
         <!--add condition here-->
         <ConvoOutput position="Left" needEvidence="0">
           <Speaker>Player</Speaker>
+          <SpeakerSprite>PlayerConvoSprite</SpeakerSprite>
           <Speech>Show Choices</Speech>
           <Choices>
             <Choice text="Yes" nextConvo="Notebook"/>
@@ -67,6 +78,7 @@
         <!--end condition-->
         <ConvoOutput position="Left">
           <Speaker>RedBox</Speaker>
+          <SpeakerSprite>RedBoxConvoSprite</SpeakerSprite>
           <Speech>No.</Speech>
         </ConvoOutput>
       </Script>
@@ -75,6 +87,7 @@
       <Script>
         <ConvoOutput position="Left">
           <Speaker>RedBox</Speaker>
+          <SpeakerSprite>RedBoxConvoSprite</SpeakerSprite>
           <Speech>That is correct</Speech>
         </ConvoOutput>
       </Script>
@@ -83,6 +96,7 @@
       <Script>
         <ConvoOutput position="Left">
           <Speaker>RedBox</Speaker>
+          <SpeakerSprite>RedBoxConvoSprite</SpeakerSprite>
           <Speech>That is WRONG</Speech>
         </ConvoOutput>
       </Script>

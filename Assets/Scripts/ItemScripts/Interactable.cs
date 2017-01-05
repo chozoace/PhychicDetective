@@ -13,6 +13,8 @@ public class Interactable : MonoBehaviour
     public string _itemName = "Default";
     public int _itemId;
     string _conversationOutput;
+    [SerializeField] protected string _interactableType = "Default";
+    public string InteractableType { get { return _interactableType; } }
     //not public
     [SerializeField] TextAsset _xml;
     public TextAsset GetXML { get { return _xml; } }

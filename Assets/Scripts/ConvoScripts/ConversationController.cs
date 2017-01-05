@@ -18,6 +18,7 @@ public class ConversationController : MonoBehaviour
     string _postConvoAction;
     [SerializeField] GameObject _playerGameObject;
     [SerializeField] GameObject _conversationBackground;
+    [SerializeField] GameObject _speakingCharSprite;
     static ConversationController _instance;
 
     public static ConversationController Instance()
@@ -71,6 +72,18 @@ public class ConversationController : MonoBehaviour
         //possibly load choice blurb?
         if (_currentConvoIndex < _currentConvo._convoOutputList.Count)
         {
+            //set speaking char sprite to convo info
+            if(_currentConvo._convoOutputList[_currentConvoIndex]._speakerSprite != null)
+            {
+                Debug.Log(_currentConvo._convoOutputList[_currentConvoIndex]._speakerSprite);
+                _speakingCharSprite.GetComponent<SpriteRenderer>().enabled = true;
+                _speakingCharSprite.GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/"+ _currentConvo._convoOutputList[_currentConvoIndex]._speakerSprite, typeof(Sprite)) as Sprite;
+            }
+            else
+            {
+                _speakingCharSprite.GetComponent<SpriteRenderer>().enabled = false;
+            }
+
             string textToPrint = _currentConvo._convoOutputList[_currentConvoIndex]._speaker + ": " + _currentConvo._convoOutputList[_currentConvoIndex]._speech;
             //string textChoice1 = _currentConvo._convoOutputList[_currentConvoIndex]._speaker + ": " + _currentConvo._convoOutputList[_currentConvoIndex]._choiceOutputList[0]._text;
             //string textChoice2 = _currentConvo._convoOutputList[_currentConvoIndex]._speaker + ": " + _currentConvo._convoOutputList[_currentConvoIndex]._choiceOutputList[1]._text;
