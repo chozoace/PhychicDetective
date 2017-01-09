@@ -49,7 +49,7 @@ public class ConversationController : MonoBehaviour
 
     public void CheckConversationForChange()
     {
-
+        
     }
 
     public void EndConversation()
@@ -76,12 +76,11 @@ public class ConversationController : MonoBehaviour
             if(_currentConvo._convoOutputList[_currentConvoIndex]._speakerSprite != null)
             {
                 Debug.Log(_currentConvo._convoOutputList[_currentConvoIndex]._speakerSprite);
-                _speakingCharSprite.GetComponent<SpriteRenderer>().enabled = true;
-                _speakingCharSprite.GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/"+ _currentConvo._convoOutputList[_currentConvoIndex]._speakerSprite, typeof(Sprite)) as Sprite;
+                _speakingCharSprite.GetComponent<PortraitScript>().ActivatePortrait("Sprites/" + _currentConvo._convoOutputList[_currentConvoIndex]._speakerSprite);
             }
             else
             {
-                _speakingCharSprite.GetComponent<SpriteRenderer>().enabled = false;
+                _speakingCharSprite.GetComponent<PortraitScript>().DisablePortrait();
             }
 
             string textToPrint = _currentConvo._convoOutputList[_currentConvoIndex]._speaker + ": " + _currentConvo._convoOutputList[_currentConvoIndex]._speech;
@@ -105,7 +104,7 @@ public class ConversationController : MonoBehaviour
         }
 
     }
-
+    
     void CheckPostConvoInfo()
     {
         if (_postConvoAction == "Item")
