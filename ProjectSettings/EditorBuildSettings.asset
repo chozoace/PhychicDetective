@@ -11,3 +11,15 @@ EditorBuildSettings:
     path: Assets/Scene/SceneTest.unity
   - enabled: 1
     path: Assets/Scene/Floor1/HallwayLeft.unity
+  - enabled: 1
+    path: Assets/Scene/Floor1/ResidenceHall.unity
+  - enabled: 1
+    path: Assets/Scene/Floor1/VictimRoom.unity
+  - enabled: 1
+    path: Assets/Scene/Floor1/NeighborRoom.unity
+  - enabled: 1
+    path: Assets/Scene/Floor1/DrugeeRoom.unity
+  - enabled: 1
+    path: Assets/Scene/Floor1/QGRoom.unity
+  - enabled: 1
+    path: Assets/Scene/Floor1/Lobby.unity
