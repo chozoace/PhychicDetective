@@ -16,6 +16,7 @@ public class PlayerControllerScript : MonoBehaviour
     NotebookController _notebook;
     ItemDatabase _itemDatabase;
     static PlayerControllerScript instance;
+    private Animator anim;
 
 	// Use this for initialization
     void Awake()
@@ -26,6 +27,7 @@ public class PlayerControllerScript : MonoBehaviour
             Destroy(gameObject.transform.parent.gameObject);
         DontDestroyOnLoad(transform.parent.gameObject);
         _rigidBody = this.GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
 	void Start ()
@@ -40,6 +42,9 @@ public class PlayerControllerScript : MonoBehaviour
         float yInput = Input.GetAxisRaw("Vertical");
 
         _rigidBody.velocity = new Vector2(xInput * _moveSpeed, yInput * _moveSpeed);
+
+        anim.SetInteger("xSpeed", (int)_rigidBody.velocity.x);
+        anim.SetInteger("ySpeed", (int)_rigidBody.velocity.y);
     }
 
     void FixedUpdate()
