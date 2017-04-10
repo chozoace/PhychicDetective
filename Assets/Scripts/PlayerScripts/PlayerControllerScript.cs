@@ -9,6 +9,7 @@ public class PlayerControllerScript : MonoBehaviour
     bool _movingLeft = false;
     bool _movingUp = false;
     bool _movingDown = false;
+    int _direction = 1;
     Rigidbody2D _rigidBody;
     public bool _hasBlueBox = false;
     Interactable _collidingInteractable;
@@ -40,6 +41,7 @@ public class PlayerControllerScript : MonoBehaviour
     {
         float xInput = Input.GetAxisRaw("Horizontal");
         float yInput = Input.GetAxisRaw("Vertical");
+        //right, down, left, up
 
         _rigidBody.velocity = new Vector2(xInput * _moveSpeed, yInput * _moveSpeed);
 
