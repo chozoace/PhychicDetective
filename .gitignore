@@ -32,6 +32,7 @@ Temp
 *.unityproj
 *.sln
 *.userprefs
+*.meta
 
 # Thumbnails
 ._*
