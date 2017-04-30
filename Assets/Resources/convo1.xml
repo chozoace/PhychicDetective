@@ -37,7 +37,7 @@
           <SpeakerSprite>PlayerConvoSprite</SpeakerSprite>
           <Speech>It was a good joke!</Speech>
         </ConvoOutput>
-        <ConvoOutput position="Right">
+        <ConvoOutput position="Right" clueID="3">
           <Speaker>RedBox</Speaker>
           <SpeakerSprite>RedBoxConvoSprite</SpeakerSprite>
           <Speech>Why are you still here?</Speech>

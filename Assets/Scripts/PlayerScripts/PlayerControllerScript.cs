@@ -16,19 +16,24 @@ public class PlayerControllerScript : MonoBehaviour
     public Interactable CollidingInteractable { get { return _collidingInteractable; } set { _collidingInteractable = value; } }
     NotebookController _notebook;
     ItemDatabase _itemDatabase;
-    static PlayerControllerScript instance;
+    static PlayerControllerScript _instance;
     private Animator anim;
 
 	// Use this for initialization
     void Awake()
     {
-        if (instance == null)
-            instance = this;
-        else if (instance != this)
+        if (_instance == null)
+            _instance = this;
+        else if (_instance != this)
             Destroy(gameObject.transform.parent.gameObject);
         DontDestroyOnLoad(transform.parent.gameObject);
         _rigidBody = this.GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+    }
+
+    public static PlayerControllerScript Instance()
+    {
+        return _instance;
     }
 
 	void Start ()

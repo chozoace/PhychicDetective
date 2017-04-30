@@ -11,6 +11,9 @@ public class ConvoOutput
     [XmlAttribute("position")]
     public string _position;
 
+    [XmlAttribute("clueID")]
+    public int _clueID = -1;
+
     [XmlAttribute("needEvidence")]
     public string _needEvidence;
 

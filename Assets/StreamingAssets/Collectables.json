@@ -22,5 +22,13 @@
 		"sprite": "32Sprite",
 		"description": "Lives in this room, convinced herself she is a red box.  Never moves. Never breathes. Always staring.",
 		"comment": "Found in a room"
+	},
+	{
+		"id": 3,
+		"name": "Pink Girl's lack of fun...",
+		"type": "Clue",
+		"sprite": "32Sprite",
+		"description": "Pink Girl has no sense of humor and must be exterminated.",
+		"comment": "Found in a room"
 	}
 ]

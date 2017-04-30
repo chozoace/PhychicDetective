@@ -9,6 +9,7 @@ public class NotebookController : MonoBehaviour
     static NotebookController _instance = null;
     [SerializeField] EvidenceMenuPage _evidencePage;
     [SerializeField] ProfileMenuPage _profilePage;
+    [SerializeField] ClueMenuPage _cluePage;
     NotebookMenuPage _currentPage;
     public NotebookMenuPage CurrentPage { get { return _currentPage; } }
     List<Collectable> _notebookItems = new List<Collectable>();
@@ -56,10 +57,13 @@ public class NotebookController : MonoBehaviour
         {
             case "Evidence":
                 _currentPage.ExitPage();
-                _currentPage = _profilePage;
+                _currentPage = _cluePage;
                 _currentPage.EnterPage();
                 break;
             case "Clue":
+                _currentPage.ExitPage();
+                _currentPage = _profilePage;
+                _currentPage.EnterPage();
                 break;
             case "Profile":
                 _currentPage.ExitPage();
@@ -82,6 +86,8 @@ public class NotebookController : MonoBehaviour
                     _evidencePage.AddEntry(entry);
                 break;
             case "Clue":
+                if (!_cluePage.PageContains(entry.ID))
+                    _cluePage.AddEntry(entry);
                 break;
             case "Profile":
                 if(!_profilePage.PageContains(entry.ID))

@@ -76,7 +76,7 @@ public class ConversationController : MonoBehaviour
             if(_currentConvo._convoOutputList[_currentConvoIndex]._speakerSprite != null)
             {
                 Debug.Log(_currentConvo._convoOutputList[_currentConvoIndex]._speakerSprite);
-                _speakingCharSprite.GetComponent<PortraitScript>().ActivatePortrait("Sprites/" + _currentConvo._convoOutputList[_currentConvoIndex]._speakerSprite);
+                _speakingCharSprite.GetComponent<PortraitScript>().ActivatePortrait("Sprites/" + _currentConvo._convoOutputList[_currentConvoIndex]._speakerSprite, _currentConvo._convoOutputList[_currentConvoIndex]._speaker);
             }
             else
             {
@@ -84,11 +84,7 @@ public class ConversationController : MonoBehaviour
             }
 
             string textToPrint = _currentConvo._convoOutputList[_currentConvoIndex]._speaker + ": " + _currentConvo._convoOutputList[_currentConvoIndex]._speech;
-            //string textChoice1 = _currentConvo._convoOutputList[_currentConvoIndex]._speaker + ": " + _currentConvo._convoOutputList[_currentConvoIndex]._choiceOutputList[0]._text;
-            //string textChoice2 = _currentConvo._convoOutputList[_currentConvoIndex]._speaker + ": " + _currentConvo._convoOutputList[_currentConvoIndex]._choiceOutputList[1]._text;
             _textPrinter.TextToType = textToPrint;
-            //_textPrinter._textChoice1 = textChoice1;
-            //_textPrinter._textChoice2 = textChoice2;
             _textPrinter.ClearTyper();
             _textPrinter.StartTyper();
             _currentConvoIndex++;

@@ -18,6 +18,7 @@ public class TextPrinter : MonoBehaviour
     public int NumberOfLettersToShow { set { _numberOfLettersToShow = value; } get { return _numberOfLettersToShow; } }
     [SerializeField] GameObject _conversationBackground;
 
+
     void Start()
     {
         _UIText = _conversationBackground.transform.Find("Text").gameObject.GetComponent<Text>();
@@ -45,15 +46,21 @@ public class TextPrinter : MonoBehaviour
             _UIText.text = _textToType.Substring(0, _numberOfLettersToShow);
             Invoke("IncrementDisplayText", _typeSpeed);
         }
-        else if(ConversationController.Instance().CurrentConvo._convoOutputList.Count > ConversationController.Instance().CurrentConvoIndex)
+        else
         {
-            if (ConversationController.Instance().CurrentConvo._convoOutputList[ConversationController.Instance().CurrentConvoIndex]._choiceOutputList.Count > 0)
+            if (ConversationController.Instance().CurrentConvo._convoOutputList.Count > ConversationController.Instance().CurrentConvoIndex
+                && ConversationController.Instance().CurrentConvo._convoOutputList[ConversationController.Instance().CurrentConvoIndex]._choiceOutputList.Count > 0)
             {
                 //Have cursor with choices appear
 
                 //change control to notebook
                 GameState._conversationState.NotebookControl = true;
                 GameState._pauseState.Enter();
+            }
+            else if(ConversationController.Instance().CurrentConvo._convoOutputList.Count > ConversationController.Instance().CurrentConvoIndex
+                && ConversationController.Instance().CurrentConvo._convoOutputList[ConversationController.Instance().CurrentConvoIndex]._clueID != -1)
+            {
+                PlayerControllerScript.Instance().CollectInteractable(ConversationController.Instance().CurrentConvo._convoOutputList[ConversationController.Instance().CurrentConvoIndex]._clueID);
             }
         }
         Debug.Log("Convo index: " + ConversationController.Instance().CurrentConvoIndex);
