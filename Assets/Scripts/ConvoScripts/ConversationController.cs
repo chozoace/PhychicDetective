@@ -69,21 +69,23 @@ public class ConversationController : MonoBehaviour
 
     void LoadConvoBlurb()
     {
+        PortraitScript speakingPortrait = _speakingCharSprite.GetComponent<PortraitScript>();
         //possibly load choice blurb?
         if (_currentConvoIndex < _currentConvo._convoOutputList.Count)
         {
+            ConvoOutput currentConvoOutput = _currentConvo._convoOutputList[_currentConvoIndex];
             //set speaking char sprite to convo info
-            if(_currentConvo._convoOutputList[_currentConvoIndex]._speakerSprite != null)
+            if (_currentConvo._convoOutputList[_currentConvoIndex]._speakerSprite != null)
             {
                 Debug.Log(_currentConvo._convoOutputList[_currentConvoIndex]._speakerSprite);
-                _speakingCharSprite.GetComponent<PortraitScript>().ActivatePortrait("Sprites/" + _currentConvo._convoOutputList[_currentConvoIndex]._speakerSprite, _currentConvo._convoOutputList[_currentConvoIndex]._speaker);
+                speakingPortrait.ActivatePortrait("Sprites/" + currentConvoOutput._speakerSprite, currentConvoOutput._speaker, currentConvoOutput._emotion);
             }
             else
             {
-                _speakingCharSprite.GetComponent<PortraitScript>().DisablePortrait();
+                speakingPortrait.DisablePortrait();
             }
 
-            string textToPrint = _currentConvo._convoOutputList[_currentConvoIndex]._speaker + ": " + _currentConvo._convoOutputList[_currentConvoIndex]._speech;
+            string textToPrint = currentConvoOutput._speaker + ": " + currentConvoOutput._speech;
             _textPrinter.TextToType = textToPrint;
             _textPrinter.ClearTyper();
             _textPrinter.StartTyper();

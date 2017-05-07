@@ -63,7 +63,6 @@ public class TextPrinter : MonoBehaviour
                 PlayerControllerScript.Instance().CollectInteractable(ConversationController.Instance().CurrentConvo._convoOutputList[ConversationController.Instance().CurrentConvoIndex]._clueID);
             }
         }
-        Debug.Log("Convo index: " + ConversationController.Instance().CurrentConvoIndex);
     }
 
     public void UpdateTextPrinter()
