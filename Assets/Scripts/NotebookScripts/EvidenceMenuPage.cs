@@ -11,6 +11,7 @@ public class EvidenceMenuPage : NotebookMenuPage
         {
             _pageName = "Evidence";
             _leftPage = transform.parent.Find("EvidenceLeft").gameObject;
+            _pageIndex = 0;
         }
         base.EnterPage();
     }

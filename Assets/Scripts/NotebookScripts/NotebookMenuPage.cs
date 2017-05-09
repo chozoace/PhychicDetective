@@ -10,6 +10,8 @@ public class NotebookMenuPage : MonoBehaviour
 
     public string _pageName = "Default";
     protected bool _created = false;
+    protected int _pageIndex;
+    public int GetPageIndex { get { return _pageIndex; } }
     protected GameObject _leftPage;
     protected int _currentIndex = 0;
     protected GameObject _cursor;
@@ -103,7 +105,11 @@ public class NotebookMenuPage : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
-            _notebook.SwitchPage();
+            _notebook.SwitchPage(1);
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            _notebook.SwitchPage(-1);
         }
         if (Input.GetKeyDown(KeyCode.J))
         {

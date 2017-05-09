@@ -14,6 +14,10 @@ public class LevelController : MonoBehaviour
     [SerializeField] float _fadeSpeed = 5f;
     bool _startScene = false;
 
+    //Controller should have list of levels
+    //Every level should have a list of assets
+    //levels should be serialized to see what is in it
+
     void Start ()
     {
         
@@ -81,7 +85,6 @@ public class LevelController : MonoBehaviour
 
     public void LoadLevel(string newLevel, Vector2 spawnVector)
     {
-        //Debug.Log("Changing level");
         SceneManager.LoadScene(newLevel, LoadSceneMode.Single);
         GameObject.FindGameObjectWithTag("PlayerData").transform.position = spawnVector;
         foreach(Transform child in GameObject.FindGameObjectWithTag("PlayerData").transform)

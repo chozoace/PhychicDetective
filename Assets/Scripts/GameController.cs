@@ -77,7 +77,6 @@ public class GameController : MonoBehaviour
 
     }
 
-    //needs to serialize player location, progress, level information, and all interactables convo info
+    //needs to serialize player location, progress, current level, level contents, and all interactables convo info
     //progress should be stored in gamecontroller
-    //Game controller should create player, notebook
 }

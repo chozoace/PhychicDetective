@@ -10,6 +10,7 @@ public class ClueMenuPage : NotebookMenuPage
         {
             _pageName = "Clue";
             _leftPage = transform.parent.Find("ClueLeft").gameObject;
+            _pageIndex = 1;
         }
         base.EnterPage();
     }

@@ -4,12 +4,7 @@ using System.Collections;
 public class PlayerControllerScript : MonoBehaviour
 {
     [SerializeField] float _moveSpeed = 2;
-
-    bool _movingRight = false;
-    bool _movingLeft = false;
-    bool _movingUp = false;
-    bool _movingDown = false;
-    int _direction = 1;
+    
     Rigidbody2D _rigidBody;
     public bool _hasBlueBox = false;
     Interactable _collidingInteractable;
@@ -46,8 +41,9 @@ public class PlayerControllerScript : MonoBehaviour
     {
         float xInput = Input.GetAxisRaw("Horizontal");
         float yInput = Input.GetAxisRaw("Vertical");
-        //right, down, left, up
-
+        
+        if (yInput != 0)
+            xInput = 0;
         _rigidBody.velocity = new Vector2(xInput * _moveSpeed, yInput * _moveSpeed);
 
         anim.SetInteger("xSpeed", (int)_rigidBody.velocity.x);
@@ -77,13 +73,15 @@ public class PlayerControllerScript : MonoBehaviour
         //Save Game
         if (Input.GetKeyDown(KeyCode.U))
         {
+            GameController.Instance().SaveGame();
             _notebook.SaveData();
-            GameObject.FindGameObjectWithTag("ConversationController").GetComponent<ConversationController>()._conversationInfo.SaveData();
+            if(GameObject.FindGameObjectWithTag("ConversationController").GetComponent<ConversationController>()._conversationInfo)
+                GameObject.FindGameObjectWithTag("ConversationController").GetComponent<ConversationController>()._conversationInfo.SaveData();
         }
         //Load Game
         if (Input.GetKeyDown(KeyCode.I))
         {
-            //_notebook.LoadData();
+            _notebook.LoadData();
         }
     }
 

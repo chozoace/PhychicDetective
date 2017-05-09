@@ -10,21 +10,28 @@ public class NotebookController : MonoBehaviour
     [SerializeField] EvidenceMenuPage _evidencePage;
     [SerializeField] ProfileMenuPage _profilePage;
     [SerializeField] ClueMenuPage _cluePage;
+    [SerializeField] List<NotebookMenuPage> _pages = new List<NotebookMenuPage>();
     NotebookMenuPage _currentPage;
+    int _currentPageIndex = 0;
+    int _maxPages;
     public NotebookMenuPage CurrentPage { get { return _currentPage; } }
     List<Collectable> _notebookItems = new List<Collectable>();
     public GameObject _notebookMenu;
 
     public List<Collectable> GetNotebookItems { get { return _notebookItems; } }
-    //currentPage
-    //list of evidence
-    //list of clues
-    //list of profiles
-    //database of all collectables
-    //progress notes unlocked after certain checkpoints
+    void Awake()
+    {
+        if (_instance == null)
+            _instance = this;
+        else if (_instance != this)
+            Destroy(this.gameObject);
+    }
+
     void Start()
     {
         _currentPage = _evidencePage;
+        _currentPage = _pages[0];
+        _currentPageIndex = 0;
         if (_instance == null)
             _instance = this;
         else if (_instance != this)
@@ -51,27 +58,14 @@ public class NotebookController : MonoBehaviour
         _currentPage.EnterPage();
     }
 
-    public void SwitchPage()
+    public void SwitchPage(int pageIncrement)
     {
-        switch(_currentPage._pageName)
+        _currentPageIndex = Mathf.Clamp(_currentPageIndex + pageIncrement, 0, _pages.Count - 1);
+        if (_currentPage.GetPageIndex != _currentPageIndex)
         {
-            case "Evidence":
-                _currentPage.ExitPage();
-                _currentPage = _cluePage;
-                _currentPage.EnterPage();
-                break;
-            case "Clue":
-                _currentPage.ExitPage();
-                _currentPage = _profilePage;
-                _currentPage.EnterPage();
-                break;
-            case "Profile":
-                _currentPage.ExitPage();
-                _currentPage = _evidencePage;
-                _currentPage.EnterPage();
-                break;
-            case "ProgressNote":
-                break;
+            _currentPage.ExitPage();
+            _currentPage = _pages[_currentPageIndex];
+            _currentPage.EnterPage();
         }
     }
 
@@ -79,22 +73,13 @@ public class NotebookController : MonoBehaviour
     {
         Debug.Log("entryType is " + entryType);
          _notebookItems.Add(entry);
-        switch(entryType)
+        foreach(NotebookMenuPage page in _pages)
         {
-            case "Evidence":
-                if(!_evidencePage.PageContains(entry.ID))
-                    _evidencePage.AddEntry(entry);
+            if (entryType == page._pageName && !_evidencePage.PageContains(entry.ID))
+            {
+                _evidencePage.AddEntry(entry);
                 break;
-            case "Clue":
-                if (!_cluePage.PageContains(entry.ID))
-                    _cluePage.AddEntry(entry);
-                break;
-            case "Profile":
-                if(!_profilePage.PageContains(entry.ID))
-                    _profilePage.AddEntry(entry);
-                break;
-            case "ProgressNote":
-                break;
+            }
         }
     }
 
@@ -102,17 +87,13 @@ public class NotebookController : MonoBehaviour
     {
         bool result = false;
         //should check notebookController list instead
-        switch (type)
+        foreach (NotebookMenuPage page in _pages)
         {
-            case "Evidence":
-                result = _evidencePage.PageContains(id);
+            if (type == page._pageName)
+            {
+                result = page.PageContains(id);
                 break;
-            case "Clue":
-                break;
-            case "Profile":
-                break;
-            case "ProgressNote":
-                break;
+            }
         }
         return result;
     }
@@ -121,7 +102,7 @@ public class NotebookController : MonoBehaviour
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file;
-        if (File.Exists(Application.persistentDataPath + "/notebookInfo.dat"))
+        if (!File.Exists(Application.persistentDataPath + "/notebookInfo.dat"))
             file = File.Open(Application.persistentDataPath + "/notebookInfo.dat", FileMode.Create);
         else
             file = File.Open(Application.persistentDataPath + "/notebookInfo.dat", FileMode.Open);
@@ -149,14 +130,6 @@ public class NotebookController : MonoBehaviour
             }
             file.Close();
         }
-    }
-
-    void Awake()
-    {
-        if (_instance == null)
-            _instance = this;
-        else if (_instance != this)
-            Destroy(this.gameObject);
     }
 
     

@@ -134,6 +134,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 82577514779419396, guid: 574b02b077535d64a8bf727b20b3193f,
+        type: 2}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 574b02b077535d64a8bf727b20b3193f, type: 2}
   m_IsPrefabParent: 0
@@ -189,6 +194,11 @@ Prefab:
         type: 2}
       propertyPath: _nextSpawnName
       value: LobbyDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 212749542399265112, guid: b7c82732776f874408ec20a13d8a1c0e,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: -2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7c82732776f874408ec20a13d8a1c0e, type: 2}

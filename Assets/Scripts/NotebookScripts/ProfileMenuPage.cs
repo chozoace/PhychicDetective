@@ -9,6 +9,7 @@ public class ProfileMenuPage : NotebookMenuPage
         {
             _pageName = "Profile";
             _leftPage = transform.parent.Find("ProfileLeft").gameObject;
+            _pageIndex = 2;
         }
         base.EnterPage();
     }

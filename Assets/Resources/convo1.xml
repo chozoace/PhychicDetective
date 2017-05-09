@@ -65,7 +65,7 @@
           <SpeakerSprite>PlayerConvoSprite</SpeakerSprite>
           <Speech>Hmmmm</Speech>
         </ConvoOutput>
-        <ConvoOutput position="Left" emotion="Neutral">
+        <ConvoOutput position="Left" emotion="Happy">
           <Speaker>Player</Speaker>
           <SpeakerSprite>PlayerConvoSprite</SpeakerSprite>
           <Speech>Do you want it?</Speech>
