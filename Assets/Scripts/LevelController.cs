@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
 
 public class LevelController : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class LevelController : MonoBehaviour
     //save level
     //list of interactables
     //current level/room
+    [SerializeField] List<Room> _roomList = new List<Room>();
     GameObject _blackScreen;
     Color _currentAlphaColor;
     [SerializeField] float _fadeSpeed = 5f;
@@ -85,6 +87,7 @@ public class LevelController : MonoBehaviour
 
     public void LoadLevel(string newLevel, Vector2 spawnVector)
     {
+        
         SceneManager.LoadScene(newLevel, LoadSceneMode.Single);
         GameObject.FindGameObjectWithTag("PlayerData").transform.position = spawnVector;
         foreach(Transform child in GameObject.FindGameObjectWithTag("PlayerData").transform)
@@ -101,4 +104,20 @@ public class LevelController : MonoBehaviour
 	    //if(_startScene)
 
 	}
+
+    public void SaveGame()
+    {
+        foreach(Room room in _roomList)
+        {
+            room.SaveData();
+        }
+    }
+
+    public void LoadGame()
+    {
+        foreach (Room room in _roomList)
+        {
+            room.LoadData();
+        }
+    }
 }

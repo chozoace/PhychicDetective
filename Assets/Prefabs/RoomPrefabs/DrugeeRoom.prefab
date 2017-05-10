@@ -87,6 +87,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4746374609459450}
+  - component: {fileID: 114035640875549768}
   m_Layer: 0
   m_Name: DrugeeRoom
   m_TagString: Untagged
@@ -325,6 +326,18 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.64, y: 0.64}
+--- !u!114 &114035640875549768
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1719277378391822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b45b3a992fcda344ba5a1057a417c35c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _roomContents: []
 --- !u!114 &114404000635769360
 MonoBehaviour:
   m_ObjectHideFlags: 1

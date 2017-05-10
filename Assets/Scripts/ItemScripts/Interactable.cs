@@ -10,6 +10,8 @@ public class Interactable : MonoBehaviour
     //Kinds of interactables: Items, Npc's, Actionables(doors), information
     protected bool _canInteract;
     protected bool _saveable = true;
+    protected bool _exists = true;
+    public bool InteractableExists { get { return _exists; } }
     public string _itemName = "Default";
     public int _itemId;
     string _conversationOutput;
@@ -92,6 +94,12 @@ public class Interactable : MonoBehaviour
         return _currentConvo;
     }
 
+    public void DestroyInteractable()
+    {
+        _exists = false;
+        gameObject.SetActive(false);
+    }
+
     public void SaveData()
     {
         if (_saveable)
@@ -107,6 +115,7 @@ public class Interactable : MonoBehaviour
             iser._conversationDictionary = _conversationDictionary;
             iser._currentConvo = _currentConvo;
             iser._nextConvo = _nextConvo;
+            iser._exists = _exists;
 
             bf.Serialize(file, iser);
             file.Close();
@@ -124,6 +133,8 @@ public class Interactable : MonoBehaviour
             _conversationDictionary = iser._conversationDictionary;
             _currentConvo = iser._currentConvo;
             _nextConvo = iser._nextConvo;
+            _exists = iser._exists;
+            gameObject.SetActive(_exists);
             
             file.Close();
         }

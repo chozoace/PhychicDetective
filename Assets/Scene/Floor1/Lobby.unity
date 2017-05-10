@@ -91,7 +91,7 @@ NavMeshSettings:
     cellSize: 0.16666667
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &269219026
+--- !u!1001 &242148691
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -100,11 +100,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 497630, guid: 574b02b077535d64a8bf727b20b3193f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 3.542
+      value: 3.3705254
       objectReference: {fileID: 0}
     - target: {fileID: 497630, guid: 574b02b077535d64a8bf727b20b3193f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.97
+      value: 3.1191826
       objectReference: {fileID: 0}
     - target: {fileID: 497630, guid: 574b02b077535d64a8bf727b20b3193f, type: 2}
       propertyPath: m_LocalPosition.z
@@ -129,15 +129,6 @@ Prefab:
     - target: {fileID: 497630, guid: 574b02b077535d64a8bf727b20b3193f, type: 2}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 189862, guid: 574b02b077535d64a8bf727b20b3193f, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 82577514779419396, guid: 574b02b077535d64a8bf727b20b3193f,
-        type: 2}
-      propertyPath: m_PlayOnAwake
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 574b02b077535d64a8bf727b20b3193f, type: 2}
@@ -181,44 +172,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1828080845204882, guid: b7c82732776f874408ec20a13d8a1c0e, type: 2}
-      propertyPath: m_Name
-      value: LeftHallDoor
-      objectReference: {fileID: 0}
-    - target: {fileID: 114712589483326146, guid: b7c82732776f874408ec20a13d8a1c0e,
-        type: 2}
-      propertyPath: _nextLevel
-      value: HallwayLeft
-      objectReference: {fileID: 0}
-    - target: {fileID: 114712589483326146, guid: b7c82732776f874408ec20a13d8a1c0e,
-        type: 2}
-      propertyPath: _nextSpawnName
-      value: LobbyDoor
-      objectReference: {fileID: 0}
-    - target: {fileID: 212749542399265112, guid: b7c82732776f874408ec20a13d8a1c0e,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: -2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7c82732776f874408ec20a13d8a1c0e, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1703452181 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1828080845204882, guid: b7c82732776f874408ec20a13d8a1c0e,
-    type: 2}
-  m_PrefabInternal: {fileID: 1192278159}
---- !u!61 &1703452182
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1703452181}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: -0.15}
-  serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.78}

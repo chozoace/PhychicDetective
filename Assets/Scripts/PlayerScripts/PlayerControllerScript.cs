@@ -63,6 +63,8 @@ public class PlayerControllerScript : MonoBehaviour
             {
                 _collidingInteractable.onInteract();
                 GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                anim.SetInteger("xSpeed", (int)_rigidBody.velocity.x);
+                anim.SetInteger("ySpeed", (int)_rigidBody.velocity.y);
             }
         }
         if (Input.GetKeyDown(KeyCode.P))
@@ -81,14 +83,21 @@ public class PlayerControllerScript : MonoBehaviour
         //Load Game
         if (Input.GetKeyDown(KeyCode.I))
         {
+            GameController.Instance().LoadGame();
             _notebook.LoadData();
         }
+    }
+
+    public void SaveData()
+    {
+
     }
 
     public void CollectInteractable(int itemId)
     {
         //search for item by id then add to notebook
         Collectable item = _itemDatabase.FindCollectableWithId(itemId);
+        Debug.Log("adding entry");
         if(item != null)
         {
             _notebook.AddEntry(item, item.Type);

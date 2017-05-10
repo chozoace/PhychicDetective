@@ -70,11 +70,12 @@ public class GameController : MonoBehaviour
     public void LoadGame()
     {
         //Should load level info, where the player was, everything else loads on create
+        this.GetComponent<LevelController>().LoadGame();
     }
 
     public void SaveGame()
     {
-
+        this.GetComponent<LevelController>().SaveGame();
     }
 
     //needs to serialize player location, progress, current level, level contents, and all interactables convo info

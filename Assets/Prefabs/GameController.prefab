@@ -27,7 +27,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 189862}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.57, y: 2.33, z: 0}
+  m_LocalPosition: {x: 3.3705254, y: 3.1191826, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 746d3541382d3fb4997748b8903b009c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _roomList:
+  - {fileID: 114024147429053760, guid: 1574f26fcab06494f8bfdbeee47de102, type: 2}
   _fadeSpeed: 9
 --- !u!114 &11477318
 MonoBehaviour:
@@ -88,7 +90,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7215e376bcfdfec4d8d3a5ee0985c167, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1

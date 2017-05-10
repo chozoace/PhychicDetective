@@ -71,11 +71,10 @@ public class NotebookController : MonoBehaviour
 
     public void AddEntry(Collectable entry, string entryType)
     {
-        Debug.Log("entryType is " + entryType);
          _notebookItems.Add(entry);
         foreach(NotebookMenuPage page in _pages)
         {
-            if (entryType == page._pageName && !_evidencePage.PageContains(entry.ID))
+            if (entryType == page._pageName && !page.PageContains(entry.ID))
             {
                 _evidencePage.AddEntry(entry);
                 break;

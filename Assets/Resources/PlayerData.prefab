@@ -852,7 +852,7 @@ MonoBehaviour:
   - {fileID: 126738}
   - {fileID: 150850}
   - {fileID: 105166}
-  _pageName: Default
+  _pageName: Profile
 --- !u!114 &11403210
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1578,7 +1578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5505b69946f70224f9b0ab882420a242, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 1.5
+  _moveSpeed: 5
   _hasBlueBox: 1
 --- !u!114 &11480192
 MonoBehaviour:
@@ -3191,7 +3191,7 @@ MonoBehaviour:
   - {fileID: 1621822596231860}
   - {fileID: 1132348645592970}
   - {fileID: 1949396265409156}
-  _pageName: Default
+  _pageName: Evidence
 --- !u!114 &114344592204666480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3269,7 +3269,7 @@ MonoBehaviour:
   - {fileID: 151082}
   - {fileID: 122752}
   - {fileID: 146202}
-  _pageName: Default
+  _pageName: Clue
 --- !u!114 &114538101886762544
 MonoBehaviour:
   m_ObjectHideFlags: 1

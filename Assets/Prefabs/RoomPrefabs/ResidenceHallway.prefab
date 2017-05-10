@@ -107,6 +107,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4029894560261622}
+  - component: {fileID: 114241955495471632}
   m_Layer: 0
   m_Name: ResidenceHallway
   m_TagString: Untagged
@@ -479,6 +480,18 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.33}
   serializedVersion: 2
   m_Size: {x: 0.32, y: 1.19}
+--- !u!114 &114241955495471632
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1302195110039208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b45b3a992fcda344ba5a1057a417c35c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _roomContents: []
 --- !u!114 &114271165802829214
 MonoBehaviour:
   m_ObjectHideFlags: 1

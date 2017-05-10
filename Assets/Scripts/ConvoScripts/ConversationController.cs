@@ -108,7 +108,8 @@ public class ConversationController : MonoBehaviour
         if (_postConvoAction == "Item")
         {
             _playerGameObject.GetComponent<PlayerControllerScript>().CollectInteractable(_conversationInfo._itemId);
-            Destroy(_conversationInfo.gameObject);
+            _conversationInfo.DestroyInteractable();
+            //Destroy(_conversationInfo.gameObject);
         }
         if(_postConvoAction == "Profile")
         {
