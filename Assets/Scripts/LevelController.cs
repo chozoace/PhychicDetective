@@ -23,7 +23,7 @@ public class LevelController : MonoBehaviour
     //Every level should have a list of assets
     //levels should be serialized to see what is in it
 
-    void Start ()
+    void Awake ()
     {
         foreach(Room room in _prefabRoomList)
         {
