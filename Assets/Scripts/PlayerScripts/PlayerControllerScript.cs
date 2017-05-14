@@ -75,14 +75,15 @@ public class PlayerControllerScript : MonoBehaviour
         //Save Game
         if (Input.GetKeyDown(KeyCode.U))
         {
+            Debug.Log("Saving game");
             GameController.Instance().SaveGame();
             _notebook.SaveData();
-            if(GameObject.FindGameObjectWithTag("ConversationController").GetComponent<ConversationController>()._conversationInfo)
-                GameObject.FindGameObjectWithTag("ConversationController").GetComponent<ConversationController>()._conversationInfo.SaveData();
         }
         //Load Game
         if (Input.GetKeyDown(KeyCode.I))
         {
+            Debug.Log("Loading game");
+            //_notebook.LoadData();
             GameController.Instance().LoadGame();
             _notebook.LoadData();
         }
@@ -97,7 +98,6 @@ public class PlayerControllerScript : MonoBehaviour
     {
         //search for item by id then add to notebook
         Collectable item = _itemDatabase.FindCollectableWithId(itemId);
-        Debug.Log("adding entry");
         if(item != null)
         {
             _notebook.AddEntry(item, item.Type);

@@ -19,3 +19,6 @@ D:\Users\veemo\Documents\Game Design\PhychicDetective\PsychicDetective\Temp\bin\
 D:\Users\veemo\Documents\Game Design\PhychicDetective\PsychicDetective\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 D:\Users\veemo\Documents\Game Design\PhychicDetective\PsychicDetective\obj\Debug\Assembly-CSharp.dll
 D:\Users\veemo\Documents\Game Design\PhychicDetective\PsychicDetective\obj\Debug\Assembly-CSharp.pdb
+C:\Users\ChozoAce\Documents\GameDev\PhychicDetective\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
+C:\Users\ChozoAce\Documents\GameDev\PhychicDetective\obj\Debug\Assembly-CSharp.dll
+C:\Users\ChozoAce\Documents\GameDev\PhychicDetective\obj\Debug\Assembly-CSharp.pdb

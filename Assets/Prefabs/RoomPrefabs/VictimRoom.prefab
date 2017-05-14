@@ -97,7 +97,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1655001900158218
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,6 +370,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _roomContents:
   - {fileID: 114512650517871352}
+  _roomPos: {x: -0.96, y: -1.31}
 --- !u!114 &114512650517871352
 MonoBehaviour:
   m_ObjectHideFlags: 1

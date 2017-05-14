@@ -357,6 +357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _roomContents: []
+  _roomPos: {x: -0.75, y: 0.82}
 --- !u!212 &212142131880544142
 SpriteRenderer:
   m_ObjectHideFlags: 1

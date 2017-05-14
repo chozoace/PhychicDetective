@@ -46,6 +46,16 @@ public class NotebookMenuPage : MonoBehaviour
         }
     }
 
+    public void DeleteAllEntries()
+    {
+        _notebookEntries.Clear();
+
+        foreach (GameObject entryField in _notebookEntryFields)
+        {
+            entryField.GetComponent<Text>().text = "";
+        }
+    }
+
     public virtual void LoadPageInfo()
     {
         Vector2 v = _cursor.GetComponent<RectTransform>().position;

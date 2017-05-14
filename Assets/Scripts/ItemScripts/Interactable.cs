@@ -30,18 +30,21 @@ public class Interactable : MonoBehaviour
 
     void Start ()
     {
-        _convoContainer = ConversationContainer.Load(_xml);
-
-        foreach (Conversation convo in _convoContainer.conversationList)
+        if (_conversationDictionary.Count == 0)
         {
-            _conversationDictionary.Add(convo._name, convo);
-        }
+            _convoContainer = ConversationContainer.Load(_xml);
 
-        if(_conversationDictionary.ContainsKey("Default"))
-            _currentConvo = _conversationDictionary["Default"];
-        if(_conversationDictionary.ContainsKey(_currentConvo._nextConvo))
-            _nextConvo = _conversationDictionary[_currentConvo._nextConvo];
-        //GameObject.FindGameObjectWithTag("ConversationController").GetComponent<ConversationController>()._conversationInfo.LoadData();
+            foreach (Conversation convo in _convoContainer.conversationList)
+            {
+                _conversationDictionary.Add(convo._name, convo);
+            }
+
+            if (_conversationDictionary.ContainsKey("Default"))
+                _currentConvo = _conversationDictionary["Default"];
+            if (_conversationDictionary.ContainsKey(_currentConvo._nextConvo))
+                _nextConvo = _conversationDictionary[_currentConvo._nextConvo];
+            //GameObject.FindGameObjectWithTag("ConversationController").GetComponent<ConversationController>()._conversationInfo.LoadData();
+        }
     }
 
     public virtual void onInteract()
@@ -124,6 +127,7 @@ public class Interactable : MonoBehaviour
 
     public void LoadData()
     {
+        Debug.Log(Application.persistentDataPath + "/" + _itemName + ".dat");
         if (File.Exists(Application.persistentDataPath + "/" + _itemName + ".dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();

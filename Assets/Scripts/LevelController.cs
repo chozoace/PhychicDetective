@@ -10,7 +10,10 @@ public class LevelController : MonoBehaviour
     //save level
     //list of interactables
     //current level/room
-    [SerializeField] List<Room> _roomList = new List<Room>();
+    [SerializeField] List<Room> _prefabRoomList = new List<Room>();
+    List<Room> _roomList = new List<Room>();
+    Room _currentRoom;
+    public string GetCurrentLevel { get { return _currentRoom.GetRoomSceneName; } }
     GameObject _blackScreen;
     Color _currentAlphaColor;
     [SerializeField] float _fadeSpeed = 5f;
@@ -22,7 +25,12 @@ public class LevelController : MonoBehaviour
 
     void Start ()
     {
-        
+        foreach(Room room in _prefabRoomList)
+        {
+            Room obj = Instantiate(room);
+            obj.gameObject.SetActive(false);
+            _roomList.Add(obj);
+        }
     }
 
     public void EndScene(string newLevel, Vector2 spawnVector)
@@ -85,10 +93,15 @@ public class LevelController : MonoBehaviour
         }
     }
 
-    public void LoadLevel(string newLevel, Vector2 spawnVector)
+    void LoadLevel(string newLevel, Vector2 spawnVector)
     {
-        
+        _currentRoom.gameObject.SetActive(false);
         SceneManager.LoadScene(newLevel, LoadSceneMode.Single);
+        //load room
+        foreach (Room room in _roomList)
+            if (room.GetRoomSceneName == newLevel)
+                _currentRoom = room;
+        _currentRoom.gameObject.SetActive(true);
         GameObject.FindGameObjectWithTag("PlayerData").transform.position = spawnVector;
         foreach(Transform child in GameObject.FindGameObjectWithTag("PlayerData").transform)
         {
@@ -99,9 +112,16 @@ public class LevelController : MonoBehaviour
         StartCoroutine("StartSceneRoutine");
     }
 
+    public void InitialLevelLoad(string level, Vector2 spawnVector)
+    {
+        foreach (Room room in _roomList)
+            if (room.GetRoomSceneName == level)
+                _currentRoom = room;
+        _currentRoom.gameObject.SetActive(true);
+    }
+
 	void Update ()
     {
-	    //if(_startScene)
 
 	}
 

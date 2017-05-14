@@ -53,6 +53,7 @@ public class NotebookController : MonoBehaviour
 
     public void StartNotebook()
     {
+        _currentPageIndex = 0;
         _currentPage.ExitPage();
         _currentPage = _evidencePage;
         _currentPage.EnterPage();
@@ -63,6 +64,7 @@ public class NotebookController : MonoBehaviour
         _currentPageIndex = Mathf.Clamp(_currentPageIndex + pageIncrement, 0, _pages.Count - 1);
         if (_currentPage.GetPageIndex != _currentPageIndex)
         {
+            Debug.Log("current page " + _currentPage.name + " index " + _currentPageIndex);
             _currentPage.ExitPage();
             _currentPage = _pages[_currentPageIndex];
             _currentPage.EnterPage();
@@ -71,12 +73,12 @@ public class NotebookController : MonoBehaviour
 
     public void AddEntry(Collectable entry, string entryType)
     {
-         _notebookItems.Add(entry);
+        _notebookItems.Add(entry);
         foreach(NotebookMenuPage page in _pages)
         {
             if (entryType == page._pageName && !page.PageContains(entry.ID))
             {
-                _evidencePage.AddEntry(entry);
+                page.AddEntry(entry);
                 break;
             }
         }
@@ -116,6 +118,10 @@ public class NotebookController : MonoBehaviour
 
     public void LoadData()
     {
+        foreach (NotebookMenuPage page in _pages)
+            page.DeleteAllEntries();
+        _currentPageIndex = 0;
+
         if(File.Exists(Application.persistentDataPath + "/notebookInfo.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
@@ -124,7 +130,7 @@ public class NotebookController : MonoBehaviour
 
             foreach(Collectable item in ns.NotebookItemsToSerialize)
             {
-                Debug.Log(item.Name);
+                Debug.Log("Loading: " + item.Name + " to notebook");
                 AddEntry(item, item.Type);
             }
             file.Close();

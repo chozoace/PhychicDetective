@@ -385,6 +385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _roomContents:
   - {fileID: 114630485131196100}
+  _roomPos: {x: 2.068, y: -1.294}
 --- !u!114 &114708595927491576
 MonoBehaviour:
   m_ObjectHideFlags: 1

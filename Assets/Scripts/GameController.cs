@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Xml;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -40,6 +44,7 @@ public class GameController : MonoBehaviour
         {
             _playerDataPrefab = (GameObject)Instantiate(Resources.Load("PlayerData"));
         }
+        GetComponent<LevelController>().InitialLevelLoad(SceneManager.GetActiveScene().name, Vector2.zero);
         GameState._overworldState.AssignPlayer(_playerDataPrefab.transform.FindChild("Player").gameObject);
         _currentGameState = GameState._overworldState;
         _currentGameState.Enter();
@@ -71,13 +76,52 @@ public class GameController : MonoBehaviour
     {
         //Should load level info, where the player was, everything else loads on create
         this.GetComponent<LevelController>().LoadGame();
+        Vector2 playerPos;
+        if (File.Exists(Application.persistentDataPath + "/GameController.dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/GameController.dat", FileMode.Open);
+            GameControllerSerialize iser = (GameControllerSerialize)bf.Deserialize(file);
+
+            GetComponent<LevelController>().EndScene(iser._currentLevel, new Vector2(iser._xPos, iser._yPos));
+
+            file.Close();
+        }
     }
 
     public void SaveGame()
     {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file;
+        if (File.Exists(Application.persistentDataPath + "/GameController.dat"))
+            file = File.Open(Application.persistentDataPath + "/GameController.dat", FileMode.Open);
+        else
+            file = File.Open(Application.persistentDataPath + "/GameController.dat", FileMode.Create);
+
+        GameControllerSerialize iser = new GameControllerSerialize();
+        iser._xPos = PlayerControllerScript.Instance().transform.position.x;
+        iser._yPos = PlayerControllerScript.Instance().transform.position.y;
+        iser._currentLevel = GetComponent<LevelController>().GetCurrentLevel;
+
+        bf.Serialize(file, iser);
+        file.Close();
+
         this.GetComponent<LevelController>().SaveGame();
     }
 
     //needs to serialize player location, progress, current level, level contents, and all interactables convo info
     //progress should be stored in gamecontroller
+}
+
+[System.Serializable]
+public class GameControllerSerialize
+{
+    public float _xPos;
+    public float _yPos;
+    public string _currentLevel;
+
+    public GameControllerSerialize()
+    {
+
+    }
 }

@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 4011595047993630}
   - component: {fileID: 114144965635368576}
   m_Layer: 0
-  m_Name: RightHallway
+  m_Name: HallwayLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -354,6 +354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _roomContents: []
+  _roomPos: {x: -2.406796, y: 0.274}
 --- !u!114 &114182889466767884
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -338,6 +338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _roomContents: []
+  _roomPos: {x: 2.189, y: -1.279}
 --- !u!114 &114404000635769360
 MonoBehaviour:
   m_ObjectHideFlags: 1

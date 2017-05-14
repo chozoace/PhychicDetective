@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 4029894560261622}
   - component: {fileID: 114241955495471632}
   m_Layer: 0
-  m_Name: ResidenceHallway
+  m_Name: ResidenceHall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 114271165802829214}
   - component: {fileID: 61509182238118532}
   m_Layer: 0
-  m_Name: DrugeeRoomDoor
+  m_Name: DrugeeDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -296,7 +296,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1977294131488092}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.50217116, y: 4.3667088, z: -0.047851562}
+  m_LocalPosition: {x: -0.50217116, y: 4.373, z: -0.047851562}
   m_LocalScale: {x: 0.21250017, y: 3.216655, z: 1}
   m_Children: []
   m_Father: {fileID: 4029894560261622}
@@ -492,6 +492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _roomContents: []
+  _roomPos: {x: 0.4521712, y: 1.163292}
 --- !u!114 &114271165802829214
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -507,10 +508,10 @@ MonoBehaviour:
   _itemId: 0
   _interactableType: Default
   _xml: {fileID: 0}
-  _nextLevel: Lobby
-  _nextSpawnName: LeftHallDoor
-  _xPos: -1.566
-  _yPos: 1.7
+  _nextLevel: DrugeeRoom
+  _nextSpawnName: ResidenceDoor
+  _xPos: 0
+  _yPos: 0
 --- !u!114 &114572507835536834
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -526,10 +527,10 @@ MonoBehaviour:
   _itemId: 0
   _interactableType: Default
   _xml: {fileID: 0}
-  _nextLevel: Lobby
-  _nextSpawnName: LeftHallDoor
-  _xPos: -1.566
-  _yPos: 1.7
+  _nextLevel: NeighborRoom
+  _nextSpawnName: ResidenceDoor
+  _xPos: 0
+  _yPos: 0
 --- !u!114 &114615163587054838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -545,10 +546,10 @@ MonoBehaviour:
   _itemId: 0
   _interactableType: Default
   _xml: {fileID: 0}
-  _nextLevel: Lobby
-  _nextSpawnName: LeftHallDoor
-  _xPos: -1.566
-  _yPos: 1.7
+  _nextLevel: VictimRoom
+  _nextSpawnName: ResidenceDoor
+  _xPos: 0
+  _yPos: 0
 --- !u!114 &114826385114283948
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -564,10 +565,10 @@ MonoBehaviour:
   _itemId: 0
   _interactableType: Default
   _xml: {fileID: 0}
-  _nextLevel: Lobby
-  _nextSpawnName: LeftHallDoor
-  _xPos: -1.566
-  _yPos: 1.7
+  _nextLevel: QGRoom
+  _nextSpawnName: ResidenceDoor
+  _xPos: 0
+  _yPos: 0
 --- !u!114 &114865177666682094
 MonoBehaviour:
   m_ObjectHideFlags: 1
