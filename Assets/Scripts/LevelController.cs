@@ -5,11 +5,6 @@ using System.Collections.Generic;
 
 public class LevelController : MonoBehaviour
 {
-    //stores level info
-    //load level
-    //save level
-    //list of interactables
-    //current level/room
     [SerializeField] List<Room> _prefabRoomList = new List<Room>();
     List<Room> _roomList = new List<Room>();
     Room _currentRoom;
@@ -18,10 +13,6 @@ public class LevelController : MonoBehaviour
     Color _currentAlphaColor;
     [SerializeField] float _fadeSpeed = 5f;
     bool _startScene = false;
-
-    //Controller should have list of levels
-    //Every level should have a list of assets
-    //levels should be serialized to see what is in it
 
     void Awake ()
     {

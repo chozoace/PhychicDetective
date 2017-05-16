@@ -47,11 +47,6 @@ public class ConversationController : MonoBehaviour
         LoadConvoBlurb();
     }
 
-    public void CheckConversationForChange()
-    {
-        
-    }
-
     public void EndConversation()
     {
         //fade everything away
@@ -109,7 +104,6 @@ public class ConversationController : MonoBehaviour
         {
             _playerGameObject.GetComponent<PlayerControllerScript>().CollectInteractable(_conversationInfo._itemId);
             _conversationInfo.DestroyInteractable();
-            //Destroy(_conversationInfo.gameObject);
         }
         if(_postConvoAction == "Profile")
         {
@@ -120,16 +114,13 @@ public class ConversationController : MonoBehaviour
     public void PresentEvidence(int itemId)
     {
         if(int.Parse(_currentConvo._convoOutputList[_currentConvoIndex]._needEvidence) == itemId)
-        {
-            Debug.Log("Correct");
-            //get  
+        { 
             _currentConvo = _conversationInfo.AssignNewConvo(_currentConvo._name + "ItemCorrect");
             _currentConvoIndex = 0;
             LoadConvoBlurb();
         }
         else
         {
-            Debug.Log("wrong");
             _currentConvo = _conversationInfo.AssignNewConvo(_currentConvo._name + "ItemWrong");
             _currentConvoIndex = 0;
             LoadConvoBlurb();
@@ -140,7 +131,6 @@ public class ConversationController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.J))
         {
-            //go to next convo blurb
             if (_textPrinter.NumberOfLettersToShow < _textPrinter.TextToType.Length - 1)
                 _textPrinter.NumberOfLettersToShow = _textPrinter.TextToType.Length - 1;
             else

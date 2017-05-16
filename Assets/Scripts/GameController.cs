@@ -8,16 +8,25 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    /*
+     * Game TO-DO: 
+     * 1. Player choice during convo
+     * 2. Items that are interactable but don't disappear
+     * 3. Main Menu, Settings Menu, New Game, Load Game, Save Game from Notebook?
+     * 4. Sound effects on item interact, on page turn, Notebook open, pause menu
+     *    menu click, as text loads
+     * 5. Convo history
+     * 6. How will Interrogations work? 
+     * 7. Ability to use telepathy to gather information on a given statement
+     * 8. On telepathy activate "Zoom into victims mind and see snapshot if available"
+     */
+
+
     GameState _currentGameState = null;
     public GameState CurrentGameState { get { return _currentGameState; } }
     GameState _lastState;
     GameObject _playerDataPrefab = null;
     static GameController _instance;
-
-    //List of all interactables, should this be in overworldState?
-    //These must all be prefabs, LevelController.SaveData()
-    //Create level controller which contains info on what stuff should be created
-    //level controller should have list of all prefabs in level
 
     void Awake()
     {
@@ -108,9 +117,6 @@ public class GameController : MonoBehaviour
 
         this.GetComponent<LevelController>().SaveGame();
     }
-
-    //needs to serialize player location, progress, current level, level contents, and all interactables convo info
-    //progress should be stored in gamecontroller
 }
 
 [System.Serializable]

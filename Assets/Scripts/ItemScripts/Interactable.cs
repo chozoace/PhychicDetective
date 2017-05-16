@@ -8,6 +8,7 @@ using System.IO;
 public class Interactable : MonoBehaviour
 {
     //Kinds of interactables: Items, Npc's, Actionables(doors), information
+    //NPC
     protected bool _canInteract;
     protected bool _saveable = true;
     protected bool _exists = true;
@@ -15,8 +16,6 @@ public class Interactable : MonoBehaviour
     public string _itemName = "Default";
     public int _itemId;
     string _conversationOutput;
-    [SerializeField] protected string _interactableType = "Default";
-    public string InteractableType { get { return _interactableType; } }
     //not public
     [SerializeField] TextAsset _xml;
     public TextAsset GetXML { get { return _xml; } }
@@ -43,10 +42,9 @@ public class Interactable : MonoBehaviour
                 _currentConvo = _conversationDictionary["Default"];
             if (_conversationDictionary.ContainsKey(_currentConvo._nextConvo))
                 _nextConvo = _conversationDictionary[_currentConvo._nextConvo];
-            //GameObject.FindGameObjectWithTag("ConversationController").GetComponent<ConversationController>()._conversationInfo.LoadData();
         }
     }
-
+    
     public virtual void onInteract()
     {
         if(_canInteract)
@@ -99,6 +97,11 @@ public class Interactable : MonoBehaviour
 
     public void DestroyInteractable()
     {
+        if (PlayerControllerScript.Instance().CollidingInteractable == this)
+        {
+            PlayerControllerScript.Instance().CollidingInteractable = null;
+            _canInteract = false;
+        }
         _exists = false;
         gameObject.SetActive(false);
     }
@@ -146,7 +149,7 @@ public class Interactable : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && other.GetComponent<PlayerControllerScript>().CollidingInteractable == null)
         {
             other.GetComponent<PlayerControllerScript>().CollidingInteractable = this;
             _canInteract = true;
@@ -155,7 +158,7 @@ public class Interactable : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && other.GetComponent<PlayerControllerScript>().CollidingInteractable == this)
         {
             other.GetComponent<PlayerControllerScript>().CollidingInteractable = null;
             _canInteract = false;
