@@ -134,6 +134,7 @@ public class Interactable : MonoBehaviour
         if (File.Exists(Application.persistentDataPath + "/" + _itemName + ".dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
+            Debug.Log(Application.persistentDataPath);
             FileStream file = File.Open(Application.persistentDataPath + "/" + _itemName + ".dat", FileMode.Open);
             InteractableSerialize iser = (InteractableSerialize)bf.Deserialize(file);
 
