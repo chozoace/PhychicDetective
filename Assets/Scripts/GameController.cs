@@ -21,7 +21,6 @@ public class GameController : MonoBehaviour
      * 8. On telepathy activate "Zoom into victims mind and see snapshot if available"
      */
 
-
     GameState _currentGameState = null;
     public GameState CurrentGameState { get { return _currentGameState; } }
     GameState _lastState;
