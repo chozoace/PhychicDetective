@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Xml;
 using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
 
 public class ConversationController : MonoBehaviour
 {
@@ -20,6 +22,8 @@ public class ConversationController : MonoBehaviour
     [SerializeField] GameObject _conversationBackground;
     [SerializeField] GameObject _speakingCharSprite;
     static ConversationController _instance;
+
+    string _convoHistory = "Assets/Resources/convoHistory.txt";
 
     public static ConversationController Instance()
     {
@@ -56,6 +60,9 @@ public class ConversationController : MonoBehaviour
     void Awake ()
     {
         _textPrinter = GetComponent<TextPrinter>();
+        //Clear history
+        TextAsset asset = (TextAsset)Resources.Load("convoHistory");
+        File.WriteAllText(AssetDatabase.GetAssetPath(asset), string.Empty);
         if (_instance == null)
             _instance = this;
         else if (_instance != this)
@@ -81,6 +88,16 @@ public class ConversationController : MonoBehaviour
             }
 
             string textToPrint = currentConvoOutput._speaker + ": " + currentConvoOutput._speech;
+            //write to history here
+            StreamWriter writer = new StreamWriter(_convoHistory, true);
+            writer.WriteLine(textToPrint);
+            writer.Close();
+            AssetDatabase.ImportAsset(_convoHistory );
+            TextAsset asset = (TextAsset)Resources.Load("convoHistory");
+            Debug.Log("checking if null: " + asset);
+
+            //Print the text from the file
+            Debug.Log(asset.text);
             _textPrinter.TextToType = textToPrint;
             _textPrinter.ClearTyper();
             _textPrinter.StartTyper();

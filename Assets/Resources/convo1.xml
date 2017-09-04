@@ -17,7 +17,7 @@
           <Speaker>Player</Speaker>
           <SpeakerSprite>PlayerConvoSprite</SpeakerSprite>
           <Speech>Oh. So I guess thinking outside of the box for you...</Speech>
-        </ConvoOutput>
+        </ConvoOutput>o
         <ConvoOutput position="Left" emotion="Happy">
           <Speaker>Player</Speaker>
           <SpeakerSprite>PlayerConvoSprite</SpeakerSprite>

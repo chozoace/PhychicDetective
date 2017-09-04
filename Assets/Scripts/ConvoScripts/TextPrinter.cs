@@ -18,7 +18,6 @@ public class TextPrinter : MonoBehaviour
     public int NumberOfLettersToShow { set { _numberOfLettersToShow = value; } get { return _numberOfLettersToShow; } }
     [SerializeField] GameObject _conversationBackground;
 
-
     void Start()
     {
         _UIText = _conversationBackground.transform.Find("Text").gameObject.GetComponent<Text>();
@@ -28,6 +27,8 @@ public class TextPrinter : MonoBehaviour
     {
         //loop through all text boxes
         Invoke("IncrementDisplayText", _typeSpeed);
+        //write to convo file here 
+
     }
 
     public void ClearTyper()
