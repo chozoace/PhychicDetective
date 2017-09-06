@@ -21,9 +21,11 @@ public class ConversationController : MonoBehaviour
     [SerializeField] GameObject _playerGameObject;
     [SerializeField] GameObject _conversationBackground;
     [SerializeField] GameObject _speakingCharSprite;
+    XmlDocument _xDoc = new XmlDocument();
+    XmlNode _historyListNode;
     static ConversationController _instance;
 
-    string _convoHistory = "Assets/Resources/convoHistory.txt";
+    string _convoHistoryString = "Assets/Resources/convoHistory.txt";
 
     public static ConversationController Instance()
     {
@@ -56,13 +58,22 @@ public class ConversationController : MonoBehaviour
         //fade everything away
         _conversationBackground.SetActive(false);
     }
+    
+    void OnDestroy()
+    {
+        _xDoc.Save("Assets/Resources/convoHistory.xml");
+    }
 
     void Awake ()
     {
         _textPrinter = GetComponent<TextPrinter>();
         //Clear history
-        TextAsset asset = (TextAsset)Resources.Load("convoHistory");
-        File.WriteAllText(AssetDatabase.GetAssetPath(asset), string.Empty);
+        _xDoc.Load("Assets/Resources/convoHistory.xml");
+        _xDoc.DocumentElement.RemoveAll();
+        XmlNode root = _xDoc.DocumentElement;
+        _historyListNode = _xDoc.CreateElement("HistoryList");
+        root.AppendChild(_historyListNode);
+        
         if (_instance == null)
             _instance = this;
         else if (_instance != this)
@@ -87,17 +98,10 @@ public class ConversationController : MonoBehaviour
                 speakingPortrait.DisablePortrait();
             }
 
-            string textToPrint = currentConvoOutput._speaker + ": " + currentConvoOutput._speech;
-            //write to history here
-            StreamWriter writer = new StreamWriter(_convoHistory, true);
-            writer.WriteLine(textToPrint);
-            writer.Close();
-            AssetDatabase.ImportAsset(_convoHistory );
-            TextAsset asset = (TextAsset)Resources.Load("convoHistory");
-            Debug.Log("checking if null: " + asset);
+            string textToPrint = currentConvoOutput._speaker + ": " + currentConvoOutput._speech; 
+            //save to history
 
-            //Print the text from the file
-            Debug.Log(asset.text);
+            
             _textPrinter.TextToType = textToPrint;
             _textPrinter.ClearTyper();
             _textPrinter.StartTyper();
