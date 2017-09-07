@@ -8,7 +8,6 @@ using System.IO;
 public class Interactable : MonoBehaviour
 {
     //Kinds of interactables: Items, Npc's, Actionables(doors), information
-    //NPC
     protected bool _canInteract;
     protected bool _saveable = true;
     protected bool _exists = true;
@@ -48,9 +47,7 @@ public class Interactable : MonoBehaviour
     public virtual void onInteract()
     {
         if(_canInteract)
-        {
-            Debug.Log("Interacting with " + _itemName);
-            
+        {            
             GameObject.FindGameObjectWithTag("ConversationController").GetComponent<ConversationController>().SetConversationInfo(this);
             GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().ChangeGameState(GameState._conversationState);     
         }
@@ -62,7 +59,6 @@ public class Interactable : MonoBehaviour
         GameObject playerGameObject = GameObject.FindGameObjectWithTag("Player");
         foreach (KeyValuePair<string, Conversation> convo in _conversationDictionary)
         {
-            //Debug.Log(convo.Value._checkForId);
             if (playerGameObject.GetComponent<PlayerControllerScript>().InventoryContains(convo.Value._checkForType, int.Parse(convo.Value._checkForId)) && convo.Value._timesRead == 0)
             {
                 _currentConvo = convo.Value;

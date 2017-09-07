@@ -8,6 +8,7 @@ TagManager:
   - Cursor
   - PlayerData
   - BlackScreen
+  - HistoryBackgroundMenu
   layers:
   - Default
   - TransparentFX

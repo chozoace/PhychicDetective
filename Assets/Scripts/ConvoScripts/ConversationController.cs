@@ -7,7 +7,7 @@ using UnityEditor;
 
 public class ConversationController : MonoBehaviour
 {
-    public Interactable _conversationInfo;
+    Interactable _conversationInfo;
     GameObject _textBox;
     ConversationContainer _convoContainer;
     Conversation _currentConvo;
@@ -16,15 +16,14 @@ public class ConversationController : MonoBehaviour
     int _currentConvoIndex = 0;
     public int CurrentConvoIndex { get { return _currentConvoIndex; } }
     int _currentConvoSpeechIndex = 0;
-    public string _currentConvoName;
     string _postConvoAction;
     [SerializeField] GameObject _playerGameObject;
     [SerializeField] GameObject _conversationBackground;
     [SerializeField] GameObject _speakingCharSprite;
+
     XmlDocument _xDoc = new XmlDocument();
     XmlNode _historyListNode;
     static ConversationController _instance;
-
     string _convoHistoryString = "Assets/Resources/convoHistory.txt";
 
     public static ConversationController Instance()
@@ -38,16 +37,12 @@ public class ConversationController : MonoBehaviour
     public void SetConversationInfo(Interactable conversationInfo)
     {
         _conversationInfo = conversationInfo;
-        //extract info
     }
 
     public void StartConversation()
     {
-        //set up text box and actors
         _conversationBackground.SetActive(true);
         _currentConvo = _conversationInfo.UpdateConvoInfo();
-
-        Debug.Log("Current Convo: " + _currentConvo._name);
 
         _postConvoAction = _currentConvo._postConvoAction;
         LoadConvoBlurb();
@@ -55,7 +50,7 @@ public class ConversationController : MonoBehaviour
 
     public void EndConversation()
     {
-        //fade everything away
+        //TODO: fade everything away
         _conversationBackground.SetActive(false);
     }
     
@@ -67,7 +62,6 @@ public class ConversationController : MonoBehaviour
     void Awake ()
     {
         _textPrinter = GetComponent<TextPrinter>();
-        //Clear history
         _xDoc.Load("Assets/Resources/convoHistory.xml");
         _xDoc.DocumentElement.RemoveAll();
         XmlNode root = _xDoc.DocumentElement;
@@ -89,18 +83,15 @@ public class ConversationController : MonoBehaviour
             ConvoOutput currentConvoOutput = _currentConvo._convoOutputList[_currentConvoIndex];
             //set speaking char sprite to convo info
             if (_currentConvo._convoOutputList[_currentConvoIndex]._speakerSprite != null)
-            {
-                Debug.Log(_currentConvo._convoOutputList[_currentConvoIndex]._speakerSprite);
                 speakingPortrait.ActivatePortrait("Sprites/" + currentConvoOutput._speakerSprite, currentConvoOutput._speaker, currentConvoOutput._emotion);
-            }
             else
-            {
                 speakingPortrait.DisablePortrait();
-            }
 
-            string textToPrint = currentConvoOutput._speaker + ": " + currentConvoOutput._speech; 
-            //save to history
-
+            string textToPrint = currentConvoOutput._speaker + ": " + currentConvoOutput._speech;
+            XmlElement el = _xDoc.CreateElement("Record");
+            el.SetAttribute("speaker", currentConvoOutput._speaker);
+            el.SetAttribute("speech",  currentConvoOutput._speech);
+            _historyListNode.AppendChild(el);
             
             _textPrinter.TextToType = textToPrint;
             _textPrinter.ClearTyper();

@@ -64,7 +64,6 @@ public class NotebookController : MonoBehaviour
         _currentPageIndex = Mathf.Clamp(_currentPageIndex + pageIncrement, 0, _pages.Count - 1);
         if (_currentPage.GetPageIndex != _currentPageIndex)
         {
-            Debug.Log("current page " + _currentPage.name + " index " + _currentPageIndex);
             _currentPage.ExitPage();
             _currentPage = _pages[_currentPageIndex];
             _currentPage.EnterPage();

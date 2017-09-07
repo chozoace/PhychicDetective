@@ -25,10 +25,7 @@ public class TextPrinter : MonoBehaviour
 
     public void StartTyper()
     {
-        //loop through all text boxes
         Invoke("IncrementDisplayText", _typeSpeed);
-        //write to convo file here 
-
     }
 
     public void ClearTyper()

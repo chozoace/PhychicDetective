@@ -72,6 +72,12 @@ public class PlayerControllerScript : MonoBehaviour
             GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().ChangeGameState(GameState._pauseState);
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
+        //convo history
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().ChangeGameState(GameState._historyPauseState);
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
         //Save Game
         if (Input.GetKeyDown(KeyCode.U))
         {
@@ -96,7 +102,6 @@ public class PlayerControllerScript : MonoBehaviour
 
     public void CollectInteractable(int itemId)
     {
-        //search for item by id then add to notebook
         Collectable item = _itemDatabase.FindCollectableWithId(itemId);
         if(item != null)
         {

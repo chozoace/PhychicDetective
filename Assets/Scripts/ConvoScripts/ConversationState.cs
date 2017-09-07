@@ -6,7 +6,6 @@ using System.Collections.Generic;
 public class ConversationState : GameState
 {
     GameObject _player = null;
-    //grab info from this
     ConversationController _conversationController;
     bool _notebookControl = false;
     public bool NotebookControl { get { return _notebookControl; } set { _notebookControl = value; } }
@@ -26,10 +25,7 @@ public class ConversationState : GameState
             _conversationController = GameObject.FindGameObjectWithTag("ConversationController").GetComponent<ConversationController>();
         }
 
-        //start convo
         _conversationController.StartConversation();
-        
-        //base.Enter();
     }
 
     public override void UpdateState()
@@ -38,6 +34,5 @@ public class ConversationState : GameState
             _conversationController.UpdateConversation();
         else
             NotebookController.Instance().CurrentPage.UpdatePage();
-        //base.UpdateState();
     }
 }

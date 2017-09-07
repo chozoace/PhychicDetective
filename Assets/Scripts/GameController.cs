@@ -58,6 +58,8 @@ public class GameController : MonoBehaviour
         _currentGameState.Enter();
         _lastState = _currentGameState;
 
+        GameState._historyPauseState.setMenuBackground(GameObject.FindGameObjectWithTag("HistoryBackgroundMenu"));
+
         //load level
     }
 
