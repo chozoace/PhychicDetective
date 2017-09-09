@@ -4,11 +4,12 @@ using System.Xml;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Xml.Serialization;
+using System.IO;
 
 public class HistoryPauseState : GameState
 {
     GameObject _menuBackground;
-    XmlDocument _xDoc = new XmlDocument();
+    ConvoHistoryController _historyControllerRef;
 
     public void setMenuBackground(GameObject menuBackground)
     {
@@ -19,9 +20,12 @@ public class HistoryPauseState : GameState
     public override void Enter()
     {
         if (_stateName == "Default")
+        {
             _stateName = "HistoryPauseState";
-        
-        _xDoc.Load("Assets/Resources/convoHistory.xml");
+            _historyControllerRef = GameController.Instance().GetComponent<ConvoHistoryController>();
+        }
+
+        _historyControllerRef.StartController();
         _menuBackground.SetActive(true);
     }
 
@@ -33,22 +37,6 @@ public class HistoryPauseState : GameState
 
     public override void UpdateState()
     {
-        if (Input.GetKeyDown(KeyCode.C))
-            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().ChangeGameState(GameState._overworldState);
+        _historyControllerRef.UpdateMenu();
     }
-}
-
-[XmlRoot("ConvoHistory")]
-class HistoryContainer
-{
-
-}
-
-[System.Serializable]
-class HistoryRecord
-{
-    
-    public string _speaker;
-
-    public string _speech;
 }

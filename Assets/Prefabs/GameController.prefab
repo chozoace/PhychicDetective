@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 11476940}
   - component: {fileID: 114594066996497470}
   - component: {fileID: 82577514779419396}
+  - component: {fileID: 114533592868401584}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -92,7 +93,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 189862}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6dbf348f3d988e343808f0aff5a91343, type: 3}
@@ -166,6 +167,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114533592868401584
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 189862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcc72d0bad5f03845a5849e13f9fd3ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  historyFile: {fileID: 4900000, guid: 1953349471689eb4fb9415e5d57ffc78, type: 3}
 --- !u!114 &114594066996497470
 MonoBehaviour:
   m_ObjectHideFlags: 1
