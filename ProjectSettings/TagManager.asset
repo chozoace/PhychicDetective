@@ -9,6 +9,7 @@ TagManager:
   - PlayerData
   - BlackScreen
   - HistoryBackgroundMenu
+  - ConvoHistoryGrid
   layers:
   - Default
   - TransparentFX

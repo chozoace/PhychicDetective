@@ -25,8 +25,8 @@ public class HistoryPauseState : GameState
             _historyControllerRef = GameController.Instance().GetComponent<ConvoHistoryController>();
         }
 
-        _historyControllerRef.StartController();
         _menuBackground.SetActive(true);
+        _historyControllerRef.StartController();
     }
 
     public override void Exit()

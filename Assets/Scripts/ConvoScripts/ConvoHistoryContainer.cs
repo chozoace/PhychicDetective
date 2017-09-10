@@ -9,7 +9,7 @@ public class ConvoHistoryContainer
 {
     [XmlArray("HistoryList")]
     [XmlArrayItem("Record")]
-    public List<Record> historyRecordList = new List<Record>();
+    public List<Record> _historyRecordList = new List<Record>();
 
     public static ConvoHistoryContainer Load(TextAsset xml)
     {

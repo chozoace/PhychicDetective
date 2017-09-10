@@ -67,7 +67,8 @@ public class ConversationController : MonoBehaviour
         XmlNode root = _xDoc.DocumentElement;
         _historyListNode = _xDoc.CreateElement("HistoryList");
         root.AppendChild(_historyListNode);
-        
+        _xDoc.Save("Assets/Resources/convoHistory.xml");
+
         if (_instance == null)
             _instance = this;
         else if (_instance != this)
@@ -92,7 +93,8 @@ public class ConversationController : MonoBehaviour
             el.SetAttribute("speaker", currentConvoOutput._speaker);
             el.SetAttribute("speech",  currentConvoOutput._speech);
             _historyListNode.AppendChild(el);
-            
+            _xDoc.Save("Assets/Resources/convoHistory.xml");
+
             _textPrinter.TextToType = textToPrint;
             _textPrinter.ClearTyper();
             _textPrinter.StartTyper();

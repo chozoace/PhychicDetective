@@ -178,7 +178,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcc72d0bad5f03845a5849e13f9fd3ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  historyFile: {fileID: 4900000, guid: 1953349471689eb4fb9415e5d57ffc78, type: 3}
+  _historyFile: {fileID: 4900000, guid: 1953349471689eb4fb9415e5d57ffc78, type: 3}
+  _historyRecordPrefab: {fileID: 1688742999606304, guid: 8b9d4f79d49af9b4ea068823d629aad9,
+    type: 2}
 --- !u!114 &114594066996497470
 MonoBehaviour:
   m_ObjectHideFlags: 1
