@@ -10,6 +10,7 @@ TagManager:
   - BlackScreen
   - HistoryBackgroundMenu
   - ConvoHistoryGrid
+  - HistoryScrollBar
   layers:
   - Default
   - TransparentFX

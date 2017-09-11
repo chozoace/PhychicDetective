@@ -15,6 +15,8 @@ public class ConvoHistoryController : MonoBehaviour
     GameObject _historyConvoGrid;
     //prefab to create
     [SerializeField] GameObject _historyRecordPrefab;
+    [SerializeField] Scrollbar _scrollBar;
+    float _scrollIncreaseRate = .05f;
 
     public void StartController()
     {
@@ -23,12 +25,18 @@ public class ConvoHistoryController : MonoBehaviour
             for (int i = 0; i < _historyConvoGrid.transform.childCount; i++)
             {
                 GameObject.Destroy(_historyConvoGrid.transform.GetChild(i).gameObject);
+                _scrollBar.value = 1;
+                _scrollBar.numberOfSteps = 0;
             }
         }
         AssetDatabase.Refresh();
         _historyContainer = ConvoHistoryContainer.Load(_historyFile);
         if (_historyConvoGrid == null)
+        {
             _historyConvoGrid = GameObject.FindGameObjectWithTag("ConvoHistoryGrid");
+            _scrollBar = GameObject.FindGameObjectWithTag("HistoryScrollBar").GetComponent<Scrollbar>();
+            _scrollBar.value = 1;
+        }
         populateGrid();
     }
 
@@ -43,18 +51,23 @@ public class ConvoHistoryController : MonoBehaviour
 
             childObj.transform.SetParent(_historyConvoGrid.transform, false);
         }
+
+        _scrollIncreaseRate = _scrollIncreaseRate * _scrollBar.size;
+        Debug.Log("Scroll Rate: " + _scrollIncreaseRate);
     }
 
 	public void UpdateMenu()
     {
         //control scroll bar here
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
         {
-
+            if (_scrollBar.value < 1)
+                _scrollBar.value += _scrollIncreaseRate;
         }
-        else if (Input.GetKeyDown(KeyCode.S ))
+        else if (Input.GetKey(KeyCode.S ))
         {
-
+            if (_scrollBar.value > 0)
+                _scrollBar.value -= _scrollIncreaseRate;
         }
         else if (Input.GetKeyDown(KeyCode.C))
             GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().ChangeGameState(GameState._overworldState);

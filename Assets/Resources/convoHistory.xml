@@ -6,5 +6,15 @@
     <Record speaker="Player" speech="Oh. So I guess thinking outside of the box for you..." />
     <Record speaker="Player" speech="would be an out of body experience!" />
     <Record speaker="RedBox" speech="Please leave." />
+    <Record speaker="Player" speech="It was a good joke!" />
+    <Record speaker="RedBox" speech="Why are you still here?" />
+    <Record speaker="Player" speech="It was a good joke!" />
+    <Record speaker="RedBox" speech="Why are you still here?" />
+    <Record speaker="Player" speech="It was a good joke!" />
+    <Record speaker="RedBox" speech="Why are you still here?" />
+    <Record speaker="Player" speech="It was a good joke!" />
+    <Record speaker="RedBox" speech="Why are you still here?" />
+    <Record speaker="Player" speech="It was a good joke!" />
+    <Record speaker="RedBox" speech="Why are you still here?" />
   </HistoryList>
 </ConvoHistoryContainer>
