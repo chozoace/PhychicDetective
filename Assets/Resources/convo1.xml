@@ -17,7 +17,7 @@
           <Speaker>Player</Speaker>
           <SpeakerSprite>PlayerConvoSprite</SpeakerSprite>
           <Speech>Oh. So I guess thinking outside of the box for you...</Speech>
-        </ConvoOutput>o
+        </ConvoOutput>
         <ConvoOutput position="Left" emotion="Happy">
           <Speaker>Player</Speaker>
           <SpeakerSprite>PlayerConvoSprite</SpeakerSprite>
@@ -86,6 +86,11 @@
           <SpeakerSprite>RedBoxConvoSprite</SpeakerSprite>
           <Speech>No.</Speech>
         </ConvoOutput>
+      </Script>
+    </Conversation>
+    <Conversation name="Notebook" postConvoAction="" nextConvo="Notebook" checkForType="" checkForId="-1">
+      <Script>
+        
       </Script>
     </Conversation>
     <Conversation name="BlueBoxConvo2ItemCorrect" postConvoAction="" nextConvo="BlueBoxConvo2" checkForType="" checkForId="-1">

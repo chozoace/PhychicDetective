@@ -70,6 +70,6 @@ public class ConvoHistoryController : MonoBehaviour
                 _scrollBar.value -= _scrollIncreaseRate;
         }
         else if (Input.GetKeyDown(KeyCode.C))
-            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().ChangeGameState(GameState._overworldState);
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().ChangeGameState(GameController.Instance().LastGameState);
     }
 }

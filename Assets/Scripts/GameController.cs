@@ -24,6 +24,7 @@ public class GameController : MonoBehaviour
     GameState _currentGameState = null;
     public GameState CurrentGameState { get { return _currentGameState; } }
     GameState _lastState;
+    public GameState LastGameState { get { return _lastState; } }
     GameObject _playerDataPrefab = null;
     static GameController _instance;
 

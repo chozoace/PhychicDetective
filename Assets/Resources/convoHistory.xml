@@ -1,20 +1,4 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ConvoHistoryContainer>
-  <HistoryList>
-    <Record speaker="Player" speech="Hey, how are ya?" />
-    <Record speaker="RedBox" speech="Pretty bored, I am only a red box after all." />
-    <Record speaker="Player" speech="Oh. So I guess thinking outside of the box for you..." />
-    <Record speaker="Player" speech="would be an out of body experience!" />
-    <Record speaker="RedBox" speech="Please leave." />
-    <Record speaker="Player" speech="It was a good joke!" />
-    <Record speaker="RedBox" speech="Why are you still here?" />
-    <Record speaker="Player" speech="It was a good joke!" />
-    <Record speaker="RedBox" speech="Why are you still here?" />
-    <Record speaker="Player" speech="It was a good joke!" />
-    <Record speaker="RedBox" speech="Why are you still here?" />
-    <Record speaker="Player" speech="It was a good joke!" />
-    <Record speaker="RedBox" speech="Why are you still here?" />
-    <Record speaker="Player" speech="It was a good joke!" />
-    <Record speaker="RedBox" speech="Why are you still here?" />
-  </HistoryList>
+  <HistoryList />
 </ConvoHistoryContainer>

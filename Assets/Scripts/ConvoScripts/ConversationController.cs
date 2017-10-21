@@ -75,7 +75,7 @@ public class ConversationController : MonoBehaviour
             Destroy(this.gameObject);
     }
 
-    void LoadConvoBlurb()
+    void LoadConvoBlurb(bool skipTyper = false)
     {
         PortraitScript speakingPortrait = _speakingCharSprite.GetComponent<PortraitScript>();
         //possibly load choice blurb?
@@ -95,9 +95,13 @@ public class ConversationController : MonoBehaviour
             _historyListNode.AppendChild(el);
             _xDoc.Save("Assets/Resources/convoHistory.xml");
 
-            _textPrinter.TextToType = textToPrint;
-            _textPrinter.ClearTyper();
-            _textPrinter.StartTyper();
+            if (!skipTyper)
+            {
+                //include special animation changes in skip typer?
+                _textPrinter.TextToType = textToPrint;
+                _textPrinter.ClearTyper();
+                _textPrinter.StartTyper();
+            }
             _currentConvoIndex++;
         }
         else
@@ -141,6 +145,18 @@ public class ConversationController : MonoBehaviour
         }
     }
 
+    public void saveConversation()
+    {
+        _conversationBackground.SetActive(false);
+    }
+    
+    public void loadConversation()
+    {
+        _conversationBackground.SetActive(true);
+        _currentConvoIndex -= 1;
+        LoadConvoBlurb(true);
+    }
+
     public void UpdateConversation()
     {
         if (Input.GetKeyDown(KeyCode.J))
@@ -149,6 +165,11 @@ public class ConversationController : MonoBehaviour
                 _textPrinter.NumberOfLettersToShow = _textPrinter.TextToType.Length - 1;
             else
                 LoadConvoBlurb();
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().ChangeGameState(GameState._historyPauseState);
+            //GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
         _textPrinter.UpdateTextPrinter();
     }

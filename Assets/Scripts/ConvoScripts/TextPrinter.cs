@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class TextPrinter : MonoBehaviour
 {
     Text _UIText;
+    ConversationController _convoController;
 
     public string _textToType;
     public string _textChoice1;
@@ -26,6 +27,8 @@ public class TextPrinter : MonoBehaviour
     public void StartTyper()
     {
         Invoke("IncrementDisplayText", _typeSpeed);
+        if (_convoController == null)
+            _convoController = ConversationController.Instance();
     }
 
     public void ClearTyper()
@@ -46,19 +49,21 @@ public class TextPrinter : MonoBehaviour
         }
         else
         {
-            if (ConversationController.Instance().CurrentConvo._convoOutputList.Count > ConversationController.Instance().CurrentConvoIndex
-                && ConversationController.Instance().CurrentConvo._convoOutputList[ConversationController.Instance().CurrentConvoIndex]._choiceOutputList.Count > 0)
+            if (_convoController.CurrentConvo._convoOutputList.Count > _convoController.CurrentConvoIndex
+                && _convoController.CurrentConvo._convoOutputList[_convoController.CurrentConvoIndex]._choiceOutputList.Count > 0)
             {
                 //Have cursor with choices appear
+                //call controller function to change to control options, the controller will call typer again to type out options then be given control
 
                 //change control to notebook
                 GameState._conversationState.NotebookControl = true;
                 GameState._pauseState.Enter();
             }
-            else if(ConversationController.Instance().CurrentConvo._convoOutputList.Count > ConversationController.Instance().CurrentConvoIndex
-                && ConversationController.Instance().CurrentConvo._convoOutputList[ConversationController.Instance().CurrentConvoIndex]._clueID != -1)
+            //to collect clues
+            else if(_convoController.CurrentConvo._convoOutputList.Count > _convoController.CurrentConvoIndex
+                && _convoController.CurrentConvo._convoOutputList[_convoController.CurrentConvoIndex]._clueID != -1)
             {
-                PlayerControllerScript.Instance().CollectInteractable(ConversationController.Instance().CurrentConvo._convoOutputList[ConversationController.Instance().CurrentConvoIndex]._clueID);
+                PlayerControllerScript.Instance().CollectInteractable(_convoController.CurrentConvo._convoOutputList[_convoController.CurrentConvoIndex]._clueID);
             }
         }
     }

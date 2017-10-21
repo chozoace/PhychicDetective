@@ -12,7 +12,13 @@ public class ConversationState : GameState
 
     public override void Exit()
     {
-        _conversationController.EndConversation();
+        //end or save
+        if(GameController.Instance().CurrentGameState.StateName.Equals("HistoryPauseState"))
+        {
+            _conversationController.saveConversation();
+        }
+        else
+            _conversationController.EndConversation();
         base.Exit();
     }
 
@@ -25,7 +31,13 @@ public class ConversationState : GameState
             _conversationController = GameObject.FindGameObjectWithTag("ConversationController").GetComponent<ConversationController>();
         }
 
-        _conversationController.StartConversation();
+        //start or continue
+        if (GameController.Instance().LastGameState.StateName.Equals("HistoryPauseState"))
+        {
+            _conversationController.loadConversation();
+        }
+        else
+            _conversationController.StartConversation();
     }
 
     public override void UpdateState()
