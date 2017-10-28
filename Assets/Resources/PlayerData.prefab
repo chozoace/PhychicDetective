@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 22206024}
   - component: {fileID: 11431372}
   m_Layer: 5
-  m_Name: Text (4)
+  m_Name: Choice2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2788,7 +2788,7 @@ GameObject:
   - component: {fileID: 222856981089451886}
   - component: {fileID: 114035505187787166}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Choice3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2822,7 +2822,7 @@ GameObject:
   - component: {fileID: 222316267239920094}
   - component: {fileID: 114215357882700716}
   m_Layer: 5
-  m_Name: Text (3)
+  m_Name: Choice1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3092,7 +3092,7 @@ GameObject:
   - component: {fileID: 4878553685378198}
   - component: {fileID: 212609235372228034}
   m_Layer: 5
-  m_Name: Triangle
+  m_Name: Cursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3127,7 +3127,7 @@ GameObject:
   - component: {fileID: 222462158272555206}
   - component: {fileID: 114082525885352364}
   m_Layer: 5
-  m_Name: Text (2)
+  m_Name: ChoiceHeader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3390,7 +3390,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 224384087988322786}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4601,7 +4601,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.0014038086, y: -0.000030517578}
+  m_AnchoredPosition: {x: 0.0014038086, y: 0}
   m_SizeDelta: {x: 982, y: 0}
   m_Pivot: {x: 0.000000054948032, y: 0.99999994}
 --- !u!224 &224886924255899130

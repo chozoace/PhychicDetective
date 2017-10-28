@@ -74,10 +74,11 @@
         <ConvoOutput position="Left" needEvidence="0" emotion="Neutral">
           <Speaker>Player</Speaker>
           <SpeakerSprite>PlayerConvoSprite</SpeakerSprite>
-          <Speech>Show Choices</Speech>
+          <Speech>(Now which one was it...)</Speech>
           <Choices>
             <Choice text="Yes" nextConvo="Notebook"/>
-            <Choice text="No" nextConvo=""/>
+            <Choice text="No" nextConvo="Notebook"/>
+            <Choice text="Maybe" nextConvo="Notebook"/>
           </Choices>
         </ConvoOutput>
         <!--end condition-->

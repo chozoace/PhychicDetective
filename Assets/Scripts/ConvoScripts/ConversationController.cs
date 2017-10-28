@@ -88,15 +88,14 @@ public class ConversationController : MonoBehaviour
             else
                 speakingPortrait.DisablePortrait();
 
-            string textToPrint = currentConvoOutput._speaker + ": " + currentConvoOutput._speech;
-            XmlElement el = _xDoc.CreateElement("Record");
-            el.SetAttribute("speaker", currentConvoOutput._speaker);
-            el.SetAttribute("speech",  currentConvoOutput._speech);
-            _historyListNode.AppendChild(el);
-            _xDoc.Save("Assets/Resources/convoHistory.xml");
-
             if (!skipTyper)
             {
+                string textToPrint = currentConvoOutput._speaker + ": " + currentConvoOutput._speech;
+                XmlElement el = _xDoc.CreateElement("Record");
+                el.SetAttribute("speaker", currentConvoOutput._speaker);
+                el.SetAttribute("speech",  currentConvoOutput._speech);
+                _historyListNode.AppendChild(el);
+                _xDoc.Save("Assets/Resources/convoHistory.xml");
                 //include special animation changes in skip typer?
                 _textPrinter.TextToType = textToPrint;
                 _textPrinter.ClearTyper();
