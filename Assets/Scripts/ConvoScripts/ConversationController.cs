@@ -25,6 +25,8 @@ public class ConversationController : MonoBehaviour
     XmlNode _historyListNode;
     static ConversationController _instance;
     string _convoHistoryString = "Assets/Resources/convoHistory.txt";
+    bool _choicesAvailable = false;
+    public bool SetChoicesAvailable { set { _choicesAvailable = value; } }
 
     public static ConversationController Instance()
     {
@@ -46,6 +48,11 @@ public class ConversationController : MonoBehaviour
 
         _postConvoAction = _currentConvo._postConvoAction;
         LoadConvoBlurb();
+    }
+
+    public void startConversationViaChoice()
+    {
+
     }
 
     public void EndConversation()
@@ -158,17 +165,37 @@ public class ConversationController : MonoBehaviour
 
     public void UpdateConversation()
     {
-        if (Input.GetKeyDown(KeyCode.J))
+        if (_choicesAvailable)
         {
-            if (_textPrinter.NumberOfLettersToShow < _textPrinter.TextToType.Length - 1)
-                _textPrinter.NumberOfLettersToShow = _textPrinter.TextToType.Length - 1;
-            else
-                LoadConvoBlurb();
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                //up
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                //down
+            }
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                //if still loading text, load all text
+                //else load next conversation
+                //check present evidence
+            }
         }
-        if (Input.GetKeyDown(KeyCode.C))
+        else
         {
-            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().ChangeGameState(GameState._historyPauseState);
-            //GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                if (_textPrinter.NumberOfLettersToShow < _textPrinter.TextToType.Length - 1)
+                    _textPrinter.NumberOfLettersToShow = _textPrinter.TextToType.Length - 1;
+                else
+                    LoadConvoBlurb();
+            }
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().ChangeGameState(GameState._historyPauseState);
+                //GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            }
         }
         _textPrinter.UpdateTextPrinter();
     }

@@ -25,6 +25,9 @@ public class TextPrinter : MonoBehaviour
     public int NumberOfLettersToShow { set { _numberOfLettersToShow = value; } get { return _numberOfLettersToShow; } }
     [SerializeField] GameObject _conversationBackground;
 
+    int _selectedChoiceEntry = 1;
+    int _currentChoiceLength = 0;
+
     void Start()
     {
         _UIText = _conversationBackground.transform.Find("Text").gameObject.GetComponent<Text>();
@@ -46,30 +49,65 @@ public class TextPrinter : MonoBehaviour
     {
         _textPercentage = 0;
         _numberOfLettersToShow = 0;
+        _numberOfLettersToShowChoices = 0;
         _UIText.text = "";
+        _ChoiceHeader.text = "";
+        _Choice1.text = "";
+        _Choice2.text = "";
+        _Choice3.text = "";
         CancelInvoke();
     }
 
-    void IncrementChoiceText(Text textTarget, string textToType)
+    public void increaseChoiceSelection()
     {
-        if (_numberOfLettersToShowChoices < textToType.Length)
+        if(_selectedChoiceEntry < _currentChoiceLength)
         {
-            _numberOfLettersToShowChoices++;
-            textTarget.text = textToType.Substring(0, _numberOfLettersToShow);
-            Invoke("IncrementChoiceText", _typeSpeed);
-        }
-        else
-        {
-            //call display choices text
+            _selectedChoiceEntry++;
+            //change cursor position
         }
     }
 
-    void DisplayChoicesText()
+    public void decreaseChoiceSelection()
     {
-        Conversation currentConvo = _convoController.CurrentConvo;
-        _ChoiceUI.SetActive(true);
-        
+        if (_selectedChoiceEntry > 1)
+        {
+            _selectedChoiceEntry--;
+            //change cursor position
+        }
+    }
 
+    public void selectChoiceSelection()
+    {
+        //return next convo string use it to load next convo via controller
+    }
+
+    IEnumerator IncrementChoiceText(string textTarget, string textToType, int choiceIndex)
+    {
+        Text textTargetObj = _ChoiceUI.transform.Find(textTarget).gameObject.GetComponent<Text>();
+        while (_numberOfLettersToShowChoices < textToType.Length)
+        {
+            _numberOfLettersToShowChoices++;
+            textTargetObj.text = textToType.Substring(0, _numberOfLettersToShowChoices);
+            yield return new WaitForSeconds(_typeSpeed);
+        }
+        DisplayChoicesText(++choiceIndex);
+    }
+
+    void DisplayChoicesText(int choiceIndex)
+    {
+        ConvoOutput currentConvoOutput = _convoController.CurrentConvo._convoOutputList[_convoController.CurrentConvoIndex-1];
+        _numberOfLettersToShowChoices = 0;
+        _currentChoiceLength = currentConvoOutput._choiceOutputList.Count;
+        if (choiceIndex < currentConvoOutput._choiceOutputList.Count)
+        {
+            ChoiceOutput choiceObj = currentConvoOutput._choiceOutputList[choiceIndex];
+            string textToType = (choiceIndex == 0) ? (currentConvoOutput._speaker + ": " + choiceObj._text) : choiceObj._text;
+            this.StartCoroutine(IncrementChoiceText(choiceObj._type, textToType, choiceIndex));
+        }
+        else
+        {
+
+        }
     }
 
     void IncrementDisplayText()
@@ -79,14 +117,16 @@ public class TextPrinter : MonoBehaviour
         if (_numberOfLettersToShow < _textToType.Length)
         {
             if (currentConvo._convoOutputList.Count > _convoController.CurrentConvoIndex
-                && currentConvo._convoOutputList[_convoController.CurrentConvoIndex]._choiceOutputList.Count > 0)
+                && currentConvo._convoOutputList[_convoController.CurrentConvoIndex-1]._choiceOutputList.Count > 0)
             {
                 //Have cursor with choices appear
                 //call controller function to change to control options, the controller will call typer again to type out options then be given control
-                DisplayChoicesText();
+                _ChoiceUI.SetActive(true);
+                _selectedChoiceEntry = 1;
+                DisplayChoicesText(0);
                 //change control to notebook
-                GameState._conversationState.NotebookControl = true;
-                GameState._pauseState.Enter();
+                //GameState._conversationState.NotebookControl = true;
+                //GameState._pauseState.Enter();
             }
             else
             {

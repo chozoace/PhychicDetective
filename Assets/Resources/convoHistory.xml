@@ -1,3 +1,7 @@
 <ConvoHistoryContainer>
-  <HistoryList />
+  <HistoryList>
+    <Record speaker="Player" speech="Hey, how are ya?" />
+    <Record speaker="RedBox" speech="Pretty bored, I am only a red box after all." />
+    <Record speaker="Player" speech="(Now which one was it...)" />
+  </HistoryList>
 </ConvoHistoryContainer>

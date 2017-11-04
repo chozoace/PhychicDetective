@@ -16,6 +16,17 @@
         <ConvoOutput position="Left" emotion="Neutral">
           <Speaker>Player</Speaker>
           <SpeakerSprite>PlayerConvoSprite</SpeakerSprite>
+          <Speech>(Now which one was it...)</Speech>
+          <Choices>
+            <Choice type="ChoiceHeader" text="(Now which one was it...)"/>
+            <Choice type="Choice1" text="Yes" nextConvo="Default"/>
+            <Choice type="Choice2" text="No" nextConvo="Default2"/>
+            <Choice type="Choice3" text="Maybe" nextConvo="Default"/>
+          </Choices>
+        </ConvoOutput>
+        <ConvoOutput position="Left" emotion="Neutral">
+          <Speaker>Player</Speaker>
+          <SpeakerSprite>PlayerConvoSprite</SpeakerSprite>
           <Speech>Oh. So I guess thinking outside of the box for you...</Speech>
         </ConvoOutput>
         <ConvoOutput position="Left" emotion="Happy">
@@ -76,9 +87,10 @@
           <SpeakerSprite>PlayerConvoSprite</SpeakerSprite>
           <Speech>(Now which one was it...)</Speech>
           <Choices>
-            <Choice text="Yes" nextConvo="Notebook"/>
-            <Choice text="No" nextConvo="Notebook"/>
-            <Choice text="Maybe" nextConvo="Notebook"/>
+            <Choice type="ChoiceHeader">(Now which one was it...)</Choice>
+            <Choice type="Choice1" text="Yes" nextConvo="Notebook"/>
+            <Choice type="Choice2" text="No" nextConvo="Notebook"/>
+            <Choice type="Choice3" text="Maybe" nextConvo="Notebook"/>
           </Choices>
         </ConvoOutput>
         <!--end condition-->
@@ -89,9 +101,13 @@
         </ConvoOutput>
       </Script>
     </Conversation>
-    <Conversation name="Notebook" postConvoAction="" nextConvo="Notebook" checkForType="" checkForId="-1">
+    <Conversation name="Notebook" postConvoAction="" nextConvo="BlueBoxConvo2" checkForType="" checkForId="-1">
       <Script>
-        
+        <ConvoOutput position="Left" emotion="Neutral">
+          <Speaker>RedBox</Speaker>
+          <SpeakerSprite>RedBoxConvoSprite</SpeakerSprite>
+          <Speech>Welcome</Speech>
+        </ConvoOutput>
       </Script>
     </Conversation>
     <Conversation name="BlueBoxConvo2ItemCorrect" postConvoAction="" nextConvo="BlueBoxConvo2" checkForType="" checkForId="-1">
