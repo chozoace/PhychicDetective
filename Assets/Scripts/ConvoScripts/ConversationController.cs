@@ -84,6 +84,7 @@ public class ConversationController : MonoBehaviour
 
     void LoadConvoBlurb(bool skipTyper = false)
     {
+        _postConvoAction = _currentConvo._postConvoAction;
         PortraitScript speakingPortrait = _speakingCharSprite.GetComponent<PortraitScript>();
         //possibly load choice blurb?
         if (_currentConvoIndex < _currentConvo._convoOutputList.Count)
@@ -113,11 +114,6 @@ public class ConversationController : MonoBehaviour
         else
         {
             CheckPostConvoInfo();
-            _textPrinter._textToType = "";
-            _textPrinter.ClearTyper();
-            _currentConvoIndex = 0;
-            _currentConvoSpeechIndex = 0;
-            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().ChangeGameState(GameState._overworldState);
         }
 
     }
@@ -128,16 +124,40 @@ public class ConversationController : MonoBehaviour
         {
             _playerGameObject.GetComponent<PlayerControllerScript>().CollectInteractable(_conversationInfo._itemId);
             _conversationInfo.DestroyInteractable();
+            _textPrinter._textToType = "";
+            _textPrinter.ClearTyper();
+            _currentConvoIndex = 0;
+            _currentConvoSpeechIndex = 0;
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().ChangeGameState(GameState._overworldState);
         }
         if(_postConvoAction == "Profile")
         {
             _playerGameObject.GetComponent<PlayerControllerScript>().CollectInteractable(_conversationInfo._itemId);
+            _textPrinter._textToType = "";
+            _textPrinter.ClearTyper();
+            _currentConvoIndex = 0;
+            _currentConvoSpeechIndex = 0;
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().ChangeGameState(GameState._overworldState);
+        }
+        if(_postConvoAction == "Notebook")
+        {
+            GameState._conversationState.NotebookControl = true;
+            GameState._pauseState.Enter();
+        }
+        else
+        {
+            _textPrinter._textToType = "";
+            _textPrinter.ClearTyper();
+            _currentConvoIndex = 0;
+            _currentConvoSpeechIndex = 0;
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().ChangeGameState(GameState._overworldState);
         }
     }
 
     public void PresentEvidence(int itemId)
     {
-        if(int.Parse(_currentConvo._convoOutputList[_currentConvoIndex]._needEvidence) == itemId)
+        Debug.Log("length: " + _currentConvo._convoOutputList.Count);
+        if(int.Parse(_currentConvo._convoOutputList[_currentConvoIndex - 1]._needEvidence) == itemId)
         { 
             _currentConvo = _conversationInfo.AssignNewConvo(_currentConvo._name + "ItemCorrect");
             _currentConvoIndex = 0;
@@ -167,19 +187,30 @@ public class ConversationController : MonoBehaviour
     {
         if (_choicesAvailable)
         {
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                //up
-            }
             if (Input.GetKeyDown(KeyCode.S))
             {
                 //down
+                _textPrinter.increaseChoiceSelection();
+            }
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                //up
+                _textPrinter.decreaseChoiceSelection();
             }
             if (Input.GetKeyDown(KeyCode.J))
             {
-                //if still loading text, load all text
-                //else load next conversation
-                //check present evidence
+                if (_textPrinter.NumberOfLettersToShowChoices < _textPrinter.TextToType.Length - 1)
+                {
+                    Debug.Log("in if: " + _textPrinter.NumberOfLettersToShowChoices + " " + (_textPrinter.TextToType.Length - 1));
+                    _textPrinter.NumberOfLettersToShowChoices = _textPrinter.TextToType.Length - 1;
+                }
+                else
+                {
+                    Debug.Log("in else");
+                    _currentConvo = _conversationInfo.AssignNewConvo(_textPrinter.selectChoiceSelection());
+                    _currentConvoIndex = 0;
+                    LoadConvoBlurb();
+                }
             }
         }
         else

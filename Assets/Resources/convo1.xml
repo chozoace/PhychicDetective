@@ -64,7 +64,7 @@
         </ConvoOutput>
       </Script>
     </Conversation>
-    <Conversation name="BlueBoxConvo2" postConvoAction="" nextConvo="BlueBoxConvo2" checkForType="" checkForId="-1">
+    <Conversation name="BlueBoxConvo2" postConvoAction="Notebook" nextConvo="BlueBoxConvo2" checkForType="" checkForId="-1">
       <Script>
         <ConvoOutput position="Left" emotion="Neutral">
           <Speaker>RedBox</Speaker>
@@ -81,23 +81,10 @@
           <SpeakerSprite>PlayerConvoSprite</SpeakerSprite>
           <Speech>Do you want it?</Speech>
         </ConvoOutput>
-        <!--add condition here-->
         <ConvoOutput position="Left" needEvidence="0" emotion="Neutral">
-          <Speaker>Player</Speaker>
-          <SpeakerSprite>PlayerConvoSprite</SpeakerSprite>
-          <Speech>(Now which one was it...)</Speech>
-          <Choices>
-            <Choice type="ChoiceHeader">(Now which one was it...)</Choice>
-            <Choice type="Choice1" text="Yes" nextConvo="Notebook"/>
-            <Choice type="Choice2" text="No" nextConvo="Notebook"/>
-            <Choice type="Choice3" text="Maybe" nextConvo="Notebook"/>
-          </Choices>
-        </ConvoOutput>
-        <!--end condition-->
-        <ConvoOutput position="Left" emotion="Neutral">
           <Speaker>RedBox</Speaker>
           <SpeakerSprite>RedBoxConvoSprite</SpeakerSprite>
-          <Speech>No.</Speech>
+          <Speech>EMPTY</Speech>
         </ConvoOutput>
       </Script>
     </Conversation>
