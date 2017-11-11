@@ -14,7 +14,6 @@ public class PlayerControllerScript : MonoBehaviour
     static PlayerControllerScript _instance;
     private Animator anim;
 
-	// Use this for initialization
     void Awake()
     {
         if (_instance == null)

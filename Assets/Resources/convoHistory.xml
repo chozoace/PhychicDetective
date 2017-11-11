@@ -1,21 +1,3 @@
 <ConvoHistoryContainer>
-  <HistoryList>
-    <Record speaker="BlueBox" speech="Found a box, seems useful. Going to take it" />
-    <Record speaker="RedBox" speech="What are you doing with my kid!?" />
-    <Record speaker="RedBox" speech="Just kidding, my child isn't blue." />
-    <Record speaker="Player" speech="Hmmmm" />
-    <Record speaker="Player" speech="Do you want it?" />
-    <Record speaker="RedBox" speech="EMPTY" />
-    <Record speaker="RedBox" speech="That is correct" />
-    <Record speaker="RedBox" speech="Just kidding, my child isn't blue." />
-    <Record speaker="Player" speech="Hmmmm" />
-    <Record speaker="Player" speech="Do you want it?" />
-    <Record speaker="RedBox" speech="EMPTY" />
-    <Record speaker="RedBox" speech="That is WRONG" />
-    <Record speaker="RedBox" speech="Just kidding, my child isn't blue." />
-    <Record speaker="Player" speech="Hmmmm" />
-    <Record speaker="Player" speech="Do you want it?" />
-    <Record speaker="RedBox" speech="EMPTY" />
-    <Record speaker="RedBox" speech="That is correct" />
-  </HistoryList>
+  <HistoryList />
 </ConvoHistoryContainer>

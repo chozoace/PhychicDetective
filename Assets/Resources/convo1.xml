@@ -19,9 +19,9 @@
           <Speech>(Now which one was it...)</Speech>
           <Choices>
             <Choice type="ChoiceHeader" text="(Now which one was it...)"/>
-            <Choice type="Choice1" text="Yes" nextConvo="Default"/>
-            <Choice type="Choice2" text="No" nextConvo="Default2"/>
-            <Choice type="Choice3" text="Maybe" nextConvo="Default"/>
+            <Choice text="Yes" nextConvo="Default"/>
+            <Choice text="No" nextConvo="Default2"/>
+            <Choice text="Maybe" nextConvo="Default"/>
           </Choices>
         </ConvoOutput>
         <ConvoOutput position="Left" emotion="Neutral">

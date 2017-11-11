@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using UnityEngine.UI;
 
@@ -14,11 +15,9 @@ public class TextPrinter : MonoBehaviour
     Text _Choice3;
     ConversationController _convoController;
 
-    public string _textToType;
-    public string _textChoice1;
-    public string _textChoice2;
+    string _textToType;
     public string TextToType { set { _textToType = value; } get { return _textToType; } }
-    public float _typeSpeed = 1f;
+    [SerializeField] float _typeSpeed = 1f;
     private float _textPercentage = 0;
     public float TextPercentage { get { return _textPercentage; } }
     int _numberOfLettersToShow = 0;
@@ -30,14 +29,17 @@ public class TextPrinter : MonoBehaviour
     int _selectedChoiceEntry = 1;
     int _currentChoiceLength = 0;
 
+    List<Text> _textUIs = new List<Text>();
+
     void Start()
     {
         _UIText = _conversationBackground.transform.Find("Text").gameObject.GetComponent<Text>();
         _ChoiceUI = _conversationBackground.transform.Find("ChoiceUI").gameObject;
         _ChoiceHeader = _ChoiceUI.transform.Find("ChoiceHeader").gameObject.GetComponent<Text>();
-        _Choice1 = _ChoiceUI.transform.Find("Choice1").gameObject.GetComponent<Text>();
-        _Choice2 = _ChoiceUI.transform.Find("Choice2").gameObject.GetComponent<Text>();
-        _Choice3 = _ChoiceUI.transform.Find("Choice3").gameObject.GetComponent<Text>();
+        _textUIs.Add(_ChoiceUI.transform.Find("Choice1").gameObject.GetComponent<Text>());
+        _textUIs.Add(_ChoiceUI.transform.Find("Choice2").gameObject.GetComponent<Text>());
+        _textUIs.Add(_ChoiceUI.transform.Find("Choice3").gameObject.GetComponent<Text>());
+
         _cursor = _ChoiceUI.transform.Find("Cursor").gameObject;
     }
 
@@ -55,9 +57,8 @@ public class TextPrinter : MonoBehaviour
         _numberOfLettersToShowChoices = 0;
         _UIText.text = "";
         _ChoiceHeader.text = "";
-        _Choice1.text = "";
-        _Choice2.text = "";
-        _Choice3.text = "";
+        foreach (Text text in _textUIs)
+            text.text = "";
         CancelInvoke();
     }
 
@@ -92,9 +93,9 @@ public class TextPrinter : MonoBehaviour
         return choiceObj._nextConvo;
     }
 
-    IEnumerator IncrementChoiceText(string textTarget, string textToType, int choiceIndex)
+    IEnumerator IncrementChoiceText(string textToType, int choiceIndex)
     {
-        Text textTargetObj = _ChoiceUI.transform.Find(textTarget).gameObject.GetComponent<Text>();
+        Text textTargetObj = _textUIs[choiceIndex];
         while (_numberOfLettersToShowChoices < textToType.Length)
         {
             _numberOfLettersToShowChoices++;
@@ -114,7 +115,7 @@ public class TextPrinter : MonoBehaviour
             ChoiceOutput choiceObj = currentConvoOutput._choiceOutputList[choiceIndex];
             string textToType = (choiceIndex == 0) ? (currentConvoOutput._speaker + ": " + choiceObj._text) : choiceObj._text;
             _textToType = textToType;
-            this.StartCoroutine(IncrementChoiceText(choiceObj._type, textToType, choiceIndex));
+            this.StartCoroutine(IncrementChoiceText(textToType, choiceIndex));
         }
         else
         {

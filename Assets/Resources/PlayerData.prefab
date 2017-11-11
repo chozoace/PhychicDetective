@@ -1575,7 +1575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5505b69946f70224f9b0ab882420a242, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 5
+  _moveSpeed: 2
   _hasBlueBox: 1
 --- !u!114 &11480192
 MonoBehaviour:
@@ -1681,9 +1681,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2df69dc3185ed1a47829975238bbf465, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textToType: asdf;lkajsd;flkjasd
-  _textChoice1: 
-  _textChoice2: 
   _typeSpeed: 0.04
   _conversationBackground: {fileID: 151944}
 --- !u!114 &11488956

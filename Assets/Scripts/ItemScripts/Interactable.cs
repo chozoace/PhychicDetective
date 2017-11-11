@@ -12,10 +12,9 @@ public class Interactable : MonoBehaviour
     protected bool _saveable = true;
     protected bool _exists = true;
     public bool InteractableExists { get { return _exists; } }
-    public string _itemName = "Default";
-    public int _itemId;
-    string _conversationOutput;
-    //not public
+    [SerializeField] string _itemName = "Default";
+    [SerializeField] int _itemId;
+    public int GetItemID { get { return _itemId; } }
     [SerializeField] TextAsset _xml;
     public TextAsset GetXML { get { return _xml; } }
     Conversation _currentConvo;
@@ -24,7 +23,7 @@ public class Interactable : MonoBehaviour
     public Conversation GetNextConvo { get { return _nextConvo; } }
     ConversationContainer _convoContainer;
     public ConversationContainer GetConvoContainer { get { return _convoContainer; } }
-    public Dictionary<string, Conversation> _conversationDictionary = new Dictionary<string, Conversation>();
+    Dictionary<string, Conversation> _conversationDictionary = new Dictionary<string, Conversation>();
 
     void Start ()
     {
@@ -46,6 +45,8 @@ public class Interactable : MonoBehaviour
     
     public virtual void onInteract()
     {
+        //not all interactables are conversations
+        //create new class for items vs npc
         if(_canInteract)
         {            
             GameObject.FindGameObjectWithTag("ConversationController").GetComponent<ConversationController>().SetConversationInfo(this);
@@ -70,7 +71,6 @@ public class Interactable : MonoBehaviour
         }
         if (!convoAssigned)
         {
-
             if (_currentConvo._timesRead > 0 && _conversationDictionary.ContainsKey(_currentConvo._nextConvo))
             {
                 _currentConvo = _nextConvo;
@@ -83,7 +83,6 @@ public class Interactable : MonoBehaviour
 
     public Conversation AssignNewConvo(string newConvo)
     {
-        Debug.Log(newConvo);
         _currentConvo = _conversationDictionary[newConvo];
         _nextConvo = _conversationDictionary[_currentConvo._nextConvo];
         _currentConvo._timesRead++;
