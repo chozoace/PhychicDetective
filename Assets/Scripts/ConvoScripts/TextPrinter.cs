@@ -151,7 +151,7 @@ public class TextPrinter : MonoBehaviour
             {
                 _ChoiceUI.SetActive(true);
                 _convoController.SetChoicesAvailable = true;
-                _selectedChoiceEntry = 1;
+                resetChoiceSelection();
                 DisplayChoicesText(0);
             }
             else
