@@ -10,12 +10,10 @@ public class GameController : MonoBehaviour
 {
     /*
      * Game TO-DO: 
-     * 1. Player choice during convo
      * 2. Items that are interactable but don't disappear
      * 3. Main Menu, Settings Menu, New Game, Load Game, Save Game from Notebook?
      * 4. Sound effects on item interact, on page turn, Notebook open, pause menu
      *    menu click, as text loads
-     * 5. Convo history
      * 6. How will Interrogations work? 
      * 7. Ability to use telepathy to gather information on a given statement
      * 8. On telepathy activate "Zoom into victims mind and see snapshot if available"

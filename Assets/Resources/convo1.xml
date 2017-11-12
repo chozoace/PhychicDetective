@@ -16,6 +16,16 @@
         <ConvoOutput position="Left" emotion="Neutral">
           <Speaker>Player</Speaker>
           <SpeakerSprite>PlayerConvoSprite</SpeakerSprite>
+          <Speech>Oh. So I guess thinking outside of the box for you...</Speech>
+        </ConvoOutput>
+        <ConvoOutput position="Left" emotion="Happy">
+          <Speaker>Player</Speaker>
+          <SpeakerSprite>PlayerConvoSprite</SpeakerSprite>
+          <Speech>would be an out of body experience!</Speech>
+        </ConvoOutput>
+        <ConvoOutput position="Left" emotion="Neutral">
+          <Speaker>Player</Speaker>
+          <SpeakerSprite>PlayerConvoSprite</SpeakerSprite>
           <Speech>(Now which one was it...)</Speech>
           <Choices>
             <Choice type="ChoiceHeader" text="(Now which one was it...)"/>
@@ -23,16 +33,6 @@
             <Choice text="No" nextConvo="Default2"/>
             <Choice text="Maybe" nextConvo="Default"/>
           </Choices>
-        </ConvoOutput>
-        <ConvoOutput position="Left" emotion="Neutral">
-          <Speaker>Player</Speaker>
-          <SpeakerSprite>PlayerConvoSprite</SpeakerSprite>
-          <Speech>Oh. So I guess thinking outside of the box for you...</Speech>
-        </ConvoOutput>
-        <ConvoOutput position="Left" emotion="Happy">
-          <Speaker>Player</Speaker>
-          <SpeakerSprite>PlayerConvoSprite</SpeakerSprite>
-          <Speech>would be an out of body experience!</Speech>
         </ConvoOutput>
         <ConvoOutput position="Right" emotion="Neutral">
           <Speaker>RedBox</Speaker>
@@ -76,15 +76,10 @@
           <SpeakerSprite>PlayerConvoSprite</SpeakerSprite>
           <Speech>Hmmmm</Speech>
         </ConvoOutput>
-        <ConvoOutput position="Left" emotion="Happy">
+        <ConvoOutput position="Left" needEvidence="0" emotion="Happy">
           <Speaker>Player</Speaker>
           <SpeakerSprite>PlayerConvoSprite</SpeakerSprite>
           <Speech>Do you want it?</Speech>
-        </ConvoOutput>
-        <ConvoOutput position="Left" needEvidence="0" emotion="Neutral">
-          <Speaker>RedBox</Speaker>
-          <SpeakerSprite>RedBoxConvoSprite</SpeakerSprite>
-          <Speech>EMPTY</Speech>
         </ConvoOutput>
       </Script>
     </Conversation>

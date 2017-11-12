@@ -28,6 +28,7 @@ public class TextPrinter : MonoBehaviour
 
     int _selectedChoiceEntry = 1;
     int _currentChoiceLength = 0;
+    float _cursorStartPosition;
 
     List<Text> _textUIs = new List<Text>();
 
@@ -36,11 +37,13 @@ public class TextPrinter : MonoBehaviour
         _UIText = _conversationBackground.transform.Find("Text").gameObject.GetComponent<Text>();
         _ChoiceUI = _conversationBackground.transform.Find("ChoiceUI").gameObject;
         _ChoiceHeader = _ChoiceUI.transform.Find("ChoiceHeader").gameObject.GetComponent<Text>();
+        _textUIs.Add(_ChoiceUI.transform.Find("ChoiceHeader").gameObject.GetComponent<Text>());
         _textUIs.Add(_ChoiceUI.transform.Find("Choice1").gameObject.GetComponent<Text>());
         _textUIs.Add(_ChoiceUI.transform.Find("Choice2").gameObject.GetComponent<Text>());
         _textUIs.Add(_ChoiceUI.transform.Find("Choice3").gameObject.GetComponent<Text>());
 
         _cursor = _ChoiceUI.transform.Find("Cursor").gameObject;
+        //_cursorStartPosition = _cursor.gameObject.transform.position.y;
     }
 
     public void StartTyper(string typerFunction = "IncrementDisplayText")
@@ -48,6 +51,11 @@ public class TextPrinter : MonoBehaviour
         Invoke(typerFunction, _typeSpeed);
         if (_convoController == null)
             _convoController = ConversationController.Instance();
+    }
+
+    public bool cursorActive()
+    {
+        return _cursor.activeInHierarchy;
     }
 
     public void ClearTyper()
@@ -70,6 +78,14 @@ public class TextPrinter : MonoBehaviour
             Vector2 cursorPosition = _cursor.transform.position;
             cursorPosition.y -= .24f;
             _cursor.transform.position = cursorPosition;
+        }
+    }
+
+    void resetChoiceSelection()
+    {
+        while(_selectedChoiceEntry > 1)
+        {
+            decreaseChoiceSelection();
         }
     }
 
@@ -96,10 +112,10 @@ public class TextPrinter : MonoBehaviour
     IEnumerator IncrementChoiceText(string textToType, int choiceIndex)
     {
         Text textTargetObj = _textUIs[choiceIndex];
-        while (_numberOfLettersToShowChoices < textToType.Length)
+        while (_numberOfLettersToShow < textToType.Length)
         {
-            _numberOfLettersToShowChoices++;
-            textTargetObj.text = textToType.Substring(0, _numberOfLettersToShowChoices);
+            _numberOfLettersToShow++;
+            textTargetObj.text = textToType.Substring(0, _numberOfLettersToShow);
             yield return new WaitForSeconds(_typeSpeed);
         }
         DisplayChoicesText(++choiceIndex);
@@ -111,7 +127,7 @@ public class TextPrinter : MonoBehaviour
         _currentChoiceLength = currentConvoOutput._choiceOutputList.Count - 1;
         if (choiceIndex < currentConvoOutput._choiceOutputList.Count)
         {
-            _numberOfLettersToShowChoices = 0;
+            _numberOfLettersToShow = 0;
             ChoiceOutput choiceObj = currentConvoOutput._choiceOutputList[choiceIndex];
             string textToType = (choiceIndex == 0) ? (currentConvoOutput._speaker + ": " + choiceObj._text) : choiceObj._text;
             _textToType = textToType;
@@ -120,6 +136,7 @@ public class TextPrinter : MonoBehaviour
         else
         {
             _cursor.SetActive(true);
+            resetChoiceSelection();
         }
     }
 

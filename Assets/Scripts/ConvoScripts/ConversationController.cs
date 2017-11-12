@@ -83,16 +83,21 @@ public class ConversationController : MonoBehaviour
         PortraitScript speakingPortrait = _speakingCharSprite.GetComponent<PortraitScript>();
         if (_currentConvoIndex < _currentConvo._convoOutputList.Count)
         {
+            Debug.Log("changing emotion");
             ConvoOutput currentConvoOutput = _currentConvo._convoOutputList[_currentConvoIndex];
             //set speaking char sprite to convo info
             if (_currentConvo._convoOutputList[_currentConvoIndex]._speakerSprite != null)
+            {
+                Debug.Log("activating " + currentConvoOutput._emotion);
                 speakingPortrait.ActivatePortrait("Sprites/" + currentConvoOutput._speakerSprite, currentConvoOutput._speaker, currentConvoOutput._emotion);
+            }
             else
                 speakingPortrait.DisablePortrait();
 
             if (!skipTyper)
             {
                 string textToPrint = currentConvoOutput._speaker + ": " + currentConvoOutput._speech;
+                //don't record history of items
                 XmlElement el = _xDoc.CreateElement("Record");
                 el.SetAttribute("speaker", currentConvoOutput._speaker);
                 el.SetAttribute("speech",  currentConvoOutput._speech);
@@ -176,21 +181,21 @@ public class ConversationController : MonoBehaviour
     {
         if (_choicesAvailable)
         {
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(KeyCode.S) && _textPrinter.cursorActive())
             {
                 //down
                 _textPrinter.increaseChoiceSelection();
             }
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.W) && _textPrinter.cursorActive())
             {
                 //up
                 _textPrinter.decreaseChoiceSelection();
             }
             if (Input.GetKeyDown(KeyCode.J))
             {
-                if (_textPrinter.NumberOfLettersToShowChoices < _textPrinter.TextToType.Length - 1)
+                if (_textPrinter.NumberOfLettersToShow < _textPrinter.TextToType.Length - 1)
                 {
-                    _textPrinter.NumberOfLettersToShowChoices = _textPrinter.TextToType.Length - 1;
+                    _textPrinter.NumberOfLettersToShow = _textPrinter.TextToType.Length - 1;
                 }
                 else
                 {
