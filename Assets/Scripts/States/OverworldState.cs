@@ -29,6 +29,7 @@ public class OverworldState : GameState
     public override void UpdateState()
     {
         base.UpdateState();
+        //updates all overworld game objects
         if(_player != null)
             _player.GetComponent<PlayerControllerScript>().PlayerUpdate();
     }

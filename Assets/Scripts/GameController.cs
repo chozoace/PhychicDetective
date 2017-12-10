@@ -47,6 +47,27 @@ public class GameController : MonoBehaviour
     
     void Start ()
     {
+        StartGame();     
+    }
+
+    IEnumerator removeFadeScreen()
+    {
+        while (true)
+        {
+            CameraEffects.FadeToClear();
+
+            if (CameraEffects.currentFadeAlpha() <= .005f)
+            {
+                ChangeGameState(GameState._overworldState);
+                yield break;
+            }
+            yield return null;
+        }
+    }
+
+    void StartGame ()
+    {
+        //start code should be moved here
         if (_playerDataPrefab == null)
         {
             _playerDataPrefab = (GameObject)Instantiate(Resources.Load("PlayerData"));
@@ -59,7 +80,11 @@ public class GameController : MonoBehaviour
 
         GameState._historyPauseState.setMenuBackground(GameObject.FindGameObjectWithTag("HistoryBackgroundMenu"));
 
-        //load level
+        if (GameObject.Find("BlackScreenFade(Clone)"))
+        {
+            ChangeGameState(GameState._levelChangeState);
+            StartCoroutine("removeFadeScreen");
+        }
     }
 
     public void ChangeGameState(GameState newState)

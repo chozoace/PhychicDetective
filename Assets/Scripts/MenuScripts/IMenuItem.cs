@@ -1,0 +1,4 @@
+﻿interface IMenuItem
+{
+    void execute();
+}
