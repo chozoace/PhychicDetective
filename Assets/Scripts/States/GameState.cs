@@ -8,6 +8,7 @@ public class GameState
     public static PauseState _pauseState = new PauseState();
     public static LevelChangeState _levelChangeState = new LevelChangeState();
     public static HistoryPauseState _historyPauseState = new HistoryPauseState();
+    public static SettingsPauseState _settingsPauseState = new SettingsPauseState();
 
     protected string _stateName = "Default";
     public virtual string StateName { get { return _stateName; } }

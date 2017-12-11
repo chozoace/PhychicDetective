@@ -68,13 +68,18 @@ public class PlayerControllerScript : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
-            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().ChangeGameState(GameState._pauseState);
+            GameController.Instance().ChangeGameState(GameState._pauseState);
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            GameController.Instance().ChangeGameState(GameState._settingsPauseState);
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
         //convo history
         if (Input.GetKeyDown(KeyCode.C))
         {
-            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().ChangeGameState(GameState._historyPauseState);
+            GameController.Instance().ChangeGameState(GameState._historyPauseState);
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
         //Save Game
@@ -88,7 +93,6 @@ public class PlayerControllerScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             Debug.Log("Loading game");
-            //_notebook.LoadData();
             GameController.Instance().LoadGame();
             _notebook.LoadData();
         }

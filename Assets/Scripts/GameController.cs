@@ -79,6 +79,7 @@ public class GameController : MonoBehaviour
         _lastState = _currentGameState;
 
         GameState._historyPauseState.setMenuBackground(GameObject.FindGameObjectWithTag("HistoryBackgroundMenu"));
+        GameState._settingsPauseState.setPauseMenuObj(GameObject.Find("SettingsPauseObj"));
 
         if (GameObject.Find("BlackScreenFade(Clone)"))
         {

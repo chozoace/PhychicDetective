@@ -64,11 +64,13 @@ public class MainMenuController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.S))
         {
-            if(_cursorIndex < _cursorSelectionsList.Count)
+            Debug.Log("Current index: " + _cursorIndex);
+            if(_cursorIndex < _cursorSelectionsList.Count - 1)
                 moveCursor(_cursorIndex + 1);
         }
         else if(Input.GetKeyDown(KeyCode.W))
         {
+            Debug.Log("Current index: " + _cursorIndex);
             if (_cursorIndex > 0)
                 moveCursor(_cursorIndex - 1);
         }
