@@ -102,10 +102,9 @@ public class TextPrinter : MonoBehaviour
 
     public string selectChoiceSelection()
     {
-        //return next convo string use it to load next convo via controller
         _convoController.SetChoicesAvailable = false;
         _cursor.SetActive(false);
-        ChoiceOutput choiceObj = _convoController.CurrentConvo._convoOutputList[_convoController.CurrentConvoIndex - 1]._choiceOutputList[_selectedChoiceEntry];
+        ChoiceOutput choiceObj = _convoController.CurrentConvo._convoOutputList[_convoController.CurrentConvoIndex]._choiceOutputList[_selectedChoiceEntry];
         return choiceObj._nextConvo;
     }
 
@@ -123,7 +122,7 @@ public class TextPrinter : MonoBehaviour
 
     void DisplayChoicesText(int choiceIndex)
     {
-        ConvoOutput currentConvoOutput = _convoController.CurrentConvo._convoOutputList[_convoController.CurrentConvoIndex-1];
+        ConvoOutput currentConvoOutput = _convoController.CurrentConvo._convoOutputList[_convoController.CurrentConvoIndex];
         _currentChoiceLength = currentConvoOutput._choiceOutputList.Count - 1;
         if (choiceIndex < currentConvoOutput._choiceOutputList.Count)
         {
@@ -147,7 +146,7 @@ public class TextPrinter : MonoBehaviour
         if (_numberOfLettersToShow < _textToType.Length)
         {
             if (currentConvo._convoOutputList.Count > _convoController.CurrentConvoIndex
-                && currentConvo._convoOutputList[_convoController.CurrentConvoIndex-1]._choiceOutputList.Count > 0)
+                && currentConvo._convoOutputList[_convoController.CurrentConvoIndex]._choiceOutputList.Count > 0)
             {
                 _ChoiceUI.SetActive(true);
                 _convoController.SetChoicesAvailable = true;
@@ -170,10 +169,5 @@ public class TextPrinter : MonoBehaviour
                 PlayerControllerScript.Instance().CollectInteractable(currentConvo._convoOutputList[_convoController.CurrentConvoIndex]._clueID);
             }
         }
-    }
-
-    public void UpdateTextPrinter()
-    {
-
     }
 }

@@ -18,6 +18,8 @@ public class ConversationController : MonoBehaviour
     [SerializeField] GameObject _playerGameObject;
     [SerializeField] GameObject _conversationBackground;
     [SerializeField] GameObject _speakingCharSprite;
+    GameObject _itemPickupUIPrefab;
+    bool _interactableMenu = false;
 
     XmlDocument _xDoc = new XmlDocument();
     XmlNode _historyListNode;
@@ -62,6 +64,7 @@ public class ConversationController : MonoBehaviour
     {
         _textPrinter = GetComponent<TextPrinter>();
         _gameController = GameController.Instance();
+        _itemPickupUIPrefab = (GameObject)Resources.Load("CollectionsUI");
 
         _xDoc.Load("Assets/Resources/convoHistory.xml");
         _xDoc.DocumentElement.RemoveAll();
@@ -107,7 +110,6 @@ public class ConversationController : MonoBehaviour
                 _textPrinter.ClearTyper();
                 _textPrinter.StartTyper();
             }
-            _currentConvoIndex++;
         }
         else
         {
@@ -120,13 +122,21 @@ public class ConversationController : MonoBehaviour
     {
         switch(_postConvoAction)
         {
-            case "Item":
+            case "CollectableItem":
+                //Bring up UI
+                GameObject uiInstance = Instantiate(_itemPickupUIPrefab);
+                uiInstance.transform.SetParent(PlayerControllerScript.Instance().gameObject.transform.parent.FindChild("Canvas"), false);
+                Animation animUIIntance = uiInstance.GetComponent<Animation>();
+                animUIIntance["CollectionsUIAnim"].wrapMode = WrapMode.Once;
+                animUIIntance.Play("CollectionsUIAnim");
+
                 _playerGameObject.GetComponent<PlayerControllerScript>().CollectInteractable(_conversationInfo.GetItemID);
                 _conversationInfo.DestroyInteractable();
                 _textPrinter.TextToType = "";
                 _textPrinter.ClearTyper();
                 _currentConvoIndex = 0;
-                _gameController.ChangeGameState(GameState._overworldState);
+                _interactableMenu = true;
+                _conversationBackground.SetActive(false);
                 break;
             case "Profile":
                 _playerGameObject.GetComponent<PlayerControllerScript>().CollectInteractable(_conversationInfo.GetItemID);
@@ -204,6 +214,14 @@ public class ConversationController : MonoBehaviour
                 }
             }
         }
+        else if (_interactableMenu)
+        {
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                Destroy(PlayerControllerScript.Instance().gameObject.transform.parent.FindChild("Canvas").FindChild("CollectionsUI(Clone)").gameObject);
+                _gameController.ChangeGameState(GameState._overworldState);
+            }
+        }
         else
         {
             if (Input.GetKeyDown(KeyCode.J))
@@ -211,14 +229,15 @@ public class ConversationController : MonoBehaviour
                 if (_textPrinter.NumberOfLettersToShow < _textPrinter.TextToType.Length - 1)
                     _textPrinter.NumberOfLettersToShow = _textPrinter.TextToType.Length - 1;
                 else
+                {
+                    _currentConvoIndex++;
                     LoadConvoBlurb();
+                }
             }
             if (Input.GetKeyDown(KeyCode.C))
             {
                 GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().ChangeGameState(GameState._historyPauseState);
-                //GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             }
         }
-        _textPrinter.UpdateTextPrinter();
     }
 }
