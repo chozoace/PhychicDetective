@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,12 +9,12 @@ public class ConvoHistoryController : MonoBehaviour
 {
     ConvoHistoryContainer _historyContainer;
     ConversationContainer _convoContainer;
-    [SerializeField] TextAsset _historyFile;
+    TextAsset _historyFile;
     //reference to ui grid
     GameObject _historyConvoGrid;
     //prefab to create
     [SerializeField] GameObject _historyRecordPrefab;
-    [SerializeField] Scrollbar _scrollBar;
+    Scrollbar _scrollBar;
     float _scrollIncreaseRate = .05f;
 
     public void StartController()
@@ -24,13 +23,12 @@ public class ConvoHistoryController : MonoBehaviour
         {
             for (int i = 0; i < _historyConvoGrid.transform.childCount; i++)
             {
-                GameObject.Destroy(_historyConvoGrid.transform.GetChild(i).gameObject);
+                Destroy(_historyConvoGrid.transform.GetChild(i).gameObject);
                 _scrollBar.value = 1;
                 _scrollBar.numberOfSteps = 0;
             }
         }
-        AssetDatabase.Refresh();
-        _historyContainer = ConvoHistoryContainer.Load(_historyFile);
+        _historyContainer = ConvoHistoryContainer.Load("Assets/Resources/convoHistory.xml");
         if (_historyConvoGrid == null)
         {
             _historyConvoGrid = GameObject.FindGameObjectWithTag("ConvoHistoryGrid");

@@ -21,11 +21,11 @@ public class ConversationController : MonoBehaviour
     GameObject _itemPickupUIPrefab;
     bool _interactableMenu = false;
 
+    string _historyDocPath = "Assets/Resources/convoHistory.xml";
     XmlDocument _xDoc = new XmlDocument();
     XmlNode _historyListNode;
     static ConversationController _instance;
     static GameController _gameController;
-    string _convoHistoryString = "Assets/Resources/convoHistory.txt";
     bool _choicesAvailable = false;
     public bool SetChoicesAvailable { set { _choicesAvailable = value; } }
 
@@ -65,13 +65,24 @@ public class ConversationController : MonoBehaviour
         _textPrinter = GetComponent<TextPrinter>();
         _gameController = GameController.Instance();
         _itemPickupUIPrefab = (GameObject)Resources.Load("CollectionsUI");
-
-        _xDoc.Load("Assets/Resources/convoHistory.xml");
-        _xDoc.DocumentElement.RemoveAll();
-        XmlNode root = _xDoc.DocumentElement;
+        XmlNode root;
+        //if file doesn't exist, create it
+        if (File.Exists(_historyDocPath))
+        {
+            _xDoc.Load(_historyDocPath);
+            _xDoc.DocumentElement.RemoveAll();
+            root = _xDoc.DocumentElement;
+        }
+        else
+        {
+            Debug.Log("not exists");
+            _xDoc = new XmlDocument();
+            root = _xDoc.CreateElement("ConvoHistoryContainer");
+            _xDoc.AppendChild(root);
+        }
         _historyListNode = _xDoc.CreateElement("HistoryList");
         root.AppendChild(_historyListNode);
-        _xDoc.Save("Assets/Resources/convoHistory.xml");
+        _xDoc.Save(_historyDocPath);
 
         if (_instance == null)
             _instance = this;
@@ -85,12 +96,10 @@ public class ConversationController : MonoBehaviour
         PortraitScript speakingPortrait = _speakingCharSprite.GetComponent<PortraitScript>();
         if (_currentConvoIndex < _currentConvo._convoOutputList.Count)
         {
-            Debug.Log("changing emotion");
             ConvoOutput currentConvoOutput = _currentConvo._convoOutputList[_currentConvoIndex];
             //set speaking char sprite to convo info
             if (_currentConvo._convoOutputList[_currentConvoIndex]._speakerSprite != null)
             {
-                Debug.Log("activating " + currentConvoOutput._emotion);
                 speakingPortrait.ActivatePortrait("Sprites/" + currentConvoOutput._speakerSprite, currentConvoOutput._speaker, currentConvoOutput._emotion);
             }
             else
@@ -104,7 +113,8 @@ public class ConversationController : MonoBehaviour
                 el.SetAttribute("speaker", currentConvoOutput._speaker);
                 el.SetAttribute("speech",  currentConvoOutput._speech);
                 _historyListNode.AppendChild(el);
-                _xDoc.Save("Assets/Resources/convoHistory.xml");
+                _xDoc.Save(_historyDocPath);
+                
                 //include special animation changes in skip typer?
                 _textPrinter.TextToType = textToPrint;
                 _textPrinter.ClearTyper();
@@ -123,8 +133,8 @@ public class ConversationController : MonoBehaviour
         switch(_postConvoAction)
         {
             case "CollectableItem":
-                //Bring up UI
                 GameObject uiInstance = Instantiate(_itemPickupUIPrefab);
+                //pass it the item to display in the UI
                 uiInstance.transform.SetParent(PlayerControllerScript.Instance().gameObject.transform.parent.FindChild("Canvas"), false);
                 Animation animUIIntance = uiInstance.GetComponent<Animation>();
                 animUIIntance["CollectionsUIAnim"].wrapMode = WrapMode.Once;
@@ -137,6 +147,12 @@ public class ConversationController : MonoBehaviour
                 _currentConvoIndex = 0;
                 _interactableMenu = true;
                 _conversationBackground.SetActive(false);
+                break;
+            case "NonCollectableItem":
+                _textPrinter.TextToType = "";
+                _textPrinter.ClearTyper();
+                _currentConvoIndex = 0;
+                _gameController.ChangeGameState(GameState._overworldState);
                 break;
             case "Profile":
                 _playerGameObject.GetComponent<PlayerControllerScript>().CollectInteractable(_conversationInfo.GetItemID);
@@ -220,6 +236,7 @@ public class ConversationController : MonoBehaviour
             {
                 Destroy(PlayerControllerScript.Instance().gameObject.transform.parent.FindChild("Canvas").FindChild("CollectionsUI(Clone)").gameObject);
                 _gameController.ChangeGameState(GameState._overworldState);
+                _interactableMenu = false;
             }
         }
         else
