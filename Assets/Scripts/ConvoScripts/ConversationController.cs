@@ -136,6 +136,7 @@ public class ConversationController : MonoBehaviour
                 GameObject uiInstance = Instantiate(_itemPickupUIPrefab);
                 //pass it the item to display in the UI
                 uiInstance.transform.SetParent(PlayerControllerScript.Instance().gameObject.transform.parent.FindChild("Canvas"), false);
+                uiInstance.GetComponent<CollectionUIScript>().setItem(_conversationInfo.GetItemID);
                 Animation animUIIntance = uiInstance.GetComponent<Animation>();
                 animUIIntance["CollectionsUIAnim"].wrapMode = WrapMode.Once;
                 animUIIntance.Play("CollectionsUIAnim");

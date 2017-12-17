@@ -5,7 +5,8 @@
 		"type": "Evidence",
 		"sprite": "BlueBlock",
 		"description": "This blue box was carved from the scales of blue dragons found west of Black Knights Fortress.",
-		"comment": "Found in a room"
+		"comment": "Found in a room",
+		"pickupDescription": "This blue box was carved from the scales of blue dragons found west of Black Knights Fortress."
 	},
 	{
 		"id": 1,
@@ -13,7 +14,8 @@
 		"type": "Evidence",
 		"sprite": "BlueBox",
 		"description": "This blue box was carved from the blue scales of blue dragons found west of Black Knights Fortress.",
-		"comment": "Found in a room"
+		"comment": "Found in a room",
+		"pickupDescription": ""
 	},
 	{
 		"id": 2,
@@ -21,7 +23,8 @@
 		"type": "Profile",
 		"sprite": "32Sprite",
 		"description": "Lives in this room, convinced herself she is a red box.  Never moves. Never breathes. Always staring.",
-		"comment": "Found in a room"
+		"comment": "Found in a room",
+		"pickupDescription": ""
 	},
 	{
 		"id": 3,
@@ -29,6 +32,7 @@
 		"type": "Clue",
 		"sprite": "32Sprite",
 		"description": "Pink Girl has no sense of humor and must be exterminated.",
-		"comment": "Found in a room"
+		"comment": "Found in a room",
+		"pickupDescription": ""
 	}
 ]
