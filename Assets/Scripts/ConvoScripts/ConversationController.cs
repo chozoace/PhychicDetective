@@ -8,8 +8,8 @@ public class ConversationController : MonoBehaviour
 {
     Interactable _conversationInfo;
     GameObject _textBox;
-    ConversationContainer _convoContainer;
     Conversation _currentConvo;
+    MindsEyeController _mindsEyeController;
     public Conversation CurrentConvo { get { return _currentConvo; } }
     TextPrinter _textPrinter;
     int _currentConvoIndex = 0;
@@ -64,6 +64,7 @@ public class ConversationController : MonoBehaviour
 
     void Awake ()
     {
+        _mindsEyeController = gameObject.AddComponent<MindsEyeController>();
         _textPrinter = GetComponent<TextPrinter>();
         _gameController = GameController.Instance();
         _itemPickupUIPrefab = (GameObject)Resources.Load("CollectionsUI");
@@ -198,32 +199,16 @@ public class ConversationController : MonoBehaviour
         _conversationBackground.SetActive(false);
     }
     
+    public void setConversation(Conversation convo, int convoIndex)
+    {
+        _currentConvo = convo;
+        _currentConvoIndex = convoIndex;
+    }
+
     public void loadConversation()
     {
         _conversationBackground.SetActive(true);
-        _currentConvoIndex -= 1;
         LoadConvoBlurb(true);
-    }
-
-    IEnumerator startMindsEye(Conversation savedConvo, int savedIndex)
-    {
-        _mindsEyeActive = true;
-        //upon activation, play effects
-        StartCoroutine(CameraEffects.startFadeRoutine("White"));
-        StartCoroutine(CameraEffects.clearFadeRoutine("White"));
-        //we need above coroutine to return a bool for when the effects are done. 
-        //This should all probably be in another state
-        //look into substates later
-        //if minds eye is active, no other action should be allowed
-
-        //See if blurb has retrievable image (true or false)
-        //if true, add image to collection as evidence
-        //image info by id is pulled from convoOutput
-        //if false, return default fail message
-        //Keep convo blurb open, do not advance to the next one
-        //Keep track of how many uses player has and what has been investigated or not
-        _mindsEyeActive = false;
-        yield return null;
     }
 
     public void UpdateConversation()
@@ -263,6 +248,8 @@ public class ConversationController : MonoBehaviour
                 _interactableMenu = false;
             }
         }
+        else if (_mindsEyeController.IsActive)
+            _mindsEyeController.updateController();
         else
         {
             if (Input.GetKeyDown(KeyCode.J))
@@ -281,9 +268,8 @@ public class ConversationController : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.K))
             {
-                //right now it allows to activate again when pressed and fading
-                if(!_mindsEyeActive)
-                    StartCoroutine(startMindsEye(_currentConvo, _currentConvoIndex));
+                if (!_mindsEyeController.IsActive)
+                    _mindsEyeController.startMindsEye(_currentConvo, _currentConvoIndex);
             }
         }
     }
