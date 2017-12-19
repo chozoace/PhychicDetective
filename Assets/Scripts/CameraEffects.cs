@@ -14,7 +14,7 @@ public static class CameraEffects
     {
         _blackScreen = Resources.Load<GameObject>("CameraEffects/BlackScreenFade");
         _fadeSpeed = 5;
-        _fadeWhiteSpeed = .5f;
+        _fadeWhiteSpeed = .8f;
     }
 
     public static float currentFadeAlpha()
@@ -34,10 +34,9 @@ public static class CameraEffects
         GameObject.Destroy(GameObject.Find("BlackScreenFade(Clone)"));
     }
 
-    public static IEnumerator startFadeRoutine(string color)
+    public static IEnumerator startFadeRoutine(string color, DelegateTemplates.VoidDel del)
     {
         Color colorObj = Color.black;
-        _effectsPlaying = true;
         while (true)
         {
             if (color.Equals("Black"))
@@ -52,17 +51,19 @@ public static class CameraEffects
             }
             else
                 yield return null;
-            if (currentFadeAlpha() >= .95f)
+            if (currentFadeAlpha() >= .995f)
             {
                 _blackScreen.GetComponent<SpriteRenderer>().color = colorObj;
+                del();
                 yield break;
             }
             yield return null;
         }
     }
 
-    public static IEnumerator clearFadeRoutine(string color)
+    public static IEnumerator clearFadeRoutine(string color, DelegateTemplates.VoidDel del)
     {
+        Color colorObj = Color.clear;
         while (true)
         {
             if (color.Equals("Black"))
@@ -73,7 +74,8 @@ public static class CameraEffects
                 yield return null;
             if (currentFadeAlpha() <= .005f)
             {
-                _effectsPlaying = false;
+                _blackScreen.GetComponent<SpriteRenderer>().color = colorObj;
+                del();
                 yield break;
             }
             yield return null;

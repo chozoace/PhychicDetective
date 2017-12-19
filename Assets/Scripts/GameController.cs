@@ -47,22 +47,8 @@ public class GameController : MonoBehaviour
     
     void Start ()
     {
+        //first time startup
         StartGame();     
-    }
-
-    IEnumerator removeFadeScreen()
-    {
-        while (true)
-        {
-            CameraEffects.FadeToClear();
-
-            if (CameraEffects.currentFadeAlpha() <= .005f)
-            {
-                ChangeGameState(GameState._overworldState);
-                yield break;
-            }
-            yield return null;
-        }
     }
 
     void StartGame ()
@@ -83,9 +69,15 @@ public class GameController : MonoBehaviour
 
         if (GameObject.Find("BlackScreenFade(Clone)"))
         {
+            DelegateTemplates.VoidDel del = gameLoadEffectsEnd;
             ChangeGameState(GameState._levelChangeState);
-            StartCoroutine("removeFadeScreen");
+            StartCoroutine(CameraEffects.clearFadeRoutine("Black", del));
         }
+    }
+
+    public void gameLoadEffectsEnd()
+    {
+        ChangeGameState(GameState._overworldState);
     }
 
     public void ChangeGameState(GameState newState)

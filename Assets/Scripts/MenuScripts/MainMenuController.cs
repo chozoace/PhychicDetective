@@ -40,24 +40,16 @@ public class MainMenuController : MonoBehaviour
 
     public void startGame()
     {
-        StartCoroutine("startGameRoutine");
+        //StartCoroutine("startGameRoutine");
+        DelegateTemplates.VoidDel del = startLoadGame;
+        StartCoroutine(CameraEffects.startFadeRoutine("Black", del));
     }
 
-    public IEnumerator startGameRoutine()
+    public void startLoadGame()
     {
-        while(true)
-        {
-            CameraEffects.FadeToBlack();
-
-            if(CameraEffects.currentFadeAlpha() >= .995f)
-            {
-                //call load level
-                //Can either call game then load, or just start new game
-                SceneManager.LoadScene("Lobby", LoadSceneMode.Single);
-                yield break;
-            }
-            yield return null;
-        }
+        //call load level
+        //Can either call game then load, or just start new game
+        SceneManager.LoadScene("Lobby", LoadSceneMode.Single);
     }
 
     void Update ()

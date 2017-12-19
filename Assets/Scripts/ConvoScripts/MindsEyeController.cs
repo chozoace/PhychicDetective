@@ -23,10 +23,10 @@ public class MindsEyeController : MonoBehaviour
         //load convo container
         //_xml = Resources.Load("mindsEyeConvos") as TextAsset;
         //_convoContainer = ConversationContainer.Load(_xml);
-        foreach (Conversation convo in _convoContainer.conversationList)
-        {
+        //foreach (Conversation convo in _convoContainer.conversationList)
+        //{
            // _conversationDictionary.Add(convo._name, convo);
-        }
+        //}
     }
 
     public void startMindsEye(Conversation savedConvo, int savedConvoIndex)
@@ -44,6 +44,7 @@ public class MindsEyeController : MonoBehaviour
         //bring up notification
 
         _mindsEyeActive = false;
+        _lockControls = false;
         _convoController.setConversation(_savedConversation, _savedConvoIndex);
         _convoController.loadConversation();
     }
@@ -51,10 +52,8 @@ public class MindsEyeController : MonoBehaviour
     IEnumerator playStartingEffects()
     {
         //upon activation, play effects
-        StartCoroutine(CameraEffects.startFadeRoutine("White"));
-        while (CameraEffects.currentFadeAlpha() < .95f)
-            yield return new WaitForSeconds(0.1f);
-        StartCoroutine("endStartingEffects");
+        DelegateTemplates.VoidDel del = onMiddleEffects;
+        StartCoroutine(CameraEffects.startFadeRoutine("White", del));
         //we need above coroutine to return a bool for when the effects are done. 
         //This should all probably be in another state
         //look into substates later
@@ -69,18 +68,27 @@ public class MindsEyeController : MonoBehaviour
         yield return null;
     }
 
+    public void onMiddleEffects()
+    {
+        //do stuff in middle
+
+        StartCoroutine("endStartingEffects");
+    }
+
     IEnumerator endStartingEffects()
     {
-        StartCoroutine(CameraEffects.clearFadeRoutine("White"));
-        while (CameraEffects.currentFadeAlpha() > .005f)
-            yield return new WaitForSeconds(0.1f);
+        DelegateTemplates.VoidDel del = onEffectsEnd;
+        StartCoroutine(CameraEffects.clearFadeRoutine("White", del));
+        yield return null;
+    }
+
+    public void onEffectsEnd()
+    {
         //temp
-        _mindsEyeActive = false;
         //call function to start convo
         //pull from convo container, make that current convo
+        _mindsEyeActive = false;
         _lockControls = false;
-
-        yield return null;
     }
 
     public void updateController()
