@@ -36,22 +36,6 @@ public class MindsEyeController : MonoBehaviour
         _savedConvoIndex = savedConvoIndex;
         _lockControls = true;
         //play effects
-        StartCoroutine("playStartingEffects");
-    }
-
-    public void endMindsEye()
-    {
-        //bring up notification
-
-        _mindsEyeActive = false;
-        _lockControls = false;
-        _convoController.setConversation(_savedConversation, _savedConvoIndex);
-        _convoController.loadConversation();
-    }
-
-    IEnumerator playStartingEffects()
-    {
-        //upon activation, play effects
         DelegateTemplates.VoidDel del = onMiddleEffects;
         StartCoroutine(CameraEffects.startFadeRoutine("White", del));
         //we need above coroutine to return a bool for when the effects are done. 
@@ -65,21 +49,24 @@ public class MindsEyeController : MonoBehaviour
         //if false, return default fail message
         //Keep convo blurb open, do not advance to the next one
         //Keep track of how many uses player has and what has been investigated or not
-        yield return null;
+    }
+
+    public void endMindsEye()
+    {
+        //bring up notification
+
+        _mindsEyeActive = false;
+        _lockControls = false;
+        _convoController.setConversation(_savedConversation, _savedConvoIndex);
+        _convoController.loadConversation();
     }
 
     public void onMiddleEffects()
     {
         //do stuff in middle
 
-        StartCoroutine("endStartingEffects");
-    }
-
-    IEnumerator endStartingEffects()
-    {
         DelegateTemplates.VoidDel del = onEffectsEnd;
         StartCoroutine(CameraEffects.clearFadeRoutine("White", del));
-        yield return null;
     }
 
     public void onEffectsEnd()
@@ -95,7 +82,7 @@ public class MindsEyeController : MonoBehaviour
     {
         if (!_lockControls)
         {
-            /*if (Input.GetKeyDown(KeyCode.J))
+            if (Input.GetKeyDown(KeyCode.J))
             {
                 if (_textPrinter.NumberOfLettersToShow < _textPrinter.TextToType.Length - 1)
                     _textPrinter.NumberOfLettersToShow = _textPrinter.TextToType.Length - 1;
@@ -107,7 +94,7 @@ public class MindsEyeController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.C))
             {
                 GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().ChangeGameState(GameState._historyPauseState);
-            }*/
+            }
         }
     }
 }

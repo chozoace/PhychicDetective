@@ -1,3 +1,7 @@
 <ConvoHistoryContainer>
-  <HistoryList />
+  <HistoryList>
+    <Record speaker="BlueBox" speech="Found a box, seems useful. Going to take it" />
+    <Record speaker="Some Sign" speech="This appears to be some sign. I can't just pick up and take it..." />
+    <Record speaker="RedBox" speech="What are you doing with my kid!?" />
+  </HistoryList>
 </ConvoHistoryContainer>

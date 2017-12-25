@@ -41,8 +41,10 @@ public class PlayerControllerScript : MonoBehaviour
         float xInput = Input.GetAxisRaw("Horizontal");
         float yInput = Input.GetAxisRaw("Vertical");
         
-        if (yInput != 0)
-            xInput = 0;
+        //if (yInput != 0)
+           //xInput = 0;
+
+
         _rigidBody.velocity = new Vector2(xInput * _moveSpeed, yInput * _moveSpeed);
 
         anim.SetInteger("xSpeed", (int)_rigidBody.velocity.x);
