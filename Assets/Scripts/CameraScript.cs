@@ -28,7 +28,8 @@ public class CameraScript : MonoBehaviour
     {
         float playerXPos = _playerGameObject.transform.position.x;
         float playerYPos = _playerGameObject.transform.position.y;
-        _cameraPosition = Camera.main.WorldToScreenPoint(this.transform.position);
+        this.transform.position = new Vector3(playerXPos, playerYPos, transform.position.z);
+        /*_cameraPosition = Camera.main.WorldToScreenPoint(this.transform.position);
 
         Vector3 cameraPosition = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, 0));
 
@@ -56,6 +57,6 @@ public class CameraScript : MonoBehaviour
             Vector3 v = this.transform.position;
             v.y = v.y - (_yCameraThreshold - (playerYPos - cameraPosition.y));
             this.transform.position = v;
-        }
+        }*/
     }
 }
