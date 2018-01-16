@@ -9,6 +9,9 @@ public class NextLevelScript : Interactable
     [SerializeField] float _xPos;
     [SerializeField] float _yPos;
 
+    [SerializeField] float _destXPos;
+    [SerializeField] float _destYPos;
+
     void Start()
     {
         _saveable = false;
@@ -20,7 +23,11 @@ public class NextLevelScript : Interactable
         {
             GameController.Instance().ChangeGameState(GameState._levelChangeState);
             PlayerControllerScript.Instance().CollidingInteractable = null;
-            GameObject.FindGameObjectWithTag("GameController").GetComponent<LevelController>().EndScene(_nextLevel, new Vector2(_xPos, _yPos));
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<LevelController>().ChangeRooms(_nextLevel, new Vector2(_destXPos, _destYPos));
+
+            //GameController.Instance().ChangeGameState(GameState._levelChangeState);
+            //PlayerControllerScript.Instance().CollidingInteractable = null;
+            //GameObject.FindGameObjectWithTag("GameController").GetComponent<LevelController>().EndScene(_nextLevel, new Vector2(_xPos, _yPos));
         }
     }  
 }

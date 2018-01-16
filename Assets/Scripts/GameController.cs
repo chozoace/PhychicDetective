@@ -10,7 +10,6 @@ public class GameController : MonoBehaviour
 {
     /*
      * Game TO-DO: 
-     * 2. Items that are interactable but don't disappear
      * 3. Main Menu, Settings Menu, New Game, Load Game, Save Game from Notebook?
      * 4. Sound effects on item interact, on page turn, Notebook open, pause menu
      *    menu click, as text loads
@@ -53,12 +52,11 @@ public class GameController : MonoBehaviour
 
     void StartGame ()
     {
-        //start code should be moved here
         if (_playerDataPrefab == null)
         {
             _playerDataPrefab = (GameObject)Instantiate(Resources.Load("PlayerData"));
         }
-        GetComponent<LevelController>().InitialLevelLoad(SceneManager.GetActiveScene().name, Vector2.zero);
+        //GetComponent<LevelController>().InitialLevelLoad(SceneManager.GetActiveScene().name, Vector2.zero);
         GameState._overworldState.AssignPlayer(_playerDataPrefab.transform.FindChild("Player").gameObject);
         _currentGameState = GameState._overworldState;
         _currentGameState.Enter();
@@ -67,12 +65,12 @@ public class GameController : MonoBehaviour
         GameState._historyPauseState.setMenuBackground(GameObject.FindGameObjectWithTag("HistoryBackgroundMenu"));
         GameState._settingsPauseState.setPauseMenuObj(GameObject.Find("SettingsPauseObj"));
 
-        if (GameObject.Find("BlackScreenFade(Clone)"))
+        /*if (GameObject.Find("BlackScreenFade(Clone)"))
         {
             DelegateTemplates.VoidDel del = gameLoadEffectsEnd;
             ChangeGameState(GameState._levelChangeState);
             StartCoroutine(CameraEffects.clearFadeRoutine("Black", del));
-        }
+        }*/
     }
 
     public void gameLoadEffectsEnd()

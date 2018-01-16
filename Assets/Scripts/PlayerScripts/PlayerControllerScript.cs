@@ -45,7 +45,12 @@ public class PlayerControllerScript : MonoBehaviour
         //if (yInput != 0)
            //xInput = 0;
 
-        _rigidBody.velocity = new Vector2(xInput * _moveSpeed, yInput * _moveSpeed);
+        if(yInput != 0 && xInput != 0)
+        {
+            _rigidBody.velocity = new Vector2(xInput * _moveSpeed / 1.5f, yInput * _moveSpeed / 1.5f);
+        }
+        else
+            _rigidBody.velocity = new Vector2(xInput * _moveSpeed, yInput * _moveSpeed);
         anim.SetInteger("xSpeed", (int)_rigidBody.velocity.x);
         anim.SetInteger("ySpeed", (int)_rigidBody.velocity.y);
     }

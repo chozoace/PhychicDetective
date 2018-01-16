@@ -14,6 +14,9 @@ public class LevelController : MonoBehaviour
     [SerializeField] float _fadeSpeed = 5f;
     bool _startScene = false;
 
+    [SerializeField] List<Room> _roomInstanceList = new List<Room>();
+    Room _currentRoomInstance;
+
     void Awake ()
     {
         foreach(Room room in _prefabRoomList)
@@ -33,6 +36,15 @@ public class LevelController : MonoBehaviour
         _currentAlphaColor = _blackScreen.GetComponent<SpriteRenderer>().color;
         _startScene = false;
         StartCoroutine(EndSceneRoutine(newLevel,spawnVector));
+    }
+
+    public void ChangeRooms(string nextRoom, Vector2 destPos)
+    {
+        Room newRoom;
+
+        foreach (Room room in _roomInstanceList)
+            if (room.GetRoomSceneName == nextRoom)
+                newRoom = room;
     }
 
     void FadeToBlack()
@@ -105,13 +117,17 @@ public class LevelController : MonoBehaviour
 
     public void InitialLevelLoad(string level, Vector2 spawnVector)
     {
-        foreach (Room room in _roomList)
+        foreach (Room room in _roomInstanceList)
             if (room.GetRoomSceneName == level)
-                _currentRoom = room;
-        _currentRoom.gameObject.SetActive(true);
+              _currentRoomInstance = room;
+        _currentRoomInstance.gameObject.SetActive(true);
+        //foreach (Room room in _roomList)
+        //  if (room.GetRoomSceneName == level)
+        //    _currentRoom = room;
+        //_currentRoom.gameObject.SetActive(true);
     }
 
-	void Update ()
+    void Update ()
     {
 
 	}
