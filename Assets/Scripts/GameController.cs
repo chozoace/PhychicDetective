@@ -56,7 +56,7 @@ public class GameController : MonoBehaviour
         {
             _playerDataPrefab = (GameObject)Instantiate(Resources.Load("PlayerData"));
         }
-        //GetComponent<LevelController>().InitialLevelLoad(SceneManager.GetActiveScene().name, Vector2.zero);
+        GetComponent<LevelController>().InitialLevelLoad(SceneManager.GetActiveScene().name, Vector2.zero);
         GameState._overworldState.AssignPlayer(_playerDataPrefab.transform.FindChild("Player").gameObject);
         _currentGameState = GameState._overworldState;
         _currentGameState.Enter();
@@ -64,6 +64,8 @@ public class GameController : MonoBehaviour
 
         GameState._historyPauseState.setMenuBackground(GameObject.FindGameObjectWithTag("HistoryBackgroundMenu"));
         GameState._settingsPauseState.setPauseMenuObj(GameObject.Find("SettingsPauseObj"));
+
+        
 
         /*if (GameObject.Find("BlackScreenFade(Clone)"))
         {

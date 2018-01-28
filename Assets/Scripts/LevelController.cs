@@ -40,11 +40,43 @@ public class LevelController : MonoBehaviour
 
     public void ChangeRooms(string nextRoom, Vector2 destPos)
     {
-        Room newRoom;
+        Debug.Log("nextRoom: " + nextRoom);
+        Room newRoom = null;
 
+        //identify new room
         foreach (Room room in _roomInstanceList)
+        {
+            Debug.Log("Room name: " + room.GetRoomSceneName);
             if (room.GetRoomSceneName == nextRoom)
                 newRoom = room;
+        }
+
+        if (newRoom != null)
+        {
+            Debug.Log("in if");
+            //remove player collision
+            PlayerControllerScript.Instance().gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            //activate other room
+            newRoom.gameObject.SetActive(true);
+            //start fading for current and new room AND move player to new point
+
+            //newroom.StartFadeIn
+            //currentRoom.StartFadeOut
+            //activatePlayerSpeed
+
+            //when fading finishes deactivate old room
+            _currentRoomInstance.gameObject.SetActive(false);
+            _currentRoomInstance = newRoom;
+            //activate player collision
+            PlayerControllerScript.Instance().gameObject.GetComponent<BoxCollider2D>().enabled = true;
+            GameController.Instance().ChangeGameState(GameState._overworldState);
+        }
+        Debug.Log("ended");
+    }
+
+    public void roomTransitionFinished()
+    {
+
     }
 
     void FadeToBlack()
@@ -118,8 +150,12 @@ public class LevelController : MonoBehaviour
     public void InitialLevelLoad(string level, Vector2 spawnVector)
     {
         foreach (Room room in _roomInstanceList)
+        {
             if (room.GetRoomSceneName == level)
-              _currentRoomInstance = room;
+                _currentRoomInstance = room;
+            else
+                room.gameObject.SetActive(false);
+        }
         _currentRoomInstance.gameObject.SetActive(true);
         //foreach (Room room in _roomList)
         //  if (room.GetRoomSceneName == level)

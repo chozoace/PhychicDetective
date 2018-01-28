@@ -13,7 +13,7 @@ public class Room : MonoBehaviour
     void Awake()
     {
         _sceneName = gameObject.name.Replace("(Clone)", "");
-        foreach(SpriteRenderer renderer in this.GetComponentsInChildren<SpriteRenderer>())
+        foreach (SpriteRenderer renderer in this.GetComponentsInChildren<SpriteRenderer>())
         {
 
         }
