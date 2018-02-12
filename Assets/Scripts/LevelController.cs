@@ -61,15 +61,15 @@ public class LevelController : MonoBehaviour
             //start fading for current and new room AND move player to new point
 
             //newroom.StartFadeIn
+            StartCoroutine(newRoom.fadeRoomInRoutine());
+            StartCoroutine(_currentRoomInstance.fadeRoomOutRoutine());
             //currentRoom.StartFadeOut
             //activatePlayerSpeed
 
             //when fading finishes deactivate old room
-            _currentRoomInstance.gameObject.SetActive(false);
+            //_currentRoomInstance.gameObject.SetActive(false);
             _currentRoomInstance = newRoom;
             //activate player collision
-            PlayerControllerScript.Instance().gameObject.GetComponent<BoxCollider2D>().enabled = true;
-            GameController.Instance().ChangeGameState(GameState._overworldState);
         }
         Debug.Log("ended");
     }
@@ -154,7 +154,11 @@ public class LevelController : MonoBehaviour
             if (room.GetRoomSceneName == level)
                 _currentRoomInstance = room;
             else
+            {
+                room.setRoomObjOpacity(0);
                 room.gameObject.SetActive(false);
+                //fade out room contents
+            }
         }
         _currentRoomInstance.gameObject.SetActive(true);
         //foreach (Room room in _roomList)
