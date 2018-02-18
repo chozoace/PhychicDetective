@@ -54,6 +54,7 @@ public static class CameraEffects
             if (currentFadeAlpha() >= .995f)
             {
                 _blackScreen.GetComponent<SpriteRenderer>().color = colorObj;
+                Debug.Log("del being called");
                 del();
                 yield break;
             }

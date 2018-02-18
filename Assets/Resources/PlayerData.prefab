@@ -1355,7 +1355,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.39, y: 0.64}
+  m_Size: {x: 0.26, y: 0.41}
 --- !u!81 &81153725627365504
 AudioListener:
   m_ObjectHideFlags: 1
@@ -2635,7 +2635,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 224444406172010252}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99999994
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

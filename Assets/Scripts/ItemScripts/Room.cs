@@ -34,16 +34,17 @@ public class Room : MonoBehaviour
 
     public IEnumerator fadeRoomOutRoutine()
     {
-        Debug.Log("in fade coroutine");
+        bool lerpStarted = false;
         while (true)
         {
             Color currentAlpha = Color.clear;
+            //MOVE CODE TO SEPARATE COROUTINE, CALL FORLOOP ONCE
             foreach (SpriteRenderer renderer in GetComponentsInChildren<SpriteRenderer>())
             {
-                Debug.Log("In foreach");
-                renderer.color = Color.Lerp(renderer.color, Color.clear, _fadeSpeed * Time.deltaTime / 1);
-                currentAlpha = renderer.color;
+                StartCoroutine(fadeRoomInLerp(renderer, Color.clear));
             }
+            lerpStarted = true;
+            currentAlpha = GetComponentsInChildren<SpriteRenderer>()[0].color;
 
             if (currentAlpha.a <= .205f)
             {
@@ -62,23 +63,26 @@ public class Room : MonoBehaviour
     {
 
     }
+    
+    public IEnumerator fadeRoomInLerp(SpriteRenderer renderer, Color fadeToColor)
+    {
+        renderer.color = Color.Lerp(renderer.color, fadeToColor, _fadeSpeed * Time.deltaTime / 1);
+        yield return null;
+    }
 
     public IEnumerator fadeRoomInRoutine()
     {
-        Debug.Log("in fade coroutine");
         bool lerpStarted = false;
         while (true)
         {
             Color currentAlpha = Color.clear;
-
-            //MOVE CODE TO SEPARATE COROUTINE, CALL FORLOOP ONCE
+            
             foreach (SpriteRenderer renderer in GetComponentsInChildren<SpriteRenderer>())
             {
-                Debug.Log("In foreach");
-                renderer.color = Color.Lerp(renderer.color, Color.white, _fadeSpeed * Time.deltaTime / 1);
-                currentAlpha = renderer.color;
+                StartCoroutine(fadeRoomInLerp(renderer, Color.white));
             }
             lerpStarted = true;
+            currentAlpha = GetComponentsInChildren<SpriteRenderer>()[0].color;
 
             if (currentAlpha.a >= .995f)
             {
@@ -87,7 +91,6 @@ public class Room : MonoBehaviour
                     renderer.color = Color.white;
                 }
                 PlayerControllerScript.Instance().gameObject.GetComponent<BoxCollider2D>().enabled = true;
-                //GameController.Instance().ChangeGameState(GameState._overworldState);
                 yield break;
             }
             yield return null;

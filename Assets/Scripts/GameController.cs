@@ -67,12 +67,12 @@ public class GameController : MonoBehaviour
 
         
 
-        /*if (GameObject.Find("BlackScreenFade(Clone)"))
+        if (GameObject.Find("BlackScreenFade(Clone)"))
         {
             DelegateTemplates.VoidDel del = gameLoadEffectsEnd;
             ChangeGameState(GameState._levelChangeState);
             StartCoroutine(CameraEffects.clearFadeRoutine("Black", del));
-        }*/
+        }
     }
 
     public void gameLoadEffectsEnd()

@@ -38,7 +38,7 @@ public class LevelController : MonoBehaviour
         StartCoroutine(EndSceneRoutine(newLevel,spawnVector));
     }
 
-    public void ChangeRooms(string nextRoom, Vector2 destPos)
+    public void ChangeRooms(string nextRoom, Vector2 destPos, Vector2 wallDir)
     {
         Debug.Log("nextRoom: " + nextRoom);
         Room newRoom = null;
@@ -53,21 +53,17 @@ public class LevelController : MonoBehaviour
 
         if (newRoom != null)
         {
-            Debug.Log("in if");
             //remove player collision
             PlayerControllerScript.Instance().gameObject.GetComponent<BoxCollider2D>().enabled = false;
             //activate other room
             newRoom.gameObject.SetActive(true);
             //start fading for current and new room AND move player to new point
 
-            //newroom.StartFadeIn
             StartCoroutine(newRoom.fadeRoomInRoutine());
             StartCoroutine(_currentRoomInstance.fadeRoomOutRoutine());
-            //currentRoom.StartFadeOut
             //activatePlayerSpeed
+            //StartCoroutine(PlayerControllerScript.Instance().movePlayerThroughRoom(wallDir));
 
-            //when fading finishes deactivate old room
-            //_currentRoomInstance.gameObject.SetActive(false);
             _currentRoomInstance = newRoom;
             //activate player collision
         }
