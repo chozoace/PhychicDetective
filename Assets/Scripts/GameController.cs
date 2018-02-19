@@ -65,8 +65,6 @@ public class GameController : MonoBehaviour
         GameState._historyPauseState.setMenuBackground(GameObject.FindGameObjectWithTag("HistoryBackgroundMenu"));
         GameState._settingsPauseState.setPauseMenuObj(GameObject.Find("SettingsPauseObj"));
 
-        
-
         if (GameObject.Find("BlackScreenFade(Clone)"))
         {
             DelegateTemplates.VoidDel del = gameLoadEffectsEnd;
@@ -110,7 +108,7 @@ public class GameController : MonoBehaviour
             FileStream file = File.Open(Application.persistentDataPath + "/GameController.dat", FileMode.Open);
             GameControllerSerialize iser = (GameControllerSerialize)bf.Deserialize(file);
 
-            GetComponent<LevelController>().EndScene(iser._currentLevel, new Vector2(iser._xPos, iser._yPos));
+            GetComponent<LevelController>().EndScene(iser._currentRoom, iser._currentScene, new Vector2(iser._xPos, iser._yPos));
 
             file.Close();
         }
@@ -128,7 +126,9 @@ public class GameController : MonoBehaviour
         GameControllerSerialize iser = new GameControllerSerialize();
         iser._xPos = PlayerControllerScript.Instance().transform.position.x;
         iser._yPos = PlayerControllerScript.Instance().transform.position.y;
-        iser._currentLevel = GetComponent<LevelController>().GetCurrentLevel;
+        //iser._currentLevel = GetComponent<LevelController>().GetCurrentLevel;
+        iser._currentRoom = GetComponent<LevelController>().GetCurrentRoom;
+        iser._currentScene = GetComponent<LevelController>().GetCurrentScene;
 
         bf.Serialize(file, iser);
         file.Close();
@@ -143,6 +143,8 @@ public class GameControllerSerialize
     public float _xPos;
     public float _yPos;
     public string _currentLevel;
+    public string _currentRoom;
+    public string _currentScene;
 
     public GameControllerSerialize()
     {

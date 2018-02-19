@@ -130,7 +130,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1673561855128838
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,7 +370,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemName: RedBox
   _itemId: 2
-  _interactableType: Default
   _xml: {fileID: 4900000, guid: 20342f54016f64547925c2e5b6f81116, type: 3}
 --- !u!114 &114676203095541036
 MonoBehaviour:
@@ -399,12 +398,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemName: Default
   _itemId: 0
-  _interactableType: Default
   _xml: {fileID: 0}
   _nextLevel: ResidenceHall
   _nextSpawnName: QGDoor
   _xPos: 0.68
   _yPos: 2.25
+  _destXPos: 0
+  _destYPos: 0
+  _xDirection: 1
+  _yDirection: 1
 --- !u!212 &212384248336024124
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -437,7 +439,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4b6f19e5e7c5b9d44be9c637e79d7729, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212402037214349042
@@ -472,7 +474,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0c962c0667b4fcf4a888bf8a90038529, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212463264823717228
@@ -507,7 +509,7 @@ SpriteRenderer:
   m_SortingLayerID: 1633486305
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e098b76c6705c2b43aa64747b4ffffe4, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212521820757767418
@@ -542,7 +544,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4b6f19e5e7c5b9d44be9c637e79d7729, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212751156965846338
@@ -577,7 +579,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4b6f19e5e7c5b9d44be9c637e79d7729, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212876957611746988
@@ -612,7 +614,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4b6f19e5e7c5b9d44be9c637e79d7729, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212978706487784284
@@ -647,6 +649,6 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 11fd8a1efab3b8c46be2926050ccbd0e, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_FlipX: 0
   m_FlipY: 0

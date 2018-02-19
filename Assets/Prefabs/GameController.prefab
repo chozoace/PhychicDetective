@@ -29,7 +29,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 189862}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.3705254, y: 3.1191826, z: 0}
+  m_LocalPosition: {x: 2.78, y: 3.37, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -55,6 +55,14 @@ MonoBehaviour:
   - {fileID: 114563087071709606, guid: 6be8ff36143da2c4aa8906d6a882e745, type: 2}
   - {fileID: 114676203095541036, guid: fb84a03f6c6faa34c96d88cd63fa6c75, type: 2}
   _fadeSpeed: 9
+  _roomInstanceList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &11477318
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -94,10 +102,10 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 189862}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6dbf348f3d988e343808f0aff5a91343, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 99059bd5aa355e44bbe9dbc0475f9d68, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -190,10 +198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcc72d0bad5f03845a5849e13f9fd3ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _historyFile: {fileID: 4900000, guid: 1953349471689eb4fb9415e5d57ffc78, type: 3}
   _historyRecordPrefab: {fileID: 1688742999606304, guid: 8b9d4f79d49af9b4ea068823d629aad9,
     type: 2}
-  _scrollBar: {fileID: 0}
 --- !u!114 &114594066996497470
 MonoBehaviour:
   m_ObjectHideFlags: 1

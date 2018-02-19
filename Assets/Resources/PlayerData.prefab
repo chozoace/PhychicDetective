@@ -1339,7 +1339,7 @@ Rigidbody2D:
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!61 &61271735363788920
@@ -3090,6 +3090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5505b69946f70224f9b0ab882420a242, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _worldIsoAngle: 0.4625123
   _moveSpeed: 2
   _hasBlueBox: 1
 --- !u!114 &114854309182570160
