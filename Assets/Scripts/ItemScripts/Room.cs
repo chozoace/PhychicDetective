@@ -85,7 +85,7 @@ public class Room : MonoBehaviour
     {
         foreach (SpriteRenderer renderer in this.GetComponentsInChildren<SpriteRenderer>())
         {
-            Color alpha = new Color();
+            Color alpha = Color.white;
             alpha.a = x;
             renderer.color = alpha;
         }

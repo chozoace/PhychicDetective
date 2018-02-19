@@ -144,6 +144,7 @@ public class LevelController : MonoBehaviour
             }
         }
         _currentRoomInstance.gameObject.SetActive(true);
+        _currentRoomInstance.setRoomObjOpacity(255);
         GameObject.FindGameObjectWithTag("PlayerData").transform.position = spawnVector;
         foreach(Transform child in GameObject.FindGameObjectWithTag("PlayerData").transform)
         {
