@@ -8,9 +8,6 @@ public class LevelController : MonoBehaviour
     [SerializeField] List<Room> _prefabRoomList = new List<Room>();
     List<Room> _roomList = new List<Room>();
     Room _currentRoom;
-    public string GetCurrentRoom { get { return _currentRoomInstance.GetRoomSceneName; } }
-    //need get current scene
-    public string GetCurrentScene { get { return SceneManager.GetActiveScene().name; } }
     public string GetCurrentLevel { get { return _currentRoom.GetRoomSceneName; } }
     GameObject _blackScreen;
     Color _currentAlphaColor;
@@ -24,13 +21,13 @@ public class LevelController : MonoBehaviour
     {
         foreach(Room room in _prefabRoomList)
         {
-            //Room obj = Instantiate(room);
-            _roomList.Add(room);
-            room.gameObject.SetActive(false);
+            Room obj = Instantiate(room);
+            obj.gameObject.SetActive(false);
+            _roomList.Add(obj);
         }
     }
 
-    public void EndScene(string newLevel, string newScene, Vector2 spawnVector)
+    public void EndScene(string newLevel, Vector2 spawnVector)
     {
         _blackScreen = GameObject.FindGameObjectWithTag("PlayerData").transform.FindChild("BlackScreen").gameObject;
         Vector3 v = GameObject.FindGameObjectWithTag("PlayerData").transform.FindChild("Main Camera").position;
@@ -38,7 +35,7 @@ public class LevelController : MonoBehaviour
         GameObject.FindGameObjectWithTag("PlayerData").transform.FindChild("BlackScreen").position = v;
         _currentAlphaColor = _blackScreen.GetComponent<SpriteRenderer>().color;
         _startScene = false;
-        StartCoroutine(EndSceneRoutine(newLevel, newScene, spawnVector));
+        StartCoroutine(EndSceneRoutine(newLevel,spawnVector));
     }
 
     public void ChangeRooms(string nextRoom, Vector2 destPos, Vector2 wallDir)
@@ -56,16 +53,19 @@ public class LevelController : MonoBehaviour
 
         if (newRoom != null)
         {
+            //remove player collision
+            PlayerControllerScript.Instance().gameObject.GetComponent<BoxCollider2D>().enabled = false;
             //activate other room
             newRoom.gameObject.SetActive(true);
             //start fading for current and new room AND move player to new point
+
             StartCoroutine(newRoom.fadeRoomInRoutine());
             StartCoroutine(_currentRoomInstance.fadeRoomOutRoutine());
             //activatePlayerSpeed
-            GameController.Instance().ChangeGameState(GameState._levelChangeState);
-            GameState._levelChangeState._roomTransition = true;
-            StartCoroutine(PlayerControllerScript.Instance().movePlayerThroughRoom(wallDir));
+            //StartCoroutine(PlayerControllerScript.Instance().movePlayerThroughRoom(wallDir));
+
             _currentRoomInstance = newRoom;
+            //activate player collision
         }
         Debug.Log("ended");
     }
@@ -85,7 +85,7 @@ public class LevelController : MonoBehaviour
         _blackScreen.GetComponent<SpriteRenderer>().color = Color.Lerp(_blackScreen.GetComponent<SpriteRenderer>().color, Color.clear, _fadeSpeed * Time.deltaTime);
     }
 
-    public IEnumerator EndSceneRoutine(string newLevel, string newScene, Vector2 spawnVector)
+    public IEnumerator EndSceneRoutine(string newLevel, Vector2 spawnVector)
     {
         while(true)
         {
@@ -94,7 +94,7 @@ public class LevelController : MonoBehaviour
             if(_blackScreen.GetComponent<SpriteRenderer>().color.a >= .995f)
             {
                 _blackScreen.GetComponent<SpriteRenderer>().color = Color.black;
-                LoadLevel(newLevel, newScene, spawnVector);
+                LoadLevel(newLevel, spawnVector);
                 yield break;
             }
             else
@@ -124,21 +124,15 @@ public class LevelController : MonoBehaviour
         }
     }
 
-    void LoadLevel(string newLevel, string newScene, Vector2 spawnVector)
+    void LoadLevel(string newLevel, Vector2 spawnVector)
     {
-        _currentRoomInstance.gameObject.SetActive(false);
-        SceneManager.LoadScene(newScene, LoadSceneMode.Single);
+        _currentRoom.gameObject.SetActive(false);
+        SceneManager.LoadScene(newLevel, LoadSceneMode.Single);
         //load room
         foreach (Room room in _roomList)
             if (room.GetRoomSceneName == newLevel)
-                _currentRoomInstance = room;
-            else
-            {
-                Debug.Log("set 0 for: " + room.GetRoomSceneName);
-                room.setRoomObjOpacity(0);
-                room.gameObject.SetActive(false);
-            }
-        _currentRoomInstance.gameObject.SetActive(true);
+                _currentRoom = room;
+        _currentRoom.gameObject.SetActive(true);
         GameObject.FindGameObjectWithTag("PlayerData").transform.position = spawnVector;
         foreach(Transform child in GameObject.FindGameObjectWithTag("PlayerData").transform)
         {

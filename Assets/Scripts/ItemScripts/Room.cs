@@ -27,15 +27,23 @@ public class Room : MonoBehaviour
 
     }
 
+    public void fadeRoomOut()
+    {
+
+    }
+
     public IEnumerator fadeRoomOutRoutine()
     {
+        bool lerpStarted = false;
         while (true)
         {
             Color currentAlpha = Color.clear;
+            //MOVE CODE TO SEPARATE COROUTINE, CALL FORLOOP ONCE
             foreach (SpriteRenderer renderer in GetComponentsInChildren<SpriteRenderer>())
             {
                 StartCoroutine(fadeRoomInLerp(renderer, Color.clear));
             }
+            lerpStarted = true;
             currentAlpha = GetComponentsInChildren<SpriteRenderer>()[0].color;
 
             if (currentAlpha.a <= .205f)
@@ -50,6 +58,11 @@ public class Room : MonoBehaviour
             yield return null;
         }
     }
+
+    public void fadeRoomIn()
+    {
+
+    }
     
     public IEnumerator fadeRoomInLerp(SpriteRenderer renderer, Color fadeToColor)
     {
@@ -59,6 +72,7 @@ public class Room : MonoBehaviour
 
     public IEnumerator fadeRoomInRoutine()
     {
+        bool lerpStarted = false;
         while (true)
         {
             Color currentAlpha = Color.clear;
@@ -67,6 +81,7 @@ public class Room : MonoBehaviour
             {
                 StartCoroutine(fadeRoomInLerp(renderer, Color.white));
             }
+            lerpStarted = true;
             currentAlpha = GetComponentsInChildren<SpriteRenderer>()[0].color;
 
             if (currentAlpha.a >= .995f)
@@ -75,6 +90,7 @@ public class Room : MonoBehaviour
                 {
                     renderer.color = Color.white;
                 }
+                PlayerControllerScript.Instance().gameObject.GetComponent<BoxCollider2D>().enabled = true;
                 yield break;
             }
             yield return null;
