@@ -24,7 +24,6 @@ public class NextLevelScript : Interactable
     {
         if(_canInteract)
         {
-            //GameController.Instance().ChangeGameState(GameState._levelChangeState);
             PlayerControllerScript.Instance().CollidingInteractable = null;
             GameObject.FindGameObjectWithTag("GameController").GetComponent<LevelController>().ChangeRooms(_nextLevel, new Vector2(_destXPos, _destYPos), new Vector2(_xDirection, _yDirection));
 
