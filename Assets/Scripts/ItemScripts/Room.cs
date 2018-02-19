@@ -18,7 +18,6 @@ public class Room : MonoBehaviour
         {
             _renderableObjs.Add(renderer);
         }
-       //gameObject.transform.position = _roomPos;
         DontDestroyOnLoad(this);
     }
 
@@ -93,6 +92,7 @@ public class Room : MonoBehaviour
 
 	public void SaveData()
     {
+        Debug.Log("room: " + GetRoomSceneName);
         foreach(Interactable interactable in _roomContents)
         {
             interactable.SaveData();

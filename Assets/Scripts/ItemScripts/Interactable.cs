@@ -97,6 +97,7 @@ public class Interactable : MonoBehaviour
             PlayerControllerScript.Instance().CollidingInteractable = null;
             _canInteract = false;
         }
+        Debug.Log("destroyed");
         _exists = false;
         gameObject.SetActive(false);
     }

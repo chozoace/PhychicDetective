@@ -56,6 +56,7 @@ public class LevelController : MonoBehaviour
 
         if (newRoom != null)
         {
+            StopAllCoroutines();
             //activate other room
             newRoom.gameObject.SetActive(true);
             //start fading for current and new room AND move player to new point
@@ -130,7 +131,6 @@ public class LevelController : MonoBehaviour
         if(!SceneManager.GetActiveScene().name.Equals(newScene))
             SceneManager.LoadScene(newScene, LoadSceneMode.Single);
         //load room
-        Debug.Log("new room " + newLevel);
         foreach (Room room in _roomInstanceList)
         {
             Debug.Log("room name: " + room.GetRoomSceneName);
@@ -182,7 +182,7 @@ public class LevelController : MonoBehaviour
 
     public void SaveGame()
     {
-        foreach(Room room in _roomList)
+        foreach(Room room in _roomInstanceList)
         {
             room.SaveData();
         }
@@ -190,7 +190,7 @@ public class LevelController : MonoBehaviour
 
     public void LoadGame()
     {
-        foreach (Room room in _roomList)
+        foreach (Room room in _roomInstanceList)
         {
             room.LoadData();
         }

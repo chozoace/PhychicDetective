@@ -77,8 +77,8 @@ public class PlayerControllerScript : MonoBehaviour
             if(Time.time - startTime > .5)
             {
                 _rigidBody.velocity = Vector2.zero;
-                anim.SetInteger("xSpeed", (int)_doorDir.x);
-                anim.SetInteger("ySpeed", (int)_doorDir.y);
+                anim.SetInteger("xSpeed", 0);
+                anim.SetInteger("ySpeed", 0);
                 GetComponent<BoxCollider2D>().enabled = true;
                 GameController.Instance().ChangeGameState(GameState._overworldState);
                 yield break;
@@ -97,8 +97,8 @@ public class PlayerControllerScript : MonoBehaviour
                 {
                     _collidingInteractable.onInteract();
                     GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                    anim.SetInteger("xSpeedf", (int)_rigidBody.velocity.x);
-                    anim.SetInteger("ySpeedf", (int)_rigidBody.velocity.y);
+                    anim.SetInteger("xSpeed", 0);
+                    anim.SetInteger("ySpeed", 0);
                 }
             }
             if (Input.GetKeyDown(KeyCode.P))
@@ -151,10 +151,5 @@ public class PlayerControllerScript : MonoBehaviour
     public bool InventoryContains(string type, int itemId)
     {
         return _notebook.NotebookContains(itemId, type);
-    }
-
-    void Update()
-    {
-
     }
 }
