@@ -1,5 +1,12 @@
 <ConvoHistoryContainer>
   <HistoryList>
-    <Record speaker="Some Sign" speech="This appears to be some sign. I can't just pick up and take it..." />
+    <Record speaker="Player" speech="Hey, how are ya?" />
+    <Record speaker="RedBox" speech="Pretty bored, I am only a red box after all." />
+    <Record speaker="Player" speech="Oh. So I guess thinking outside of the box for you..." />
+    <Record speaker="Player" speech="would be an out of body experience!" />
+    <Record speaker="Player" speech="(Now which one was it...)" />
+    <Record speaker="Player" speech="Hey, how are ya?" />
+    <Record speaker="RedBox" speech="Pretty bored, I am only a red box after all." />
+    <Record speaker="Player" speech="Oh. So I guess thinking outside of the box for you..." />
   </HistoryList>
 </ConvoHistoryContainer>

@@ -40,6 +40,8 @@ public class PortraitScript : MonoBehaviour
 
         this.GetComponent<SpriteRenderer>().enabled = true;
         _anim.runtimeAnimatorController = Resources.Load("PortraitAnimControllers/" + speakerName + "PortraitAnim") as RuntimeAnimatorController;
+        Debug.Log("Loading anim: " + speakerName + "PortraitAnim");
+        Debug.Log(_anim.runtimeAnimatorController.name);
         _anim.SetInteger("CurrentEmotionIndex", (int)_currentEmotion);
         this.GetComponent<SpriteRenderer>().sprite = Resources.Load(portraitName, typeof(Sprite)) as Sprite;
     }
